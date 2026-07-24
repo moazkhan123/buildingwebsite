@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import BookCover from "@/components/BookCover";
 import type { Book } from "@/data/books";
+import { ExternalLink } from "lucide-react";
 
 const item = {
   hidden: { opacity: 0, y: 24 },
@@ -8,8 +9,14 @@ const item = {
 };
 
 export default function BookCard({ book }: { book: Book }) {
+  const Wrapper = book.link ? motion.a : motion.div;
+  const linkProps = book.link
+    ? { href: book.link, target: "_blank", rel: "noreferrer" }
+    : {};
+
   return (
-    <motion.div
+    <Wrapper
+      {...linkProps}
       variants={item}
       whileHover={{ y: -8 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -24,7 +31,13 @@ export default function BookCard({ book }: { book: Book }) {
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
           {book.description}
         </p>
+        {book.link && (
+          <p className="mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-accent opacity-0 transition-opacity group-hover:opacity-100">
+            View on Amazon
+            <ExternalLink className="h-3.5 w-3.5" />
+          </p>
+        )}
       </div>
-    </motion.div>
+    </Wrapper>
   );
 }

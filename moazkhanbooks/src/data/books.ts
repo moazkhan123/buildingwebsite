@@ -3,6 +3,7 @@ export interface Book {
   description: string;
   genre: string;
   coverColor: string;
+  link?: string;
 }
 
 export const books: Book[] = [
@@ -12,6 +13,7 @@ export const books: Book[] = [
     description:
       "A literary crime thriller that explores a morally complex world and refuses an easy ending.",
     coverColor: "#5c1a24",
+    link: "https://a.co/d/05gDLumN",
   },
   {
     title: "The Closing Number",
@@ -24,6 +26,7 @@ export const books: Book[] = [
     genre: "Thriller · Prague",
     description: "A Prague-set thriller where the past resurfaces through the senses.",
     coverColor: "#1c2b4a",
+    link: "https://a.co/d/041DIOpo",
   },
   {
     title: "Mirrored Falls",
@@ -31,6 +34,7 @@ export const books: Book[] = [
     description:
       "A literary novel published in both English and Hindustani Hindi editions.",
     coverColor: "#3a2b1c",
+    link: "https://a.co/d/0dnTRsIr",
   },
   {
     title: "The Girl Who Saw in the Dark",
@@ -38,6 +42,7 @@ export const books: Book[] = [
     description:
       "A middle-grade novel about a girl with night blindness who builds a company from her greatest challenge.",
     coverColor: "#4a3b1f",
+    link: "https://a.co/d/01bqeLFh",
   },
   {
     title: "Rich Habits, Young Minds",
@@ -45,12 +50,14 @@ export const books: Book[] = [
     description:
       "A financial literacy book following one family through five money lessons.",
     coverColor: "#2f4a2b",
+    link: "https://a.co/d/07JWTseX",
   },
   {
     title: "The Question Kids",
     genre: "Children's nonfiction",
     description: "Introduces young readers to six real-world inventors.",
     coverColor: "#5a2f4a",
+    link: "https://a.co/d/0fMPQINl",
   },
   {
     title: "The Trades AI Can't Touch",
@@ -58,6 +65,7 @@ export const books: Book[] = [
     description:
       "Six industrial trades powering Canada and the United States, and the human judgment behind them that can't be automated.",
     coverColor: "#6b1f28",
+    link: "https://a.co/d/0iA303gP",
   },
   {
     title: "AI Edge",
@@ -65,6 +73,7 @@ export const books: Book[] = [
     description:
       "A day trader's playbook for using AI to find opportunities, execute with precision, and manage risk like a pro.",
     coverColor: "#1f4a3a",
+    link: "https://a.co/d/0eGOmNz4",
   },
   {
     title: "From the Plant Floor",
@@ -72,18 +81,21 @@ export const books: Book[] = [
     description:
       "A practical guide to robotic welding, covering MIG welding, resistance spot welding, and nut projection welding.",
     coverColor: "#3a3f4a",
+    link: "https://a.co/d/04I2BxHK",
   },
   {
     title: "Why I Can't Leave Islam",
     genre: "Nonfiction · Religion",
     description: "13 arguments exploring the author's relationship with faith.",
     coverColor: "#4a3a1f",
+    link: "https://a.co/d/0ele2f0r",
   },
   {
     title: "Bullseye Confidence",
     genre: "Nonfiction · Personal development",
     description: "Hit the exact mark in 20 high-stakes moments.",
     coverColor: "#1f3350",
+    link: "https://a.co/d/0gnsd9NN",
   },
   {
     title: "The Down Syndrome Parenting Companion",
@@ -91,6 +103,7 @@ export const books: Book[] = [
     description:
       "A story of love, courage, and raising a child with Down syndrome, age by age.",
     coverColor: "#5a4a2f",
+    link: "https://a.co/d/05WOTgWK",
   },
   {
     title: "Math Is My Favorite",
@@ -98,17 +111,20 @@ export const books: Book[] = [
     description:
       "A visual, household approach to mathematics, Standard 1 through 8.",
     coverColor: "#2f5a4a",
+    link: "https://a.co/d/02aJhNjj",
   },
   {
     title: "The Confidence Prompt",
     genre: "Nonfiction · Personal development",
     description: "Reprogram your mind for unshakable confidence under pressure.",
     coverColor: "#1c2b45",
+    link: "https://a.co/d/06aavGqd",
   },
   {
     title: "The Stress Experts",
     genre: "Psychological novel",
     description: "When the experts become the experiment.",
     coverColor: "#3a3a3a",
+    link: "https://a.co/d/0hHwpd7x",
   },
 ];
