@@ -5,6 +5,7 @@ import AnimatedBackground from "@/components/AnimatedBackground";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
 import Logo from "@/components/Logo";
 import { MapPin, ExternalLink } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 const AMAZON_AUTHOR_URL = "https://www.amazon.com/author/moazkhan";
 
@@ -69,6 +70,7 @@ export default function App() {
           <motion.div variants={fadeUp} className="flex flex-wrap gap-4 pt-2">
             <motion.a
               href="#books"
+              onClick={() => trackEvent("click_explore_books")}
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -80,6 +82,7 @@ export default function App() {
               href={AMAZON_AUTHOR_URL}
               target="_blank"
               rel="noreferrer"
+              onClick={() => trackEvent("click_hero_amazon_author")}
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -180,6 +183,7 @@ export default function App() {
               href={AMAZON_AUTHOR_URL}
               target="_blank"
               rel="noreferrer"
+              onClick={() => trackEvent("click_footer_amazon_author")}
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
