@@ -4,10 +4,7 @@ import { X, Loader2, CheckCircle2 } from "lucide-react";
 import StarRating from "@/components/StarRating";
 import type { Review } from "@/data/books";
 
-// TODO: replace with your real Formspree form endpoint.
-// Sign up free at https://formspree.io, create a form, and paste its
-// endpoint here (looks like "https://formspree.io/f/xxxxxxxx").
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/meeypqpq";
 
 interface ReviewModalProps {
   bookTitle: string;
