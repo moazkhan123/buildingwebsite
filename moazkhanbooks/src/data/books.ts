@@ -78,6 +78,7 @@ export const books: Book[] = [
     description:
       "A practical guide to robotic welding, covering MIG welding, resistance spot welding, and nut projection welding.",
     coverColor: "#3a3f4a",
+    link: "https://a.co/d/04I2BxHK",
   },
   {
     title: "Why I Can't Leave Islam",
