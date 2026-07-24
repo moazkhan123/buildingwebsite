@@ -3,6 +3,7 @@ export interface Book {
   description: string;
   genre: string;
   coverColor: string;
+  link?: string;
 }
 
 export const books: Book[] = [
@@ -45,6 +46,7 @@ export const books: Book[] = [
     description:
       "A financial literacy book following one family through five money lessons.",
     coverColor: "#2f4a2b",
+    link: "https://a.co/d/07JWTseX",
   },
   {
     title: "The Question Kids",
@@ -84,6 +86,7 @@ export const books: Book[] = [
     genre: "Nonfiction · Personal development",
     description: "Hit the exact mark in 20 high-stakes moments.",
     coverColor: "#1f3350",
+    link: "https://a.co/d/0gnsd9NN",
   },
   {
     title: "The Down Syndrome Parenting Companion",
@@ -91,6 +94,7 @@ export const books: Book[] = [
     description:
       "A story of love, courage, and raising a child with Down syndrome, age by age.",
     coverColor: "#5a4a2f",
+    link: "https://a.co/d/05WOTgWK",
   },
   {
     title: "Math Is My Favorite",
@@ -98,6 +102,7 @@ export const books: Book[] = [
     description:
       "A visual, household approach to mathematics, Standard 1 through 8.",
     coverColor: "#2f5a4a",
+    link: "https://a.co/d/02aJhNjj",
   },
   {
     title: "The Confidence Prompt",
