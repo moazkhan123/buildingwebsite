@@ -1,4 +1,5 @@
 import theStressExperts from "@/assets/covers/the-stress-experts.jpeg";
+import fromThePlantFloor from "@/assets/covers/from-the-plant-floor.jpeg";
 import theQuestionKids from "@/assets/covers/the-question-kids.jpeg";
 import mathIsMyFavorite from "@/assets/covers/math-is-my-favorite.jpeg";
 import richHabitsYoungMinds from "@/assets/covers/rich-habits-young-minds.jpeg";
@@ -108,6 +109,7 @@ export const books: Book[] = [
       "A practical guide to robotic welding, covering MIG welding, resistance spot welding, and nut projection welding.",
     coverColor: "#3a3f4a",
     link: "https://a.co/d/04I2BxHK",
+    cover: fromThePlantFloor,
   },
   {
     title: "Why I Can't Leave Islam",
