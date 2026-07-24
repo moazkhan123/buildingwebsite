@@ -99,4 +99,16 @@ export const books: Book[] = [
       "A visual, household approach to mathematics, Standard 1 through 8.",
     coverColor: "#2f5a4a",
   },
+  {
+    title: "The Confidence Prompt",
+    genre: "Nonfiction · Personal development",
+    description: "Reprogram your mind for unshakable confidence under pressure.",
+    coverColor: "#1c2b45",
+  },
+  {
+    title: "The Stress Experts",
+    genre: "Psychological novel",
+    description: "When the experts become the experiment.",
+    coverColor: "#3a3a3a",
+  },
 ];
