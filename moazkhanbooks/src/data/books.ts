@@ -79,4 +79,24 @@ export const books: Book[] = [
     description: "13 arguments exploring the author's relationship with faith.",
     coverColor: "#4a3a1f",
   },
+  {
+    title: "Bullseye Confidence",
+    genre: "Nonfiction · Personal development",
+    description: "Hit the exact mark in 20 high-stakes moments.",
+    coverColor: "#1f3350",
+  },
+  {
+    title: "The Down Syndrome Parenting Companion",
+    genre: "Nonfiction · Parenting",
+    description:
+      "A story of love, courage, and raising a child with Down syndrome, age by age.",
+    coverColor: "#5a4a2f",
+  },
+  {
+    title: "Math Is My Favorite",
+    genre: "Children's nonfiction · Education",
+    description:
+      "A visual, household approach to mathematics, Standard 1 through 8.",
+    coverColor: "#2f5a4a",
+  },
 ];
