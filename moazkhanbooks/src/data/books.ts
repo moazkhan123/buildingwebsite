@@ -109,6 +109,7 @@ export const books: Book[] = [
     genre: "Nonfiction · Personal development",
     description: "Reprogram your mind for unshakable confidence under pressure.",
     coverColor: "#1c2b45",
+    link: "https://a.co/d/06aavGqd",
   },
   {
     title: "The Stress Experts",
