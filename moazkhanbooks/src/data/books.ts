@@ -13,6 +13,7 @@ export const books: Book[] = [
     description:
       "A literary crime thriller that explores a morally complex world and refuses an easy ending.",
     coverColor: "#5c1a24",
+    link: "https://a.co/d/05gDLumN",
   },
   {
     title: "The Closing Number",
