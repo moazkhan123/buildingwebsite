@@ -52,4 +52,31 @@ export const books: Book[] = [
     description: "Introduces young readers to six real-world inventors.",
     coverColor: "#5a2f4a",
   },
+  {
+    title: "The Trades AI Can't Touch",
+    genre: "Nonfiction · Skilled trades",
+    description:
+      "Six industrial trades powering Canada and the United States, and the human judgment behind them that can't be automated.",
+    coverColor: "#6b1f28",
+  },
+  {
+    title: "AI Edge",
+    genre: "Nonfiction · Trading & AI",
+    description:
+      "A day trader's playbook for using AI to find opportunities, execute with precision, and manage risk like a pro.",
+    coverColor: "#1f4a3a",
+  },
+  {
+    title: "From the Plant Floor",
+    genre: "Nonfiction · Manufacturing",
+    description:
+      "A practical guide to robotic welding, covering MIG welding, resistance spot welding, and nut projection welding.",
+    coverColor: "#3a3f4a",
+  },
+  {
+    title: "Why I Can't Leave Islam",
+    genre: "Nonfiction · Religion",
+    description: "13 arguments exploring the author's relationship with faith.",
+    coverColor: "#4a3a1f",
+  },
 ];
