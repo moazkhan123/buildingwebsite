@@ -15,6 +15,12 @@ import whyICantLeaveIslam from "@/assets/covers/why-i-cant-leave-islam.jpeg";
 import bullseyeConfidence from "@/assets/covers/bullseye-confidence.jpeg";
 import theConfidencePrompt from "@/assets/covers/the-confidence-prompt.jpeg";
 
+export interface Review {
+  name: string;
+  rating: number;
+  comment: string;
+}
+
 export interface Book {
   title: string;
   description: string;
@@ -22,6 +28,7 @@ export interface Book {
   coverColor: string;
   link?: string;
   cover?: string;
+  reviews?: Review[];
 }
 
 export const books: Book[] = [
