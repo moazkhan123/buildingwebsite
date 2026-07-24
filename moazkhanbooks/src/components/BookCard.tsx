@@ -22,7 +22,7 @@ export default function BookCard({ book }: { book: Book }) {
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
       className="group flex flex-col gap-4"
     >
-      <BookCover title={book.title} color={book.coverColor} />
+      <BookCover title={book.title} color={book.coverColor} cover={book.cover} />
       <div>
         <h3 className="font-serif text-xl text-foreground">{book.title}</h3>
         <p className="mt-1 text-sm font-medium uppercase tracking-wide text-accent">

@@ -1,9 +1,16 @@
+import theStressExperts from "@/assets/covers/the-stress-experts.jpeg";
+import theQuestionKids from "@/assets/covers/the-question-kids.jpeg";
+import mathIsMyFavorite from "@/assets/covers/math-is-my-favorite.jpeg";
+import richHabitsYoungMinds from "@/assets/covers/rich-habits-young-minds.jpeg";
+import downSyndromeParentingCompanion from "@/assets/covers/down-syndrome-parenting-companion.jpeg";
+
 export interface Book {
   title: string;
   description: string;
   genre: string;
   coverColor: string;
   link?: string;
+  cover?: string;
 }
 
 export const books: Book[] = [
@@ -51,6 +58,7 @@ export const books: Book[] = [
       "A financial literacy book following one family through five money lessons.",
     coverColor: "#2f4a2b",
     link: "https://a.co/d/07JWTseX",
+    cover: richHabitsYoungMinds,
   },
   {
     title: "The Question Kids",
@@ -58,6 +66,7 @@ export const books: Book[] = [
     description: "Introduces young readers to six real-world inventors.",
     coverColor: "#5a2f4a",
     link: "https://a.co/d/0fMPQINl",
+    cover: theQuestionKids,
   },
   {
     title: "The Trades AI Can't Touch",
@@ -104,6 +113,7 @@ export const books: Book[] = [
       "A story of love, courage, and raising a child with Down syndrome, age by age.",
     coverColor: "#5a4a2f",
     link: "https://a.co/d/05WOTgWK",
+    cover: downSyndromeParentingCompanion,
   },
   {
     title: "Math Is My Favorite",
@@ -112,6 +122,7 @@ export const books: Book[] = [
       "A visual, household approach to mathematics, Standard 1 through 8.",
     coverColor: "#2f5a4a",
     link: "https://a.co/d/02aJhNjj",
+    cover: mathIsMyFavorite,
   },
   {
     title: "The Confidence Prompt",
@@ -126,5 +137,6 @@ export const books: Book[] = [
     description: "When the experts become the experiment.",
     coverColor: "#3a3a3a",
     link: "https://a.co/d/0hHwpd7x",
+    cover: theStressExperts,
   },
 ];
