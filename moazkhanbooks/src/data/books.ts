@@ -85,6 +85,7 @@ export const books: Book[] = [
     genre: "Nonfiction · Religion",
     description: "13 arguments exploring the author's relationship with faith.",
     coverColor: "#4a3a1f",
+    link: "https://a.co/d/0ele2f0r",
   },
   {
     title: "Bullseye Confidence",
