@@ -5,6 +5,7 @@ import StarRating from "@/components/StarRating";
 import ReviewModal from "@/components/ReviewModal";
 import type { Book } from "@/data/books";
 import { ExternalLink, MessageSquarePlus } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 const item = {
   hidden: { opacity: 0, y: 24 },
@@ -28,6 +29,11 @@ export default function BookCard({ book }: { book: Book }) {
     <>
       <Wrapper
         {...linkProps}
+        onClick={
+          book.link
+            ? () => trackEvent("click_book_amazon_link", { book_title: book.title })
+            : undefined
+        }
         variants={item}
         whileHover={{ y: -8 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -63,6 +69,7 @@ export default function BookCard({ book }: { book: Book }) {
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
+                trackEvent("click_write_review", { book_title: book.title });
                 setReviewOpen(true);
               }}
               className="inline-flex items-center gap-1.5 text-sm font-medium text-accent transition hover:opacity-80"

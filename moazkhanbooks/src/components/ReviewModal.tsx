@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { X, Loader2, CheckCircle2 } from "lucide-react";
 import StarRating from "@/components/StarRating";
 import type { Review } from "@/data/books";
+import { trackEvent } from "@/lib/analytics";
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/meeypqpq";
 
@@ -45,6 +46,7 @@ export default function ReviewModal({ bookTitle, reviews, open, onClose }: Revie
         body: JSON.stringify({ book: bookTitle, name: name.trim() || "Anonymous", rating, comment }),
       });
       if (!res.ok) throw new Error("submission failed");
+      trackEvent("submit_review", { book_title: bookTitle, rating });
       setStatus("success");
     } catch {
       setStatus("error");
