@@ -25,6 +25,7 @@ export const books: Book[] = [
     genre: "Thriller · Prague",
     description: "A Prague-set thriller where the past resurfaces through the senses.",
     coverColor: "#1c2b4a",
+    link: "https://a.co/d/041DIOpo",
   },
   {
     title: "Mirrored Falls",
