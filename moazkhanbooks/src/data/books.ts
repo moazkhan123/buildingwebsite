@@ -53,6 +53,7 @@ export const books: Book[] = [
     genre: "Children's nonfiction",
     description: "Introduces young readers to six real-world inventors.",
     coverColor: "#5a2f4a",
+    link: "https://a.co/d/0fMPQINl",
   },
   {
     title: "The Trades AI Can't Touch",
@@ -116,5 +117,6 @@ export const books: Book[] = [
     genre: "Psychological novel",
     description: "When the experts become the experiment.",
     coverColor: "#3a3a3a",
+    link: "https://a.co/d/0hHwpd7x",
   },
 ];
