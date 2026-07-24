@@ -70,6 +70,7 @@ export const books: Book[] = [
     description:
       "A day trader's playbook for using AI to find opportunities, execute with precision, and manage risk like a pro.",
     coverColor: "#1f4a3a",
+    link: "https://a.co/d/0eGOmNz4",
   },
   {
     title: "From the Plant Floor",
