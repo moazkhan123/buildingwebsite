@@ -62,6 +62,7 @@ export const books: Book[] = [
     description:
       "Six industrial trades powering Canada and the United States, and the human judgment behind them that can't be automated.",
     coverColor: "#6b1f28",
+    link: "https://a.co/d/0iA303gP",
   },
   {
     title: "AI Edge",
