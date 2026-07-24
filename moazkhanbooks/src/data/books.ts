@@ -32,6 +32,7 @@ export const books: Book[] = [
     description:
       "A literary novel published in both English and Hindustani Hindi editions.",
     coverColor: "#3a2b1c",
+    link: "https://a.co/d/0dnTRsIr",
   },
   {
     title: "The Girl Who Saw in the Dark",
