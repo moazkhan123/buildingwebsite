@@ -42,6 +42,7 @@ export const books: Book[] = [
     description:
       "A middle-grade novel about a girl with night blindness who builds a company from her greatest challenge.",
     coverColor: "#4a3b1f",
+    link: "https://a.co/d/01bqeLFh",
   },
   {
     title: "Rich Habits, Young Minds",
