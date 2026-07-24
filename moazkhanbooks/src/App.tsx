@@ -3,6 +3,7 @@ import { books } from "@/data/books";
 import BookCard from "@/components/BookCard";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
+import Logo from "@/components/Logo";
 import { MapPin, ExternalLink } from "lucide-react";
 
 const AMAZON_AUTHOR_URL = "https://www.amazon.com/author/moazkhan";
@@ -25,7 +26,7 @@ export default function App() {
 
       <div className="mx-auto max-w-5xl px-6">
         <header className="flex items-center justify-between py-8">
-          <span className="font-serif text-lg tracking-tight">Moaz Khan</span>
+          <Logo />
           <nav className="flex gap-6 text-sm text-muted-foreground">
             <a href="#books" className="transition hover:text-foreground">
               Books
