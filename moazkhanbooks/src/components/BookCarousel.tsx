@@ -1,26 +1,98 @@
-import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { useRef, useState } from "react";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useTransform,
+  animate,
+  type MotionValue,
+} from "motion/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import BookCover from "@/components/BookCover";
 import BookDetailPanel from "@/components/BookDetailPanel";
 import type { Book } from "@/data/books";
 
 const CARD_SPACING = 150;
+const SPRING = { type: "spring", stiffness: 260, damping: 26 } as const;
 
-function circularOffset(index: number, active: number, length: number) {
-  let offset = index - active;
-  if (offset > length / 2) offset -= length;
-  if (offset < -length / 2) offset += length;
-  return offset;
+function circularOffset(index: number, position: number, length: number) {
+  const raw = index - position;
+  return (((raw + length / 2) % length) + length) % length - length / 2;
+}
+
+function nearestEquivalent(from: number, to: number, length: number) {
+  const diff = (((to - from + length / 2) % length) + length) % length - length / 2;
+  return from + diff;
+}
+
+function CarouselCard({
+  book,
+  index,
+  length,
+  position,
+  active,
+  onSelect,
+}: {
+  book: Book;
+  index: number;
+  length: number;
+  position: MotionValue<number>;
+  active: number;
+  onSelect: () => void;
+}) {
+  const offset = useTransform(position, (p) => circularOffset(index, p, length));
+  const x = useTransform(offset, (o) => o * CARD_SPACING);
+  const z = useTransform(offset, (o) => -Math.abs(o) * 150);
+  const rotateY = useTransform(offset, (o) => o * -32);
+  const scale = useTransform(offset, (o) => 1 - Math.min(Math.abs(o), 1) * 0.22);
+  const opacity = useTransform(offset, (o) => {
+    const abs = Math.abs(o);
+    return abs <= 2.5 ? Math.max(1 - abs * 0.32, 0) : 0;
+  });
+
+  const visible = Math.abs(circularOffset(index, active, length)) <= 2;
+
+  return (
+    <motion.div
+      className="absolute left-1/2 top-1/2 w-[180px] -ml-[90px] -mt-[135px] cursor-pointer"
+      style={{
+        transformStyle: "preserve-3d",
+        pointerEvents: visible ? "auto" : "none",
+        x,
+        z,
+        rotateY,
+        scale,
+        opacity,
+      }}
+      onClick={onSelect}
+      aria-hidden={!visible}
+    >
+      <BookCover title={book.title} color={book.coverColor} cover={book.cover} />
+    </motion.div>
+  );
 }
 
 export default function BookCarousel({ books }: { books: Book[] }) {
   const [active, setActive] = useState(0);
-  const [dragX, setDragX] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
   const length = books.length;
+  const position = useMotionValue(0);
+  const dragStart = useRef(0);
 
-  const go = (dir: 1 | -1) => setActive((prev) => (prev + dir + length) % length);
+  const settleTo = (target: number) => {
+    animate(position, nearestEquivalent(position.get(), target, length), SPRING);
+  };
+
+  const commit = (index: number) => {
+    setActive(index);
+    settleTo(index);
+  };
+
+  const go = (dir: 1 | -1) => {
+    const next = (active + dir + length) % length;
+    setActive(next);
+    settleTo(next);
+  };
+
   const activeCategory = books[active].category;
 
   return (
@@ -56,45 +128,29 @@ export default function BookCarousel({ books }: { books: Book[] }) {
           dragElastic={0}
           dragMomentum={false}
           dragConstraints={{ left: 0, right: 0 }}
-          onDragStart={() => setIsDragging(true)}
-          onDrag={(_, info) => setDragX(info.offset.x)}
+          onDragStart={() => {
+            dragStart.current = position.get();
+          }}
+          onDrag={(_, info) => {
+            position.set(dragStart.current - info.offset.x / CARD_SPACING);
+          }}
           onDragEnd={(_, info) => {
             if (info.offset.x < -60 || info.velocity.x < -400) go(1);
             else if (info.offset.x > 60 || info.velocity.x > 400) go(-1);
-            setIsDragging(false);
-            setDragX(0);
+            else settleTo(active);
           }}
         >
-          {books.map((book, i) => {
-            const offset = circularOffset(i, active, length) + dragX / CARD_SPACING;
-            const abs = Math.abs(offset);
-            const visible = abs <= 2.5;
-
-            return (
-              <motion.div
-                key={book.title}
-                className="absolute left-1/2 top-1/2 w-[180px] -ml-[90px] -mt-[135px] cursor-pointer"
-                style={{
-                  transformStyle: "preserve-3d",
-                  pointerEvents: visible ? "auto" : "none",
-                }}
-                animate={{
-                  x: offset * CARD_SPACING,
-                  z: -abs * 150,
-                  rotateY: offset * -32,
-                  scale: 1 - Math.min(abs, 1) * 0.22,
-                  opacity: visible ? Math.max(1 - abs * 0.32, 0) : 0,
-                }}
-                transition={
-                  isDragging ? { duration: 0 } : { type: "spring", stiffness: 260, damping: 26 }
-                }
-                onClick={() => setActive(i)}
-                aria-hidden={!visible}
-              >
-                <BookCover title={book.title} color={book.coverColor} cover={book.cover} />
-              </motion.div>
-            );
-          })}
+          {books.map((book, i) => (
+            <CarouselCard
+              key={book.title}
+              book={book}
+              index={i}
+              length={length}
+              position={position}
+              active={active}
+              onSelect={() => commit(i)}
+            />
+          ))}
         </motion.div>
       </div>
 
@@ -113,7 +169,7 @@ export default function BookCarousel({ books }: { books: Book[] }) {
             <button
               key={book.title}
               type="button"
-              onClick={() => setActive(i)}
+              onClick={() => commit(i)}
               aria-label={`Go to ${book.title}`}
               style={
                 i > 0 && books[i].category !== books[i - 1].category
