@@ -111,7 +111,7 @@ export default function BookCarousel({ books }: { books: Book[] }) {
       </AnimatePresence>
 
       <div
-        className="relative h-[400px] w-full max-w-3xl select-none outline-none"
+        className="relative h-[400px] w-full max-w-3xl overflow-hidden select-none outline-none"
         style={{ perspective: 1200 }}
         tabIndex={0}
         role="region"
