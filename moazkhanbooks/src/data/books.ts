@@ -21,10 +21,13 @@ export interface Review {
   comment: string;
 }
 
+export type Category = "Fiction" | "Children's" | "Nonfiction";
+
 export interface Book {
   title: string;
   description: string;
   genre: string;
+  category: Category;
   coverColor: string;
   link?: string;
   cover?: string;
@@ -32,9 +35,11 @@ export interface Book {
 }
 
 export const books: Book[] = [
+  // --- Fiction ---
   {
     title: "The Godman",
     genre: "Literary crime thriller",
+    category: "Fiction",
     description:
       "A literary crime thriller that explores a morally complex world and refuses an easy ending.",
     coverColor: "#5c1a24",
@@ -44,6 +49,7 @@ export const books: Book[] = [
   {
     title: "The Closing Number",
     genre: "Mystery · Hong Kong",
+    category: "Fiction",
     description: "A mystery set in Hong Kong, following a case that closes in on more than one suspect.",
     coverColor: "#1f3b3a",
     cover: theClosingNumber,
@@ -51,6 +57,7 @@ export const books: Book[] = [
   {
     title: "A Memory of Smell",
     genre: "Thriller · Prague",
+    category: "Fiction",
     description: "A Prague-set thriller where the past resurfaces through the senses.",
     coverColor: "#1c2b4a",
     link: "https://a.co/d/041DIOpo",
@@ -59,6 +66,7 @@ export const books: Book[] = [
   {
     title: "Mirrored Falls",
     genre: "Literary novel · English & Hindustani Hindi",
+    category: "Fiction",
     description:
       "A literary novel published in both English and Hindustani Hindi editions.",
     coverColor: "#3a2b1c",
@@ -66,8 +74,20 @@ export const books: Book[] = [
     cover: mirroredFalls,
   },
   {
+    title: "The Stress Experts",
+    genre: "Psychological novel",
+    category: "Fiction",
+    description: "When the experts become the experiment.",
+    coverColor: "#3a3a3a",
+    link: "https://a.co/d/0hHwpd7x",
+    cover: theStressExperts,
+  },
+
+  // --- Children's ---
+  {
     title: "The Girl Who Saw in the Dark",
     genre: "Middle-grade novel",
+    category: "Children's",
     description:
       "A middle-grade novel about a girl with night blindness who builds a company from her greatest challenge.",
     coverColor: "#4a3b1f",
@@ -77,6 +97,7 @@ export const books: Book[] = [
   {
     title: "Rich Habits, Young Minds",
     genre: "Financial literacy · Family",
+    category: "Children's",
     description:
       "A financial literacy book following one family through five money lessons.",
     coverColor: "#2f4a2b",
@@ -86,14 +107,28 @@ export const books: Book[] = [
   {
     title: "The Question Kids",
     genre: "Children's nonfiction",
+    category: "Children's",
     description: "Introduces young readers to six real-world inventors.",
     coverColor: "#5a2f4a",
     link: "https://a.co/d/0fMPQINl",
     cover: theQuestionKids,
   },
   {
+    title: "Math Is My Favorite",
+    genre: "Children's nonfiction · Education",
+    category: "Children's",
+    description:
+      "A visual, household approach to mathematics, Standard 1 through 8.",
+    coverColor: "#2f5a4a",
+    link: "https://a.co/d/02aJhNjj",
+    cover: mathIsMyFavorite,
+  },
+
+  // --- Nonfiction ---
+  {
     title: "The Trades AI Can't Touch",
     genre: "Nonfiction · Skilled trades",
+    category: "Nonfiction",
     description:
       "Six industrial trades powering Canada and the United States, and the human judgment behind them that can't be automated.",
     coverColor: "#6b1f28",
@@ -103,6 +138,7 @@ export const books: Book[] = [
   {
     title: "AI Edge",
     genre: "Nonfiction · Trading & AI",
+    category: "Nonfiction",
     description:
       "A day trader's playbook for using AI to find opportunities, execute with precision, and manage risk like a pro.",
     coverColor: "#1f4a3a",
@@ -112,6 +148,7 @@ export const books: Book[] = [
   {
     title: "From the Plant Floor",
     genre: "Nonfiction · Manufacturing",
+    category: "Nonfiction",
     description:
       "A practical guide to robotic welding, covering MIG welding, resistance spot welding, and nut projection welding.",
     coverColor: "#3a3f4a",
@@ -121,6 +158,7 @@ export const books: Book[] = [
   {
     title: "Why I Can't Leave Islam",
     genre: "Nonfiction · Religion",
+    category: "Nonfiction",
     description: "13 arguments exploring the author's relationship with faith.",
     coverColor: "#4a3a1f",
     link: "https://a.co/d/0ele2f0r",
@@ -129,6 +167,7 @@ export const books: Book[] = [
   {
     title: "Bullseye Confidence",
     genre: "Nonfiction · Personal development",
+    category: "Nonfiction",
     description: "Hit the exact mark in 20 high-stakes moments.",
     coverColor: "#1f3350",
     link: "https://a.co/d/0gnsd9NN",
@@ -137,6 +176,7 @@ export const books: Book[] = [
   {
     title: "The Down Syndrome Parenting Companion",
     genre: "Nonfiction · Parenting",
+    category: "Nonfiction",
     description:
       "A story of love, courage, and raising a child with Down syndrome, age by age.",
     coverColor: "#5a4a2f",
@@ -144,28 +184,12 @@ export const books: Book[] = [
     cover: downSyndromeParentingCompanion,
   },
   {
-    title: "Math Is My Favorite",
-    genre: "Children's nonfiction · Education",
-    description:
-      "A visual, household approach to mathematics, Standard 1 through 8.",
-    coverColor: "#2f5a4a",
-    link: "https://a.co/d/02aJhNjj",
-    cover: mathIsMyFavorite,
-  },
-  {
     title: "The Confidence Prompt",
     genre: "Nonfiction · Personal development",
+    category: "Nonfiction",
     description: "Reprogram your mind for unshakable confidence under pressure.",
     coverColor: "#1c2b45",
     link: "https://a.co/d/06aavGqd",
     cover: theConfidencePrompt,
-  },
-  {
-    title: "The Stress Experts",
-    genre: "Psychological novel",
-    description: "When the experts become the experiment.",
-    coverColor: "#3a3a3a",
-    link: "https://a.co/d/0hHwpd7x",
-    cover: theStressExperts,
   },
 ];

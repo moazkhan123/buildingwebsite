@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import BookCover from "@/components/BookCover";
 import BookDetailPanel from "@/components/BookDetailPanel";
@@ -17,9 +17,23 @@ export default function BookCarousel({ books }: { books: Book[] }) {
   const length = books.length;
 
   const go = (dir: 1 | -1) => setActive((prev) => (prev + dir + length) % length);
+  const activeCategory = books[active].category;
 
   return (
     <div className="flex flex-col items-center gap-10">
+      <AnimatePresence mode="wait">
+        <motion.h3
+          key={activeCategory}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 10 }}
+          transition={{ duration: 0.25 }}
+          className="font-serif text-4xl uppercase tracking-[0.15em] text-accent sm:text-5xl"
+        >
+          {activeCategory}
+        </motion.h3>
+      </AnimatePresence>
+
       <div
         className="relative h-[400px] w-full max-w-3xl select-none outline-none"
         style={{ perspective: 1200 }}
@@ -83,13 +97,18 @@ export default function BookCarousel({ books }: { books: Book[] }) {
           <ChevronLeft className="h-4 w-4" />
         </button>
 
-        <div className="flex max-w-[220px] flex-wrap justify-center gap-1.5">
+        <div className="flex max-w-[240px] flex-wrap justify-center gap-1.5">
           {books.map((book, i) => (
             <button
               key={book.title}
               type="button"
               onClick={() => setActive(i)}
               aria-label={`Go to ${book.title}`}
+              style={
+                i > 0 && books[i].category !== books[i - 1].category
+                  ? { marginLeft: 8 }
+                  : undefined
+              }
               className={`h-1.5 w-1.5 rounded-full transition ${
                 i === active ? "bg-accent" : "bg-border"
               }`}
