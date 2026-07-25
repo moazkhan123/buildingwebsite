@@ -49,11 +49,12 @@ export default function BookCarousel({ books }: { books: Book[] }) {
           className="absolute inset-0"
           style={{ transformStyle: "preserve-3d" }}
           drag="x"
-          dragElastic={0.15}
+          dragElastic={1}
           dragConstraints={{ left: 0, right: 0 }}
+          dragTransition={{ bounceStiffness: 400, bounceDamping: 30 }}
           onDragEnd={(_, info) => {
-            if (info.offset.x < -80) go(1);
-            else if (info.offset.x > 80) go(-1);
+            if (info.offset.x < -60 || info.velocity.x < -400) go(1);
+            else if (info.offset.x > 60 || info.velocity.x > 400) go(-1);
           }}
         >
           {books.map((book, i) => {
