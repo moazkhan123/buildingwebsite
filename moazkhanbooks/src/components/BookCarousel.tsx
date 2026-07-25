@@ -5,6 +5,8 @@ import BookCover from "@/components/BookCover";
 import BookDetailPanel from "@/components/BookDetailPanel";
 import type { Book } from "@/data/books";
 
+const CARD_SPACING = 150;
+
 function circularOffset(index: number, active: number, length: number) {
   let offset = index - active;
   if (offset > length / 2) offset -= length;
@@ -14,6 +16,8 @@ function circularOffset(index: number, active: number, length: number) {
 
 export default function BookCarousel({ books }: { books: Book[] }) {
   const [active, setActive] = useState(0);
+  const [dragX, setDragX] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
   const length = books.length;
 
   const go = (dir: 1 | -1) => setActive((prev) => (prev + dir + length) % length);
@@ -49,18 +53,22 @@ export default function BookCarousel({ books }: { books: Book[] }) {
           className="absolute inset-0"
           style={{ transformStyle: "preserve-3d" }}
           drag="x"
-          dragElastic={1}
+          dragElastic={0}
+          dragMomentum={false}
           dragConstraints={{ left: 0, right: 0 }}
-          dragTransition={{ bounceStiffness: 400, bounceDamping: 30 }}
+          onDragStart={() => setIsDragging(true)}
+          onDrag={(_, info) => setDragX(info.offset.x)}
           onDragEnd={(_, info) => {
             if (info.offset.x < -60 || info.velocity.x < -400) go(1);
             else if (info.offset.x > 60 || info.velocity.x > 400) go(-1);
+            setIsDragging(false);
+            setDragX(0);
           }}
         >
           {books.map((book, i) => {
-            const offset = circularOffset(i, active, length);
+            const offset = circularOffset(i, active, length) + dragX / CARD_SPACING;
             const abs = Math.abs(offset);
-            const visible = abs <= 2;
+            const visible = abs <= 2.5;
 
             return (
               <motion.div
@@ -71,13 +79,15 @@ export default function BookCarousel({ books }: { books: Book[] }) {
                   pointerEvents: visible ? "auto" : "none",
                 }}
                 animate={{
-                  x: offset * 150,
+                  x: offset * CARD_SPACING,
                   z: -abs * 150,
                   rotateY: offset * -32,
-                  scale: offset === 0 ? 1 : 0.78,
-                  opacity: visible ? 1 - abs * 0.32 : 0,
+                  scale: 1 - Math.min(abs, 1) * 0.22,
+                  opacity: visible ? Math.max(1 - abs * 0.32, 0) : 0,
                 }}
-                transition={{ type: "spring", stiffness: 260, damping: 26 }}
+                transition={
+                  isDragging ? { duration: 0 } : { type: "spring", stiffness: 260, damping: 26 }
+                }
                 onClick={() => setActive(i)}
                 aria-hidden={!visible}
               >
