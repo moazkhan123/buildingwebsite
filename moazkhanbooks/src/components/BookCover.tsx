@@ -11,6 +11,7 @@ export default function BookCover({ title, color, cover }: BookCoverProps) {
         <img
           src={cover}
           alt={`${title} cover`}
+          draggable={false}
           className="h-full w-full object-cover"
         />
       </div>

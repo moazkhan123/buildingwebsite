@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { books } from "@/data/books";
-import BookCard from "@/components/BookCard";
+import BookCarousel from "@/components/BookCarousel";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
 import Logo from "@/components/Logo";
@@ -101,17 +101,9 @@ export default function App() {
           >
             Books
           </motion.h2>
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: "some" }}
-            variants={stagger}
-            className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3"
-          >
-            {books.map((book) => (
-              <BookCard key={book.title} book={book} />
-            ))}
-          </motion.div>
+          <div className="mt-10">
+            <BookCarousel books={books} />
+          </div>
         </section>
 
         <motion.section
