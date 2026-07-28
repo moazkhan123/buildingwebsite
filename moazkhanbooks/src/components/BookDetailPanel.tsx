@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import StarRating from "@/components/StarRating";
 import ReviewModal from "@/components/ReviewModal";
+import Button from "@/components/Button";
 import type { Book } from "@/data/books";
 import { ExternalLink, MessageSquarePlus } from "lucide-react";
 
@@ -22,7 +23,7 @@ export default function BookDetailPanel({ book }: { book: Book }) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -12 }}
           transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col items-center gap-3 text-center"
+          className="glass elevation-2 mx-auto flex max-w-lg flex-col items-center gap-3 rounded-2xl px-8 py-8 text-center"
         >
           <h3 className="font-serif text-2xl text-foreground">{book.title}</h3>
           <p className="text-sm font-medium uppercase tracking-wide text-accent">
@@ -52,15 +53,10 @@ export default function BookDetailPanel({ book }: { book: Book }) {
           </div>
 
           {book.link && (
-            <a
-              href={book.link}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-2 inline-flex items-center gap-2 rounded-sm bg-accent px-5 py-2.5 text-sm font-medium text-accent-foreground transition hover:opacity-90"
-            >
+            <Button href={book.link} target="_blank" rel="noreferrer" variant="primary" className="mt-2">
               View on Amazon
               <ExternalLink className="h-3.5 w-3.5" />
-            </a>
+            </Button>
           )}
         </motion.div>
       </AnimatePresence>

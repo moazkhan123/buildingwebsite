@@ -159,7 +159,7 @@ export default function BookCarousel({ books }: { books: Book[] }) {
           type="button"
           onClick={() => go(-1)}
           aria-label="Previous book"
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-border transition hover:bg-card"
+          className="glass reveal elevation-1 flex h-9 w-9 items-center justify-center rounded-full transition-shadow hover:elevation-2"
         >
           <ChevronLeft className="h-4 w-4" />
         </button>
@@ -187,7 +187,7 @@ export default function BookCarousel({ books }: { books: Book[] }) {
           type="button"
           onClick={() => go(1)}
           aria-label="Next book"
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-border transition hover:bg-card"
+          className="glass reveal elevation-1 flex h-9 w-9 items-center justify-center rounded-full transition-shadow hover:elevation-2"
         >
           <ChevronRight className="h-4 w-4" />
         </button>
