@@ -7,7 +7,7 @@ interface BookCoverProps {
 export default function BookCover({ title, color, cover }: BookCoverProps) {
   if (cover) {
     return (
-      <div className="relative aspect-[2/3] w-full overflow-hidden rounded-sm shadow-md ring-1 ring-black/10 transition-shadow duration-300 group-hover:shadow-xl">
+      <div className="relative aspect-[2/3] w-full overflow-hidden rounded-sm shadow-md ring-1 ring-black/10 transition-[transform,box-shadow] duration-300 hover:-translate-y-1.5 hover:shadow-2xl">
         <img
           src={cover}
           alt={`${title} cover`}
@@ -20,7 +20,7 @@ export default function BookCover({ title, color, cover }: BookCoverProps) {
 
   return (
     <div
-      className="relative flex aspect-[2/3] w-full flex-col justify-between overflow-hidden rounded-sm p-5 shadow-md ring-1 ring-black/10 transition-shadow duration-300 group-hover:shadow-xl"
+      className="relative flex aspect-[2/3] w-full flex-col justify-between overflow-hidden rounded-sm p-5 shadow-md ring-1 ring-black/10 transition-[transform,box-shadow] duration-300 hover:-translate-y-1.5 hover:shadow-2xl"
       style={{
         background: `linear-gradient(155deg, ${color} 0%, color-mix(in srgb, ${color} 60%, black) 100%)`,
       }}

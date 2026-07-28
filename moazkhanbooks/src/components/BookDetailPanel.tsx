@@ -22,8 +22,9 @@ export default function BookDetailPanel({ book }: { book: Book }) {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -12 }}
+          whileHover={{ y: -4 }}
           transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="glass elevation-2 mx-auto flex max-w-lg flex-col items-center gap-3 rounded-2xl px-8 py-8 text-center"
+          className="glass elevation-2 mx-auto flex max-w-lg flex-col items-center gap-3 rounded-2xl px-8 py-8 text-center transition-shadow duration-300 hover:elevation-3"
         >
           <h3 className="font-serif text-2xl text-foreground">{book.title}</h3>
           <p className="text-sm font-medium uppercase tracking-wide text-accent">
