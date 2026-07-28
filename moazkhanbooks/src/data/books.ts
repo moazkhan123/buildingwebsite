@@ -14,6 +14,7 @@ import aiEdge from "@/assets/covers/ai-edge.jpeg";
 import whyICantLeaveIslam from "@/assets/covers/why-i-cant-leave-islam.jpeg";
 import bullseyeConfidence from "@/assets/covers/bullseye-confidence.jpeg";
 import theConfidencePrompt from "@/assets/covers/the-confidence-prompt.jpeg";
+import mercies from "@/assets/covers/mercies.jpeg";
 
 export interface Review {
   name: string;
@@ -81,6 +82,16 @@ export const books: Book[] = [
     coverColor: "#3a3a3a",
     link: "https://a.co/d/0hHwpd7x",
     cover: theStressExperts,
+  },
+  {
+    title: "Mercies",
+    genre: "Historical fiction · Ancient Egypt",
+    category: "Fiction",
+    description:
+      "A novel of magic, medicine, and faith in ancient Egypt.",
+    coverColor: "#8a7228",
+    link: "https://a.co/d/0ciEozoL",
+    cover: mercies,
   },
 
   // --- Children's ---
