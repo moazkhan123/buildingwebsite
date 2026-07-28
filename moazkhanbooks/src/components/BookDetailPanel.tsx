@@ -2,9 +2,9 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import StarRating from "@/components/StarRating";
 import ReviewModal from "@/components/ReviewModal";
-import Button from "@/components/Button";
+import MarketLinks from "@/components/MarketLinks";
 import type { Book } from "@/data/books";
-import { ExternalLink, MessageSquarePlus } from "lucide-react";
+import { MessageSquarePlus } from "lucide-react";
 
 export default function BookDetailPanel({ book }: { book: Book }) {
   const [reviewOpen, setReviewOpen] = useState(false);
@@ -52,12 +52,7 @@ export default function BookDetailPanel({ book }: { book: Book }) {
             </button>
           </div>
 
-          {book.link && (
-            <Button href={book.link} target="_blank" rel="noreferrer" variant="primary" className="mt-2">
-              View on Amazon
-              <ExternalLink className="h-3.5 w-3.5" />
-            </Button>
-          )}
+          <MarketLinks links={book.links} />
         </motion.div>
       </AnimatePresence>
 

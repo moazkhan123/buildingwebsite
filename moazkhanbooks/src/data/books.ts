@@ -24,13 +24,19 @@ export interface Review {
 
 export type Category = "Fiction" | "Children's" | "Nonfiction";
 
+export interface MarketLinks {
+  us?: string;
+  ca?: string;
+  in?: string;
+}
+
 export interface Book {
   title: string;
   description: string;
   genre: string;
   category: Category;
   coverColor: string;
-  link?: string;
+  links?: MarketLinks;
   cover?: string;
   reviews?: Review[];
 }
@@ -44,7 +50,11 @@ export const books: Book[] = [
     description:
       "A literary crime thriller that explores a morally complex world and refuses an easy ending.",
     coverColor: "#5c1a24",
-    link: "https://a.co/d/05gDLumN",
+    links: {
+      us: "https://a.co/d/05BZ4WLD",
+      ca: "https://a.co/d/05Fbek9G",
+      in: "https://amzn.in/d/02qSpa5E",
+    },
     cover: theGodman,
   },
   {
@@ -61,7 +71,11 @@ export const books: Book[] = [
     category: "Fiction",
     description: "A Prague-set thriller where the past resurfaces through the senses.",
     coverColor: "#1c2b4a",
-    link: "https://a.co/d/041DIOpo",
+    links: {
+      us: "https://a.co/d/07YGSOM9",
+      ca: "https://a.co/d/0iaH3kWH",
+      in: "https://amzn.in/d/05168vt3",
+    },
     cover: aMemoryOfSmell,
   },
   {
@@ -71,7 +85,11 @@ export const books: Book[] = [
     description:
       "A literary novel published in both English and Hindustani Hindi editions.",
     coverColor: "#3a2b1c",
-    link: "https://a.co/d/0dnTRsIr",
+    links: {
+      us: "https://a.co/d/02PlJtVn",
+      ca: "https://a.co/d/06awf1fk",
+      in: "https://amzn.in/d/0d57mADx",
+    },
     cover: mirroredFalls,
   },
   {
@@ -80,7 +98,11 @@ export const books: Book[] = [
     category: "Fiction",
     description: "When the experts become the experiment.",
     coverColor: "#3a3a3a",
-    link: "https://a.co/d/0hHwpd7x",
+    links: {
+      us: "https://a.co/d/04ofurUE",
+      ca: "https://a.co/d/0aWQVTQZ",
+      in: "https://amzn.in/d/0dTChgBt",
+    },
     cover: theStressExperts,
   },
   {
@@ -90,7 +112,11 @@ export const books: Book[] = [
     description:
       "A novel of magic, medicine, and faith in ancient Egypt.",
     coverColor: "#8a7228",
-    link: "https://a.co/d/0ciEozoL",
+    links: {
+      us: "https://a.co/d/0iDgg49N",
+      ca: "https://a.co/d/0gXaF0yG",
+      in: "https://amzn.in/d/06tXjlaX",
+    },
     cover: mercies,
   },
 
@@ -102,7 +128,11 @@ export const books: Book[] = [
     description:
       "A middle-grade novel about a girl with night blindness who builds a company from her greatest challenge.",
     coverColor: "#4a3b1f",
-    link: "https://a.co/d/01bqeLFh",
+    links: {
+      us: "https://a.co/d/0gA1pMoT",
+      ca: "https://a.co/d/04hev5te",
+      in: "https://amzn.in/d/01IMbOA3",
+    },
     cover: theGirlWhoSawInTheDark,
   },
   {
@@ -112,7 +142,10 @@ export const books: Book[] = [
     description:
       "A financial literacy book following one family through five money lessons.",
     coverColor: "#2f4a2b",
-    link: "https://a.co/d/07JWTseX",
+    links: {
+      us: "https://a.co/d/0hSYeQ9S",
+      ca: "https://a.co/d/0dqT0vDA",
+    },
     cover: richHabitsYoungMinds,
   },
   {
@@ -121,7 +154,11 @@ export const books: Book[] = [
     category: "Children's",
     description: "Introduces young readers to six real-world inventors.",
     coverColor: "#5a2f4a",
-    link: "https://a.co/d/0fMPQINl",
+    links: {
+      us: "https://a.co/d/02uMP6Vt",
+      ca: "https://a.co/d/0bkcfuMb",
+      in: "https://amzn.in/d/0hoK0Z9R",
+    },
     cover: theQuestionKids,
   },
   {
@@ -131,7 +168,11 @@ export const books: Book[] = [
     description:
       "A visual, household approach to mathematics, Standard 1 through 8.",
     coverColor: "#2f5a4a",
-    link: "https://a.co/d/02aJhNjj",
+    links: {
+      us: "https://a.co/d/0aaqzwMN",
+      ca: "https://a.co/d/03QruQQC",
+      in: "https://amzn.in/d/05w3PJ3s",
+    },
     cover: mathIsMyFavorite,
   },
 
@@ -143,7 +184,11 @@ export const books: Book[] = [
     description:
       "Six industrial trades powering Canada and the United States, and the human judgment behind them that can't be automated.",
     coverColor: "#6b1f28",
-    link: "https://a.co/d/0iA303gP",
+    links: {
+      us: "https://a.co/d/0agmAQQ7",
+      ca: "https://a.co/d/090Y16Sn",
+      in: "https://amzn.in/d/0fUvFVi2",
+    },
     cover: theTradesAiCantTouch,
   },
   {
@@ -153,7 +198,11 @@ export const books: Book[] = [
     description:
       "A day trader's playbook for using AI to find opportunities, execute with precision, and manage risk like a pro.",
     coverColor: "#1f4a3a",
-    link: "https://a.co/d/0eGOmNz4",
+    links: {
+      us: "https://a.co/d/0a1mrfb1",
+      ca: "https://a.co/d/0bhsj2yP",
+      in: "https://amzn.in/d/0g7wy3Iq",
+    },
     cover: aiEdge,
   },
   {
@@ -163,7 +212,11 @@ export const books: Book[] = [
     description:
       "A practical guide to robotic welding, covering MIG welding, resistance spot welding, and nut projection welding.",
     coverColor: "#3a3f4a",
-    link: "https://a.co/d/04I2BxHK",
+    links: {
+      us: "https://a.co/d/0eZlwnpb",
+      ca: "https://a.co/d/0bHf4DRb",
+      in: "https://amzn.in/d/0euvkFxQ",
+    },
     cover: fromThePlantFloor,
   },
   {
@@ -172,7 +225,11 @@ export const books: Book[] = [
     category: "Nonfiction",
     description: "13 arguments exploring the author's relationship with faith.",
     coverColor: "#4a3a1f",
-    link: "https://a.co/d/0ele2f0r",
+    links: {
+      us: "https://a.co/d/0ijZQUBs",
+      ca: "https://a.co/d/0bUix0oV",
+      in: "https://amzn.in/d/06ZPvPJY",
+    },
     cover: whyICantLeaveIslam,
   },
   {
@@ -181,7 +238,11 @@ export const books: Book[] = [
     category: "Nonfiction",
     description: "Hit the exact mark in 20 high-stakes moments.",
     coverColor: "#1f3350",
-    link: "https://a.co/d/0gnsd9NN",
+    links: {
+      us: "https://a.co/d/0bAUxCbl",
+      ca: "https://a.co/d/0gr2fLVl",
+      in: "https://amzn.in/d/0a1JF7ei",
+    },
     cover: bullseyeConfidence,
   },
   {
@@ -191,7 +252,11 @@ export const books: Book[] = [
     description:
       "A story of love, courage, and raising a child with Down syndrome, age by age.",
     coverColor: "#5a4a2f",
-    link: "https://a.co/d/05WOTgWK",
+    links: {
+      us: "https://a.co/d/04uJHlx0",
+      ca: "https://a.co/d/03vNNGT2",
+      in: "https://amzn.in/d/0aHQCu5M",
+    },
     cover: downSyndromeParentingCompanion,
   },
   {
@@ -200,7 +265,10 @@ export const books: Book[] = [
     category: "Nonfiction",
     description: "Reprogram your mind for unshakable confidence under pressure.",
     coverColor: "#1c2b45",
-    link: "https://a.co/d/06aavGqd",
+    links: {
+      ca: "https://a.co/d/0ipOY5sj",
+      in: "https://amzn.in/d/0i41O8fr",
+    },
     cover: theConfidencePrompt,
   },
 ];
