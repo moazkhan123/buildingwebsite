@@ -51,7 +51,7 @@ export const books: Book[] = [
       "A literary crime thriller that explores a morally complex world and refuses an easy ending.",
     coverColor: "#5c1a24",
     links: {
-      us: "https://a.co/d/05BZ4WLD",
+      us: "https://a.co/d/0jc9dvv4",
       ca: "https://a.co/d/05Fbek9G",
       in: "https://amzn.in/d/02qSpa5E",
     },
@@ -113,7 +113,7 @@ export const books: Book[] = [
       "A novel of magic, medicine, and faith in ancient Egypt.",
     coverColor: "#8a7228",
     links: {
-      us: "https://a.co/d/0iDgg49N",
+      us: "https://a.co/d/08CKeKUr",
       ca: "https://a.co/d/0gXaF0yG",
       in: "https://amzn.in/d/06tXjlaX",
     },
@@ -266,6 +266,7 @@ export const books: Book[] = [
     description: "Reprogram your mind for unshakable confidence under pressure.",
     coverColor: "#1c2b45",
     links: {
+      us: "https://a.co/d/0eXS8MWu",
       ca: "https://a.co/d/0ipOY5sj",
       in: "https://amzn.in/d/0i41O8fr",
     },
