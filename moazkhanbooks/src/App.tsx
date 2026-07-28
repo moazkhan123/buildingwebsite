@@ -4,6 +4,7 @@ import BookCarousel from "@/components/BookCarousel";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
 import Logo from "@/components/Logo";
+import Button from "@/components/Button";
 import { MapPin, ExternalLink } from "lucide-react";
 
 const AMAZON_AUTHOR_URL = "https://www.amazon.com/author/moazkhan";
@@ -24,22 +25,33 @@ export default function App() {
       <ScrollProgressBar />
       <AnimatedBackground />
 
-      <div className="mx-auto max-w-5xl px-6">
-        <header className="flex items-center justify-between py-8">
+      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-xl backdrop-saturate-150">
+        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5">
           <Logo />
-          <nav className="flex gap-6 text-sm text-muted-foreground">
-            <a href="#books" className="transition hover:text-foreground">
+          <nav className="flex gap-4 text-sm text-muted-foreground sm:gap-6">
+            <a
+              href="#books"
+              className="reveal rounded-full px-3 py-1.5 transition-colors hover:text-foreground"
+            >
               Books
             </a>
-            <a href="#about" className="transition hover:text-foreground">
+            <a
+              href="#about"
+              className="reveal rounded-full px-3 py-1.5 transition-colors hover:text-foreground"
+            >
               About
             </a>
-            <a href="#contact" className="transition hover:text-foreground">
+            <a
+              href="#contact"
+              className="reveal rounded-full px-3 py-1.5 transition-colors hover:text-foreground"
+            >
               Contact
             </a>
           </nav>
-        </header>
+        </div>
+      </header>
 
+      <div className="mx-auto max-w-5xl px-6">
         <motion.section
           initial="hidden"
           animate="show"
@@ -67,27 +79,13 @@ export default function App() {
             a manufacturing engineer in the automotive industry.
           </motion.p>
           <motion.div variants={fadeUp} className="flex flex-wrap gap-4 pt-2">
-            <motion.a
-              href="#books"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              className="inline-flex items-center gap-2 rounded-sm bg-accent px-5 py-2.5 text-sm font-medium text-accent-foreground"
-            >
+            <Button href="#books" variant="primary">
               Explore the books
-            </motion.a>
-            <motion.a
-              href={AMAZON_AUTHOR_URL}
-              target="_blank"
-              rel="noreferrer"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              className="inline-flex items-center gap-2 rounded-sm border border-border px-5 py-2.5 text-sm font-medium"
-            >
+            </Button>
+            <Button href={AMAZON_AUTHOR_URL} target="_blank" rel="noreferrer" variant="secondary">
               View on Amazon
               <ExternalLink className="h-3.5 w-3.5" />
-            </motion.a>
+            </Button>
           </motion.div>
         </motion.section>
 
@@ -168,18 +166,10 @@ export default function App() {
             catalog and author profile on Amazon.
           </p>
           <div className="flex flex-wrap gap-4 pt-2">
-            <motion.a
-              href={AMAZON_AUTHOR_URL}
-              target="_blank"
-              rel="noreferrer"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              className="inline-flex items-center gap-2 rounded-sm border border-border px-5 py-2.5 text-sm font-medium"
-            >
+            <Button href={AMAZON_AUTHOR_URL} target="_blank" rel="noreferrer" variant="secondary">
               Amazon Author Page
               <ExternalLink className="h-3.5 w-3.5" />
-            </motion.a>
+            </Button>
           </div>
           <p className="pt-10 text-sm text-muted-foreground">
             &copy; {new Date().getFullYear()} Moaz Khan
