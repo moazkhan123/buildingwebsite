@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { X, Loader2, CheckCircle2 } from "lucide-react";
 import StarRating from "@/components/StarRating";
+import { useReveal } from "@/lib/useReveal";
 import type { Review } from "@/data/books";
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/meeypqpq";
@@ -20,6 +21,8 @@ export default function ReviewModal({ bookTitle, reviews, open, onClose }: Revie
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const [status, setStatus] = useState<Status>("idle");
+  const submitReveal = useReveal<HTMLButtonElement>();
+  const closeReveal = useReveal<HTMLButtonElement>();
 
   const reset = () => {
     setName("");
@@ -67,12 +70,14 @@ export default function ReviewModal({ bookTitle, reviews, open, onClose }: Revie
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ duration: 0.2 }}
             onClick={(e) => e.stopPropagation()}
-            className="shadow-soft-3 relative max-h-[85vh] w-full max-w-md overflow-y-auto rounded-sm border border-border bg-card p-6"
+            className="glass elevation-4 relative max-h-[85vh] w-full max-w-md overflow-y-auto rounded-2xl p-6"
           >
             <button
+              ref={closeReveal.ref}
+              onMouseMove={closeReveal.onMouseMove}
               type="button"
               onClick={handleClose}
-              className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:bg-background hover:text-foreground"
+              className="glass reveal elevation-1 absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-shadow hover:elevation-2 hover:text-foreground"
               aria-label="Close"
             >
               <X className="h-4 w-4" />
@@ -121,7 +126,7 @@ export default function ReviewModal({ bookTitle, reviews, open, onClose }: Revie
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="rounded-sm border border-border bg-background px-3 py-2 text-sm text-foreground outline-none focus:ring-2 focus:ring-accent"
+                    className="rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground outline-none transition-shadow focus:elevation-1 focus:ring-2 focus:ring-accent"
                     placeholder="Your name"
                   />
                 </div>
@@ -136,7 +141,7 @@ export default function ReviewModal({ bookTitle, reviews, open, onClose }: Revie
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
                     rows={4}
-                    className="resize-none rounded-sm border border-border bg-background px-3 py-2 text-sm text-foreground outline-none focus:ring-2 focus:ring-accent"
+                    className="resize-none rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground outline-none transition-shadow focus:elevation-1 focus:ring-2 focus:ring-accent"
                     placeholder="What did you think?"
                   />
                 </div>
@@ -148,12 +153,14 @@ export default function ReviewModal({ bookTitle, reviews, open, onClose }: Revie
                 )}
 
                 <motion.button
+                  ref={submitReveal.ref}
+                  onMouseMove={submitReveal.onMouseMove}
                   type="submit"
                   disabled={status === "submitting" || rating === 0 || !comment.trim()}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                  className="inline-flex items-center justify-center gap-2 rounded-sm bg-accent px-5 py-2.5 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90 disabled:opacity-50"
+                  className="reveal elevation-2 inline-flex items-center justify-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-accent-foreground transition-shadow hover:elevation-3 disabled:opacity-50"
                 >
                   {status === "submitting" && <Loader2 className="h-4 w-4 animate-spin" />}
                   Submit review
