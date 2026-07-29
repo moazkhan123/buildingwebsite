@@ -127,40 +127,67 @@ export default function App() {
           {...revealOnScroll(0.2)}
           className="border-b border-border py-16 sm:py-24"
         >
-          <h2 className="font-serif text-3xl">About</h2>
-          <div className="mt-6 max-w-2xl space-y-4 text-base leading-relaxed text-muted-foreground">
+          <p className="text-sm font-medium uppercase tracking-widest text-accent">
+            Author
+          </p>
+          <h2 className="mt-2 font-serif text-3xl">About</h2>
+          <div className="mt-6 max-w-2xl space-y-6 text-base leading-relaxed text-muted-foreground">
             <p>
-              Moaz Khan writes across genres, from literary crime fiction to
-              children's books to practical nonfiction, drawing on a decade of
-              experience as a manufacturing engineer in the automotive industry.
+              Moaz Khan writes across genres — literary crime fiction, thrillers,
+              children's books, and practical nonfiction — drawing on a decade
+              of experience as a manufacturing engineer in the automotive
+              industry.
             </p>
-            <p>
-              His fiction explores morally complex worlds and unconventional
-              endings, including the literary crime thriller{" "}
-              <em>The Godman</em>, the mystery <em>The Closing Number</em> set
-              in Hong Kong, the Prague-set thriller <em>A Memory of Smell</em>,
-              and the literary novel <em>Mirrored Falls</em>, published in both
-              English and Hindustani Hindi editions. His middle-grade novel{" "}
-              <em>The Girl Who Saw in the Dark</em> follows a girl with night
-              blindness who builds a company from her greatest challenge.
-            </p>
-            <p>
-              For younger readers, Moaz has written{" "}
-              <em>Rich Habits, Young Minds</em>, a financial literacy book
-              following one family through five money lessons; and{" "}
-              <em>The Question Kids</em>, which introduces young readers to six
-              real-world inventors.
-            </p>
-            <p>
-              His nonfiction spans trades and technology, too:{" "}
-              <em>The Trades AI Can't Touch</em> covers six industrial trades
-              that automation can't replace, <em>AI Edge</em> is a day
-              trader's playbook for using AI to manage risk, and{" "}
-              <em>From the Plant Floor</em> is a practical guide to robotic
-              welding. <em>Why I Can't Leave Islam</em> rounds out the
-              catalog with 13 arguments on faith.
-            </p>
-            <p className="flex items-center gap-2 text-sm text-muted-foreground">
+
+            <div className="space-y-2">
+              <h3 className="font-serif text-lg text-foreground">Fiction</h3>
+              <p>
+                His fiction explores morally complex worlds and unconventional
+                endings: the literary crime thriller <em>The Godman</em>; the
+                Hong Kong–set mystery <em>The Closing Number</em>; the
+                Prague-set thriller <em>A Memory of Smell</em>; the literary
+                novel <em>Mirrored Falls</em>, published in both English and
+                Hindustani Hindi editions; the psychological novel{" "}
+                <em>The Stress Experts</em>; and <em>Mercies</em>, a novel of
+                magic, medicine, and faith in ancient Egypt.
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <h3 className="font-serif text-lg text-foreground">
+                Children's books
+              </h3>
+              <p>
+                For younger readers: <em>The Girl Who Saw in the Dark</em>, a
+                middle-grade novel about a girl with night blindness who
+                builds a company from her greatest challenge;{" "}
+                <em>Rich Habits, Young Minds</em>, a financial literacy book
+                following one family through five money lessons;{" "}
+                <em>The Question Kids</em>, which introduces young readers to
+                six real-world inventors; and <em>Math Is My Favorite</em>, a
+                visual, household approach to mathematics for Standards 1
+                through 8.
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <h3 className="font-serif text-lg text-foreground">Nonfiction</h3>
+              <p>
+                His nonfiction spans trades, technology, and personal growth:{" "}
+                <em>The Trades AI Can't Touch</em> covers six industrial
+                trades that automation can't replace; <em>AI Edge</em> is a
+                day trader's playbook for using AI to manage risk;{" "}
+                <em>From the Plant Floor</em> is a practical guide to robotic
+                welding; <em>Why I Can't Leave Islam</em> explores his
+                relationship with faith in 13 arguments; <em>Bullseye
+                Confidence</em> and <em>The Confidence Prompt</em> both
+                address performing under pressure; and{" "}
+                <em>The Down Syndrome Parenting Companion</em> is a guide to
+                raising a child with Down syndrome, age by age.
+              </p>
+            </div>
+
+            <p className="flex items-center gap-2 pt-2 text-sm text-muted-foreground">
               <MapPin className="h-4 w-4" />
               Mississauga, Ontario
             </p>
@@ -172,6 +199,9 @@ export default function App() {
           {...revealOnScroll(0.4)}
           className="flex flex-col gap-4 py-16 sm:py-24"
         >
+          <p className="text-sm font-medium uppercase tracking-widest text-accent">
+            Contact
+          </p>
           <h2 className="font-serif text-3xl">Get in touch</h2>
           <p className="max-w-xl text-muted-foreground">
             For rights inquiries, review copies, or events, find the full
