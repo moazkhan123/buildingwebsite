@@ -3,8 +3,9 @@ import { AnimatePresence, motion } from "motion/react";
 import StarRating from "@/components/StarRating";
 import ReviewModal from "@/components/ReviewModal";
 import MarketLinks from "@/components/MarketLinks";
+import Button from "@/components/Button";
 import type { Book } from "@/data/books";
-import { MessageSquarePlus } from "lucide-react";
+import { MessageSquarePlus, BookOpen } from "lucide-react";
 
 export default function BookDetailPanel({ book }: { book: Book }) {
   const [reviewOpen, setReviewOpen] = useState(false);
@@ -13,6 +14,7 @@ export default function BookDetailPanel({ book }: { book: Book }) {
     reviews.length > 0
       ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
       : 0;
+  const sampleLink = book.links?.us ?? book.links?.ca ?? book.links?.in;
 
   return (
     <>
@@ -52,6 +54,19 @@ export default function BookDetailPanel({ book }: { book: Book }) {
               Write a review
             </button>
           </div>
+
+          {sampleLink && (
+            <Button
+              href={sampleLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="secondary"
+              className="mt-1"
+            >
+              <BookOpen className="h-3.5 w-3.5" />
+              Read a sample on Amazon
+            </Button>
+          )}
 
           <MarketLinks links={book.links} />
         </motion.div>
