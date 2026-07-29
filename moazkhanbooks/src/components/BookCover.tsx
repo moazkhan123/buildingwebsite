@@ -2,10 +2,16 @@ interface BookCoverProps {
   title: string;
   color: string;
   cover?: string;
+  /**
+   * Whether the real cover image should be requested yet. Cards far from
+   * the active book stay on the lightweight color placeholder instead, so
+   * a 17-book carousel doesn't fetch every cover on first render.
+   */
+  shouldLoad?: boolean;
 }
 
-export default function BookCover({ title, color, cover }: BookCoverProps) {
-  if (cover) {
+export default function BookCover({ title, color, cover, shouldLoad = true }: BookCoverProps) {
+  if (cover && shouldLoad) {
     return (
       <div className="relative aspect-[2/3] w-full overflow-hidden rounded-sm shadow-md ring-1 ring-black/10 transition-[transform,box-shadow] duration-300 hover:-translate-y-1.5 hover:shadow-2xl">
         <img
