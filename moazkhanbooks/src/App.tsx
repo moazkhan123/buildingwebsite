@@ -74,7 +74,7 @@ export default function App() {
             <Button href="#books" variant="primary">
               Explore the books
             </Button>
-            <Button href={AMAZON_AUTHOR_URL} target="_blank" rel="noreferrer" variant="secondary">
+            <Button href={AMAZON_AUTHOR_URL} target="_blank" rel="noopener noreferrer" variant="secondary">
               View on Amazon
               <ExternalLink className="h-3.5 w-3.5" />
             </Button>
@@ -158,7 +158,7 @@ export default function App() {
             catalog and author profile on Amazon.
           </p>
           <div className="flex flex-wrap gap-4 pt-2">
-            <Button href={AMAZON_AUTHOR_URL} target="_blank" rel="noreferrer" variant="secondary">
+            <Button href={AMAZON_AUTHOR_URL} target="_blank" rel="noopener noreferrer" variant="secondary">
               Amazon Author Page
               <ExternalLink className="h-3.5 w-3.5" />
             </Button>
