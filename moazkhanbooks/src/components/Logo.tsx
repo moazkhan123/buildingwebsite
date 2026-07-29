@@ -33,7 +33,7 @@ export default function Logo() {
       </span>
 
       <span className="leading-none">
-        <span className="block font-serif text-base font-semibold tracking-tight text-foreground">
+        <span className="block whitespace-nowrap font-serif text-base font-semibold tracking-tight text-foreground">
           Moaz Khan
         </span>
         <span
