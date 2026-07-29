@@ -1,8 +1,6 @@
 import { motion } from "motion/react";
 import { books } from "@/data/books";
 import BookCarousel from "@/components/BookCarousel";
-import AnimatedBackground from "@/components/AnimatedBackground";
-import BookshelfBackground from "@/components/BookshelfBackground";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
 import Logo from "@/components/Logo";
 import Button from "@/components/Button";
@@ -27,41 +25,30 @@ export default function App() {
   return (
     <>
       <ScrollProgressBar />
-      <AnimatedBackground />
 
-      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-xl backdrop-saturate-150">
+      <header className="sticky top-0 z-40 border-b border-border bg-background">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5">
           <Logo />
-          <nav className="flex gap-4 text-sm text-muted-foreground sm:gap-6">
-            <a
-              href="#books"
-              className="reveal relative rounded-full px-3 py-1.5 transition-colors after:absolute after:inset-x-3 after:-bottom-0 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:text-foreground hover:after:scale-x-100"
-            >
+          <nav className="flex gap-6 text-sm text-muted-foreground sm:gap-8">
+            <a href="#books" className="transition-colors hover:text-foreground">
               Books
             </a>
-            <a
-              href="#about"
-              className="reveal relative rounded-full px-3 py-1.5 transition-colors after:absolute after:inset-x-3 after:-bottom-0 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:text-foreground hover:after:scale-x-100"
-            >
+            <a href="#about" className="transition-colors hover:text-foreground">
               About
             </a>
-            <a
-              href="#contact"
-              className="reveal relative rounded-full px-3 py-1.5 transition-colors after:absolute after:inset-x-3 after:-bottom-0 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:text-foreground hover:after:scale-x-100"
-            >
+            <a href="#contact" className="transition-colors hover:text-foreground">
               Contact
             </a>
           </nav>
         </div>
       </header>
 
-      <section className="relative overflow-hidden border-b border-border">
-        <BookshelfBackground />
-        <motion.div
+      <div className="mx-auto max-w-5xl px-6">
+        <motion.section
           initial="hidden"
           animate="show"
           variants={stagger}
-          className="relative mx-auto flex max-w-5xl flex-col items-start gap-6 px-6 py-24 sm:py-32"
+          className="flex flex-col items-start gap-6 border-b border-border py-24 sm:py-32"
         >
           <motion.p
             variants={fadeUp}
@@ -71,13 +58,13 @@ export default function App() {
           </motion.p>
           <motion.h1
             variants={fadeUp}
-            className="max-w-2xl text-balance font-serif text-4xl leading-tight text-[#f8f3e6] sm:text-6xl"
+            className="max-w-2xl text-balance font-serif text-4xl leading-tight text-foreground sm:text-6xl"
           >
             Stories that live in morally complex worlds.
           </motion.h1>
           <motion.p
             variants={fadeUp}
-            className="max-w-xl text-balance text-lg leading-relaxed text-[#f8f3e6]/80"
+            className="max-w-xl text-balance text-lg leading-relaxed text-muted-foreground"
           >
             Moaz Khan writes across genres — literary crime fiction, thrillers,
             and books for younger readers — drawing on a decade of experience as
@@ -87,21 +74,13 @@ export default function App() {
             <Button href="#books" variant="primary">
               Explore the books
             </Button>
-            <Button
-              href={AMAZON_AUTHOR_URL}
-              target="_blank"
-              rel="noreferrer"
-              variant="secondary"
-              className="text-[#f8f3e6]"
-            >
+            <Button href={AMAZON_AUTHOR_URL} target="_blank" rel="noreferrer" variant="secondary">
               View on Amazon
               <ExternalLink className="h-3.5 w-3.5" />
             </Button>
           </motion.div>
-        </motion.div>
-      </section>
+        </motion.section>
 
-      <div className="mx-auto max-w-5xl px-6">
         <section id="books" className="border-b border-border py-16 sm:py-24">
           <motion.h2
             initial={{ opacity: 0, y: 24 }}

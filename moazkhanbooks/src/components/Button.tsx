@@ -1,6 +1,5 @@
 import { motion } from "motion/react";
 import type { ComponentProps } from "react";
-import { useReveal } from "@/lib/useReveal";
 import { cn } from "@/lib/utils";
 
 interface ButtonProps extends ComponentProps<typeof motion.a> {
@@ -8,21 +7,17 @@ interface ButtonProps extends ComponentProps<typeof motion.a> {
 }
 
 export default function Button({ variant = "primary", className, ...props }: ButtonProps) {
-  const { ref, onMouseMove } = useReveal<HTMLAnchorElement>();
-
   return (
     <motion.a
-      ref={ref}
-      onMouseMove={onMouseMove}
-      whileHover={{ scale: 1.03 }}
-      whileTap={{ scale: 0.97 }}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
       transition={{ type: "spring", stiffness: 420, damping: 22 }}
       className={cn(
-        "reveal inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-shadow duration-200",
+        "inline-flex items-center gap-2 rounded-sm px-5 py-2.5 text-sm font-medium transition-colors duration-200",
         variant === "primary" &&
-          "elevation-2 bg-accent text-accent-foreground hover:elevation-3",
+          "bg-accent text-accent-foreground hover:opacity-90",
         variant === "secondary" &&
-          "glass elevation-1 text-foreground hover:elevation-2",
+          "border border-border text-foreground hover:bg-card",
         className,
       )}
       {...props}
