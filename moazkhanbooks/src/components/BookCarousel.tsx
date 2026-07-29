@@ -67,7 +67,12 @@ function CarouselCard({
       onClick={onSelect}
       aria-hidden={!visible}
     >
-      <BookCover title={book.title} color={book.coverColor} cover={book.cover} />
+      <BookCover
+        title={book.title}
+        color={book.coverColor}
+        cover={book.cover}
+        shouldLoad={visible}
+      />
     </motion.div>
   );
 }
