@@ -1,40 +1,44 @@
 @import "tailwindcss";
 
 :root {
-  /* Minimal editorial publishing: cream / charcoal / muted gold / burgundy */
-  --background: #faf7f0;
-  --foreground: #262421;
-  --muted-foreground: #6b6862;
-  --card: #fdfbf6;
-  --border: #e3ddd0;
-  --accent: #6b1f2e;
-  --accent-foreground: #faf7f0;
-  --gold: #c9a35a;
-  --gold-foreground: #262421;
+  /* Modern digital library: dark brown / gold / cream / navy */
+  --background: #f4ecd8;
+  --foreground: #2a1d13;
+  --muted-foreground: #665640;
+  --card: #fffaf0;
+  --card-rgb: 255, 250, 240;
+  --border: #ddc9a3;
+  --accent: #b8862b;
+  --accent-foreground: #241708;
+  --navy: #17213d;
+  --navy-foreground: #f4ecd8;
   --serif: "Playfair Display Variable", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
-  /* Soft shadow scale - subtle, not floating/dramatic */
-  --shadow-1: 0 1px 2px rgba(38, 36, 33, 0.05);
-  --shadow-2: 0 2px 8px rgba(38, 36, 33, 0.07);
-  --shadow-3: 0 8px 24px rgba(38, 36, 33, 0.1);
+  /* Fluent-inspired elevation: paired ambient + key-light shadows */
+  --elevation-1: 0 1px 2px rgba(42, 29, 19, 0.06), 0 1px 1px rgba(42, 29, 19, 0.04);
+  --elevation-2: 0 3px 6px rgba(42, 29, 19, 0.1), 0 1.5px 3px rgba(42, 29, 19, 0.07);
+  --elevation-3: 0 10px 24px rgba(42, 29, 19, 0.14), 0 3px 6px rgba(42, 29, 19, 0.09);
+  --elevation-4: 0 20px 44px rgba(42, 29, 19, 0.18), 0 6px 12px rgba(42, 29, 19, 0.12);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #1c1a17;
-    --foreground: #f2ede2;
-    --muted-foreground: #b3ab9d;
-    --card: #262320;
-    --border: #3a352e;
-    --accent: #d98a99;
-    --accent-foreground: #1c1a17;
-    --gold: #d9b64d;
-    --gold-foreground: #1c1a17;
+    --background: #150f0a;
+    --foreground: #f2ead9;
+    --muted-foreground: #b9ac97;
+    --card: #241a12;
+    --card-rgb: 36, 26, 18;
+    --border: #3d2f1f;
+    --accent: #d9b64d;
+    --accent-foreground: #1b120a;
+    --navy: #2c3e6b;
+    --navy-foreground: #f2ead9;
 
-    --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3);
-    --shadow-2: 0 2px 8px rgba(0, 0, 0, 0.36);
-    --shadow-3: 0 8px 24px rgba(0, 0, 0, 0.44);
+    --elevation-1: 0 1px 2px rgba(0, 0, 0, 0.28), 0 1px 1px rgba(0, 0, 0, 0.22);
+    --elevation-2: 0 3px 6px rgba(0, 0, 0, 0.36), 0 1.5px 3px rgba(0, 0, 0, 0.26);
+    --elevation-3: 0 10px 24px rgba(0, 0, 0, 0.44), 0 3px 6px rgba(0, 0, 0, 0.3);
+    --elevation-4: 0 20px 44px rgba(0, 0, 0, 0.52), 0 6px 12px rgba(0, 0, 0, 0.34);
   }
 }
 
@@ -46,8 +50,8 @@
   --color-border: var(--border);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-  --color-gold: var(--gold);
-  --color-gold-foreground: var(--gold-foreground);
+  --color-navy: var(--navy);
+  --color-navy-foreground: var(--navy-foreground);
   --font-serif: var(--serif);
   --font-sans: var(--sans);
 }
@@ -73,6 +77,47 @@
   }
 }
 
-@utility shadow-soft-1 { box-shadow: var(--shadow-1); }
-@utility shadow-soft-2 { box-shadow: var(--shadow-2); }
-@utility shadow-soft-3 { box-shadow: var(--shadow-3); }
+/* Glassmorphism / Fluent "Acrylic" material */
+@utility glass {
+  background: rgba(var(--card-rgb), 0.55);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(var(--card-rgb), 0.4);
+}
+@utility glass-subtle {
+  background: rgba(var(--card-rgb), 0.35);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(var(--card-rgb), 0.3);
+}
+
+@utility elevation-1 { box-shadow: var(--elevation-1); }
+@utility elevation-2 { box-shadow: var(--elevation-2); }
+@utility elevation-3 { box-shadow: var(--elevation-3); }
+@utility elevation-4 { box-shadow: var(--elevation-4); }
+
+/* Fluent "Reveal" highlight: a soft light that follows the pointer */
+@utility reveal {
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    opacity: 0;
+    background: radial-gradient(
+      180px circle at var(--reveal-x, 50%) var(--reveal-y, 50%),
+      rgba(255, 255, 255, 0.16),
+      transparent 65%
+    );
+    transition: opacity 0.25s ease;
+    pointer-events: none;
+  }
+  &:hover::before,
+  &:focus-visible::before {
+    opacity: 1;
+  }
+}

@@ -26,7 +26,7 @@ export default function MarketLinks({ links }: { links?: MarketLinksData }) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`View on Amazon ${m.label}`}
-            className="inline-flex items-center gap-1.5 rounded-sm border border-border px-3 py-1.5 text-sm text-foreground transition-colors hover:bg-background"
+            className="glass reveal elevation-1 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm text-foreground transition-shadow hover:elevation-2"
           >
             <span aria-hidden="true">{m.flag}</span>
             {m.label}
