@@ -6,6 +6,7 @@ import BookshelfBackground from "@/components/BookshelfBackground";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
 import Logo from "@/components/Logo";
 import Button from "@/components/Button";
+import { useBookStructuredData } from "@/lib/useBookStructuredData";
 import { MapPin, ExternalLink } from "lucide-react";
 
 const AMAZON_AUTHOR_URL = "https://www.amazon.com/author/moazkhan";
@@ -21,6 +22,8 @@ const stagger = {
 };
 
 export default function App() {
+  useBookStructuredData(books);
+
   return (
     <>
       <ScrollProgressBar />
