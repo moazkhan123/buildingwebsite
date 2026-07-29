@@ -7,7 +7,10 @@ const MARKETS: { key: keyof MarketLinksData; label: string; flag: string }[] = [
 ];
 
 export default function MarketLinks({ links }: { links?: MarketLinksData }) {
-  const available = MARKETS.filter((m) => links?.[m.key]);
+  const available = MARKETS.flatMap((m) => {
+    const href = links?.[m.key];
+    return href ? [{ ...m, href }] : [];
+  });
   if (available.length === 0) return null;
 
   return (
@@ -19,7 +22,7 @@ export default function MarketLinks({ links }: { links?: MarketLinksData }) {
         {available.map((m) => (
           <a
             key={m.key}
-            href={links![m.key]}
+            href={m.href}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`View on Amazon ${m.label}`}
