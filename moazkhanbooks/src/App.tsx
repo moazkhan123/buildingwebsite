@@ -9,15 +9,26 @@ import { MapPin, ExternalLink } from "lucide-react";
 
 const AMAZON_AUTHOR_URL = "https://www.amazon.com/author/moazkhan";
 
+const EASE_OUT_EXPO = [0.16, 1, 0.3, 1] as const;
+
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE_OUT_EXPO } },
 };
 
 const stagger = {
   hidden: {},
   show: { transition: { staggerChildren: 0.12 } },
 };
+
+function revealOnScroll(amount: number) {
+  return {
+    initial: { opacity: 0, y: 24 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount },
+    transition: { duration: 0.6, ease: EASE_OUT_EXPO },
+  } as const;
+}
 
 export default function App() {
   useBookStructuredData(books);
@@ -82,13 +93,7 @@ export default function App() {
         </motion.section>
 
         <section id="books" className="border-b border-border py-16 sm:py-24">
-          <motion.h2
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="font-serif text-3xl"
-          >
+          <motion.h2 {...revealOnScroll(0.4)} className="font-serif text-3xl">
             Books
           </motion.h2>
           <div className="mt-10">
@@ -98,10 +103,7 @@ export default function App() {
 
         <motion.section
           id="about"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          {...revealOnScroll(0.2)}
           className="border-b border-border py-16 sm:py-24"
         >
           <h2 className="font-serif text-3xl">About</h2>
@@ -146,10 +148,7 @@ export default function App() {
 
         <motion.footer
           id="contact"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          {...revealOnScroll(0.4)}
           className="flex flex-col gap-4 py-16 sm:py-24"
         >
           <h2 className="font-serif text-3xl">Get in touch</h2>
