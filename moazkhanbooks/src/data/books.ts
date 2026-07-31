@@ -15,6 +15,7 @@ import whyICantLeaveIslam from "@/assets/covers/why-i-cant-leave-islam.jpeg";
 import bullseyeConfidence from "@/assets/covers/bullseye-confidence.jpeg";
 import theConfidencePrompt from "@/assets/covers/the-confidence-prompt.jpeg";
 import mercies from "@/assets/covers/mercies.jpeg";
+import limbicMemory from "@/assets/covers/limbic-memory.jpeg";
 
 export interface Review {
   name: string;
@@ -271,5 +272,19 @@ export const books: Book[] = [
       in: "https://amzn.in/d/0i41O8fr",
     },
     cover: theConfidencePrompt,
+  },
+  {
+    title: "Limbic Memory",
+    genre: "Nonfiction · Neuroscience & memory",
+    category: "Nonfiction",
+    description:
+      "A story-driven guide to the brain's limbic system — the amygdala, the hippocampus, and the machinery that decides what gets remembered and what quietly disappears — and how to build a lasting mental architecture for the things that deserve to be unforgettable.",
+    coverColor: "#16262b",
+    links: {
+      us: "https://a.co/d/0g0xMG9n",
+      ca: "https://a.co/d/09sGI46v",
+      in: "https://amzn.in/d/07KjRXBf",
+    },
+    cover: limbicMemory,
   },
 ];
