@@ -1,20 +1,38 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
-import libraryPhoto from "@/assets/hero/library.jpeg";
-import WalkingFigure from "@/components/WalkingFigure";
+import heroVideoWebm from "@/assets/hero/library.webm";
+import heroVideoMp4 from "@/assets/hero/library.mp4";
+import heroPoster from "@/assets/hero/library-poster.jpg";
 
 export default function BookshelfBackground() {
   const ref = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const prefersReducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], prefersReducedMotion ? [0, 0] : [0, 90]);
 
+  useEffect(() => {
+    if (prefersReducedMotion) videoRef.current?.pause();
+  }, [prefersReducedMotion]);
+
   return (
     <div ref={ref} className="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
-      <motion.div
-        className="absolute inset-x-0 -top-[6%] h-[118%] bg-cover bg-center"
-        style={{ y, backgroundImage: `url(${libraryPhoto})` }}
-      />
+      <motion.div className="absolute inset-x-0 -top-[6%] h-[118%]" style={{ y }}>
+        <video
+          ref={videoRef}
+          className="h-full w-full object-cover"
+          style={{ objectPosition: "50% 40%" }}
+          poster={heroPoster}
+          autoPlay={!prefersReducedMotion}
+          muted
+          loop
+          playsInline
+          preload="auto"
+        >
+          <source src={heroVideoWebm} type="video/webm" />
+          <source src={heroVideoMp4} type="video/mp4" />
+        </video>
+      </motion.div>
 
       {/* Warm lamp glow, gently breathing like a lit reading lamp */}
       <motion.div
@@ -39,10 +57,6 @@ export default function BookshelfBackground() {
             "linear-gradient(90deg, rgba(21,15,10,0.82) 0%, rgba(21,15,10,0.6) 45%, rgba(21,15,10,0.35) 75%, rgba(21,15,10,0.2) 100%), linear-gradient(180deg, rgba(21,15,10,0.35) 0%, rgba(21,15,10,0.5) 55%, var(--background) 100%)",
         }}
       />
-
-      {/* Figures pace on top of the overlay so they read as warmly lit, not lost in the dark */}
-      <WalkingFigure topPct={46} fromPct={68} toPct={90} duration={20} heightPx={30} />
-      <WalkingFigure topPct={53} fromPct={74} toPct={94} duration={26} delay={4} heightPx={24} />
     </div>
   );
 }
