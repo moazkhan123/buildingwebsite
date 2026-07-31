@@ -1,4 +1,7 @@
 import { motion, useReducedMotion } from "motion/react";
+import { buildSpineGradient } from "@/lib/spineGradient";
+
+const SPINE_GRADIENT = buildSpineGradient();
 
 interface Blob {
   color: string;
@@ -22,6 +25,18 @@ export default function AnimatedBackground() {
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
       <div className="absolute inset-0 bg-background" />
+
+      {/* Faint library shelf texture, present behind every section */}
+      <motion.div
+        className="absolute inset-0 opacity-[0.05]"
+        style={{
+          backgroundImage: SPINE_GRADIENT,
+          backgroundSize: "100% 100%",
+        }}
+        animate={prefersReducedMotion ? undefined : { backgroundPositionX: ["0%", "100%"] }}
+        transition={{ duration: 90, repeat: Infinity, ease: "linear" }}
+      />
+
       {blobs.map((blob, i) => (
         <motion.div
           key={i}

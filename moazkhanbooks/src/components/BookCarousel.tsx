@@ -4,6 +4,7 @@ import {
   motion,
   useMotionValue,
   useTransform,
+  useReducedMotion,
   animate,
   type MotionValue,
 } from "motion/react";
@@ -14,6 +15,8 @@ import type { Book } from "@/data/books";
 
 const CARD_SPACING = 150;
 const SPRING = { type: "spring", stiffness: 260, damping: 26 } as const;
+const TILT_SPRING = { type: "spring", stiffness: 300, damping: 20 } as const;
+const TILT_RANGE = 16;
 
 function circularOffset(index: number, position: number, length: number) {
   const raw = index - position;
@@ -40,17 +43,38 @@ function CarouselCard({
   active: number;
   onSelect: () => void;
 }) {
+  const prefersReducedMotion = useReducedMotion();
   const offset = useTransform(position, (p) => circularOffset(index, p, length));
   const x = useTransform(offset, (o) => o * CARD_SPACING);
   const z = useTransform(offset, (o) => -Math.abs(o) * 150);
-  const rotateY = useTransform(offset, (o) => o * -32);
   const scale = useTransform(offset, (o) => 1 - Math.min(Math.abs(o), 1) * 0.22);
   const opacity = useTransform(offset, (o) => {
     const abs = Math.abs(o);
     return abs <= 2.5 ? Math.max(1 - abs * 0.32, 0) : 0;
   });
 
+  // Pointer-driven tilt layers on top of the base coverflow rotation, for a
+  // card that subtly responds to the mouse instead of sitting perfectly flat.
+  const tiltX = useMotionValue(0);
+  const tiltY = useMotionValue(0);
+  const rotateY = useTransform([offset, tiltY], ([o, t]) => (o as number) * -32 + (t as number));
+  const rotateX = tiltX;
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (prefersReducedMotion) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width - 0.5;
+    const py = (e.clientY - rect.top) / rect.height - 0.5;
+    tiltY.set(px * TILT_RANGE);
+    tiltX.set(-py * TILT_RANGE);
+  };
+  const handleMouseLeave = () => {
+    animate(tiltX, 0, TILT_SPRING);
+    animate(tiltY, 0, TILT_SPRING);
+  };
+
   const visible = Math.abs(circularOffset(index, active, length)) <= 2;
+  const isActive = index === active;
 
   return (
     <motion.div
@@ -61,9 +85,17 @@ function CarouselCard({
         x,
         z,
         rotateY,
+        rotateX,
         scale,
         opacity,
       }}
+      animate={
+        isActive && !prefersReducedMotion
+          ? { y: [0, -6, 0], transition: { duration: 3, repeat: Infinity, ease: "easeInOut" } }
+          : { y: 0, transition: { duration: 0.3 } }
+      }
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       onClick={onSelect}
       aria-hidden={!visible}
     >
@@ -78,6 +110,7 @@ function CarouselCard({
 }
 
 export default function BookCarousel({ books }: { books: Book[] }) {
+  const prefersReducedMotion = useReducedMotion();
   const [active, setActive] = useState(0);
   const length = books.length;
   const position = useMotionValue(0);
@@ -101,14 +134,20 @@ export default function BookCarousel({ books }: { books: Book[] }) {
   const activeCategory = books[active].category;
 
   return (
-    <div className="flex flex-col items-center gap-10">
+    <motion.div
+      className="flex flex-col items-center gap-10"
+      initial={{ opacity: 0, scale: 0.96 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+    >
       <AnimatePresence mode="wait">
         <motion.h3
           key={activeCategory}
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 10 }}
-          transition={{ duration: 0.25 }}
+          initial={{ opacity: 0, y: -10, scale: 0.94 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 10, scale: 0.94 }}
+          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="font-serif text-4xl uppercase tracking-[0.15em] text-accent sm:text-5xl"
         >
           {activeCategory}
@@ -133,6 +172,8 @@ export default function BookCarousel({ books }: { books: Book[] }) {
           dragElastic={0}
           dragMomentum={false}
           dragConstraints={{ left: 0, right: 0 }}
+          whileDrag={{ scale: 0.98 }}
+          transition={{ scale: { duration: 0.2 } }}
           onDragStart={() => {
             dragStart.current = position.get();
           }}
@@ -160,45 +201,53 @@ export default function BookCarousel({ books }: { books: Book[] }) {
       </div>
 
       <div className="flex items-center gap-4">
-        <button
+        <motion.button
           type="button"
           onClick={() => go(-1)}
           aria-label="Previous book"
+          whileHover={prefersReducedMotion ? undefined : { scale: 1.08, x: -2 }}
+          whileTap={prefersReducedMotion ? undefined : { scale: 0.92 }}
+          transition={{ type: "spring", stiffness: 400, damping: 20 }}
           className="glass reveal elevation-1 flex h-9 w-9 items-center justify-center rounded-full transition-shadow hover:elevation-2"
         >
           <ChevronLeft className="h-4 w-4" />
-        </button>
+        </motion.button>
 
         <div className="flex max-w-[240px] flex-wrap justify-center gap-1.5">
           {books.map((book, i) => (
-            <button
+            <motion.button
               key={book.title}
               type="button"
               onClick={() => commit(i)}
               aria-label={`Go to ${book.title}`}
+              animate={{ scale: i === active ? 1.4 : 1 }}
+              transition={{ type: "spring", stiffness: 400, damping: 20 }}
               style={
                 i > 0 && books[i].category !== books[i - 1].category
                   ? { marginLeft: 8 }
                   : undefined
               }
-              className={`h-1.5 w-1.5 rounded-full transition ${
+              className={`h-1.5 w-1.5 rounded-full transition-colors ${
                 i === active ? "bg-accent" : "bg-border"
               }`}
             />
           ))}
         </div>
 
-        <button
+        <motion.button
           type="button"
           onClick={() => go(1)}
           aria-label="Next book"
+          whileHover={prefersReducedMotion ? undefined : { scale: 1.08, x: 2 }}
+          whileTap={prefersReducedMotion ? undefined : { scale: 0.92 }}
+          transition={{ type: "spring", stiffness: 400, damping: 20 }}
           className="glass reveal elevation-1 flex h-9 w-9 items-center justify-center rounded-full transition-shadow hover:elevation-2"
         >
           <ChevronRight className="h-4 w-4" />
-        </button>
+        </motion.button>
       </div>
 
       <BookDetailPanel book={books[active]} />
-    </div>
+    </motion.div>
   );
 }
