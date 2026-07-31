@@ -1,27 +1,9 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
+import { buildSpineGradient } from "@/lib/spineGradient";
 
 // A warm, illustrated bookshelf built entirely from layered CSS gradients —
 // no external image asset, so there's nothing to license or fail to load.
-const SPINE_COLORS = [
-  "#8a6d1f", "#6b1f28", "#1f3350", "#2f4a2b", "#c9a35a",
-  "#5a2f4a", "#3a2b6b", "#7a2331", "#1c2b45", "#8a7228",
-  "#4a3b1f", "#17213d", "#b8862b", "#3a3f4a", "#6b1f28",
-];
-
-function buildSpineGradient() {
-  const stops: string[] = [];
-  let pos = 0;
-  for (let i = 0; i < 40; i++) {
-    const color = SPINE_COLORS[i % SPINE_COLORS.length];
-    const width = 26 + ((i * 13) % 22); // varied spine widths, deterministic
-    stops.push(`${color} ${pos}px ${pos + width - 2}px`);
-    pos += width;
-    stops.push(`rgba(21,15,10,0.35) ${pos - 2}px ${pos}px`); // gutter between spines
-  }
-  return `repeating-linear-gradient(90deg, ${stops.join(", ")})`;
-}
-
 const SPINE_GRADIENT = buildSpineGradient();
 const SHELF_HEIGHT = 220;
 
@@ -43,13 +25,19 @@ export default function BookshelfBackground() {
         }}
       />
 
-      {/* Warm lamp glow */}
-      <div
+      {/* Warm lamp glow, gently breathing like a lit reading lamp */}
+      <motion.div
         className="absolute inset-0"
         style={{
           background:
             "radial-gradient(60% 45% at 30% 15%, rgba(217,182,77,0.28), transparent 70%)",
         }}
+        animate={
+          prefersReducedMotion
+            ? undefined
+            : { opacity: [0.85, 1, 0.85], scale: [1, 1.04, 1] }
+        }
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
 
       {/* Dark gradient overlay for text legibility */}
