@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from "motion/react";
 import { Feather } from "lucide-react";
 
-const GOLD = "#cfa04a";
+const GOLD = "#c9722e";
 
 export default function Logo() {
   const prefersReducedMotion = useReducedMotion();

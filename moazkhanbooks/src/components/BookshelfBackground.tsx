@@ -39,7 +39,7 @@ export default function BookshelfBackground() {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(60% 45% at 30% 15%, rgba(224,179,77,0.22), transparent 70%)",
+            "radial-gradient(60% 45% at 30% 15%, rgba(224,140,58,0.24), transparent 70%)",
         }}
         animate={
           prefersReducedMotion
@@ -49,12 +49,12 @@ export default function BookshelfBackground() {
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Amethyst-tinted overlay for text legibility, matching the Midnight Jewel palette */}
+      {/* Burgundy-tinted overlay for text legibility, matching the Sunset Manuscript palette */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(90deg, rgba(27,17,64,0.82) 0%, rgba(32,20,72,0.6) 45%, rgba(38,24,80,0.35) 75%, rgba(38,24,80,0.2) 100%), linear-gradient(180deg, rgba(27,17,64,0.35) 0%, rgba(27,17,64,0.5) 55%, var(--background) 100%)",
+            "linear-gradient(90deg, rgba(61,18,32,0.82) 0%, rgba(74,20,32,0.6) 45%, rgba(90,28,40,0.35) 75%, rgba(90,28,40,0.2) 100%), linear-gradient(180deg, rgba(61,18,32,0.35) 0%, rgba(61,18,32,0.5) 55%, var(--background) 100%)",
         }}
       />
     </div>

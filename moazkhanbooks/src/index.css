@@ -1,35 +1,35 @@
 @import "tailwindcss";
 
 :root {
-  /* Midnight Jewel: indigo / amethyst glass / antique gold */
-  --background: #ece6fa;
-  --foreground: #21163d;
-  --muted-foreground: #6c5f95;
-  --card: #f7f2ff;
-  --card-rgb: 247, 242, 255;
-  --border: #d8cdf0;
-  --accent: #7a5c1a;
-  --accent-foreground: #fdfaf3;
+  /* Sunset Manuscript: burgundy / rose-gold glass / cream */
+  --background: #f7e0cf;
+  --foreground: #33101b;
+  --muted-foreground: #7d5646;
+  --card: #fdf5ec;
+  --card-rgb: 253, 245, 236;
+  --border: #e8cbb0;
+  --accent: #8a3018;
+  --accent-foreground: #fdf5ec;
   --serif: "Playfair Display Variable", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   /* Fluent-inspired elevation: paired ambient + key-light shadows */
-  --elevation-1: 0 1px 2px rgba(33, 22, 61, 0.07), 0 1px 1px rgba(33, 22, 61, 0.05);
-  --elevation-2: 0 3px 6px rgba(33, 22, 61, 0.11), 0 1.5px 3px rgba(33, 22, 61, 0.08);
-  --elevation-3: 0 10px 24px rgba(33, 22, 61, 0.15), 0 3px 6px rgba(33, 22, 61, 0.1);
-  --elevation-4: 0 20px 44px rgba(33, 22, 61, 0.2), 0 6px 12px rgba(33, 22, 61, 0.13);
+  --elevation-1: 0 1px 2px rgba(61, 18, 32, 0.07), 0 1px 1px rgba(61, 18, 32, 0.05);
+  --elevation-2: 0 3px 6px rgba(61, 18, 32, 0.11), 0 1.5px 3px rgba(61, 18, 32, 0.08);
+  --elevation-3: 0 10px 24px rgba(61, 18, 32, 0.15), 0 3px 6px rgba(61, 18, 32, 0.1);
+  --elevation-4: 0 20px 44px rgba(61, 18, 32, 0.2), 0 6px 12px rgba(61, 18, 32, 0.13);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #1b1140;
-    --foreground: #f3ecff;
-    --muted-foreground: #b8a7dd;
-    --card: #a084e0;
-    --card-rgb: 160, 132, 224;
-    --border: #4a3a75;
-    --accent: #e0b34d;
-    --accent-foreground: #1f1435;
+    --background: #3d1220;
+    --foreground: #fbeee0;
+    --muted-foreground: #eccfb8;
+    --card: #ffd6aa;
+    --card-rgb: 255, 214, 170;
+    --border: #6b2f1c;
+    --accent: #e2953a;
+    --accent-foreground: #3d1220;
 
     --elevation-1: 0 1px 2px rgba(0, 0, 0, 0.28), 0 1px 1px rgba(0, 0, 0, 0.22);
     --elevation-2: 0 3px 6px rgba(0, 0, 0, 0.36), 0 1.5px 3px rgba(0, 0, 0, 0.26);
