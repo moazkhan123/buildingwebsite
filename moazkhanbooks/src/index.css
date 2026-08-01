@@ -1,39 +1,35 @@
 @import "tailwindcss";
 
 :root {
-  /* Modern digital library: dark brown / gold / cream / navy */
-  --background: #f4ecd8;
-  --foreground: #2a1d13;
-  --muted-foreground: #665640;
-  --card: #fffaf0;
-  --card-rgb: 255, 250, 240;
-  --border: #ddc9a3;
-  --accent: #b8862b;
-  --accent-foreground: #241708;
-  --navy: #17213d;
-  --navy-foreground: #f4ecd8;
+  /* Sunset Manuscript: burgundy / rose-gold glass / cream */
+  --background: #f7e0cf;
+  --foreground: #33101b;
+  --muted-foreground: #7d5646;
+  --card: #fdf5ec;
+  --card-rgb: 253, 245, 236;
+  --border: #e8cbb0;
+  --accent: #8a3018;
+  --accent-foreground: #fdf5ec;
   --serif: "Playfair Display Variable", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   /* Fluent-inspired elevation: paired ambient + key-light shadows */
-  --elevation-1: 0 1px 2px rgba(42, 29, 19, 0.06), 0 1px 1px rgba(42, 29, 19, 0.04);
-  --elevation-2: 0 3px 6px rgba(42, 29, 19, 0.1), 0 1.5px 3px rgba(42, 29, 19, 0.07);
-  --elevation-3: 0 10px 24px rgba(42, 29, 19, 0.14), 0 3px 6px rgba(42, 29, 19, 0.09);
-  --elevation-4: 0 20px 44px rgba(42, 29, 19, 0.18), 0 6px 12px rgba(42, 29, 19, 0.12);
+  --elevation-1: 0 1px 2px rgba(61, 18, 32, 0.07), 0 1px 1px rgba(61, 18, 32, 0.05);
+  --elevation-2: 0 3px 6px rgba(61, 18, 32, 0.11), 0 1.5px 3px rgba(61, 18, 32, 0.08);
+  --elevation-3: 0 10px 24px rgba(61, 18, 32, 0.15), 0 3px 6px rgba(61, 18, 32, 0.1);
+  --elevation-4: 0 20px 44px rgba(61, 18, 32, 0.2), 0 6px 12px rgba(61, 18, 32, 0.13);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #150f0a;
-    --foreground: #f2ead9;
-    --muted-foreground: #b9ac97;
-    --card: #241a12;
-    --card-rgb: 36, 26, 18;
-    --border: #3d2f1f;
-    --accent: #d9b64d;
-    --accent-foreground: #1b120a;
-    --navy: #2c3e6b;
-    --navy-foreground: #f2ead9;
+    --background: #3d1220;
+    --foreground: #fbeee0;
+    --muted-foreground: #eccfb8;
+    --card: #ffd6aa;
+    --card-rgb: 255, 214, 170;
+    --border: #6b2f1c;
+    --accent: #e2953a;
+    --accent-foreground: #3d1220;
 
     --elevation-1: 0 1px 2px rgba(0, 0, 0, 0.28), 0 1px 1px rgba(0, 0, 0, 0.22);
     --elevation-2: 0 3px 6px rgba(0, 0, 0, 0.36), 0 1.5px 3px rgba(0, 0, 0, 0.26);
@@ -50,8 +46,6 @@
   --color-border: var(--border);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-  --color-navy: var(--navy);
-  --color-navy-foreground: var(--navy-foreground);
   --font-serif: var(--serif);
   --font-sans: var(--sans);
 }
@@ -79,16 +73,16 @@
 
 /* Glassmorphism / Fluent "Acrylic" material */
 @utility glass {
-  background: rgba(var(--card-rgb), 0.55);
+  background: rgba(var(--card-rgb), 0.28);
   backdrop-filter: blur(20px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
-  border: 1px solid rgba(var(--card-rgb), 0.4);
+  border: 1px solid rgba(var(--card-rgb), 0.35);
 }
 @utility glass-subtle {
-  background: rgba(var(--card-rgb), 0.35);
+  background: rgba(var(--card-rgb), 0.18);
   backdrop-filter: blur(14px) saturate(140%);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
-  border: 1px solid rgba(var(--card-rgb), 0.3);
+  border: 1px solid rgba(var(--card-rgb), 0.25);
 }
 
 @utility elevation-1 { box-shadow: var(--elevation-1); }
