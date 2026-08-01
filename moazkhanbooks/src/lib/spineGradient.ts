@@ -1,7 +1,7 @@
 export const SPINE_COLORS = [
-  "#8a6d1f", "#6b1f28", "#1f3350", "#2f4a2b", "#c9a35a",
-  "#5a2f4a", "#3a2b6b", "#7a2331", "#1c2b45", "#8a7228",
-  "#4a3b1f", "#17213d", "#b8862b", "#3a3f4a", "#6b1f28",
+  "#8a63d6", "#4a2f7a", "#e0b34d", "#6b46c1", "#5c3a99",
+  "#c9a35a", "#7a5cd6", "#3a2b6b", "#8a7228", "#9b6fd4",
+  "#4a3b1f", "#2f1f5e", "#b8862b", "#3a3f4a", "#6b1f28",
 ];
 
 /** Builds a repeating-linear-gradient of varied-width "book spines" for the library motifs. */
@@ -16,30 +16,4 @@ export function buildSpineGradient(colors: string[] = SPINE_COLORS, count = 40) 
     stops.push(`rgba(21,15,10,0.35) ${pos - 2}px ${pos}px`); // gutter between spines
   }
   return `repeating-linear-gradient(90deg, ${stops.join(", ")})`;
-}
-
-export interface Spine {
-  color: string;
-  widthPx: number;
-  heightPct: number;
-  titleOffsetPct: number;
-}
-
-/**
- * Deterministically generates a row of individually-sized book spines, tall
- * and short, resting on a shelf -- for illustrations that render real DOM
- * elements per book rather than a flat repeating gradient.
- */
-export function buildSpineRow(count: number, seed = 0): Spine[] {
-  const spines: Spine[] = [];
-  for (let i = 0; i < count; i++) {
-    const n = i + seed;
-    spines.push({
-      color: SPINE_COLORS[n % SPINE_COLORS.length],
-      widthPx: 24 + ((n * 13) % 20),
-      heightPct: 0.6 + (((n * 29) % 41) / 100),
-      titleOffsetPct: 12 + ((n * 17) % 18),
-    });
-  }
-  return spines;
 }

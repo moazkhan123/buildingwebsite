@@ -13,10 +13,10 @@ interface Blob {
 }
 
 const blobs: Blob[] = [
-  { color: "#b8862b", size: 520, top: "-10%", left: "5%", duration: 26, range: 60 },
-  { color: "#17213d", size: 460, top: "15%", left: "70%", duration: 32, range: 80 },
-  { color: "#8a6d1f", size: 400, top: "60%", left: "10%", duration: 22, range: 50 },
-  { color: "#5c1a24", size: 380, top: "70%", left: "65%", duration: 28, range: 70 },
+  { color: "#e0b34d", size: 520, top: "-10%", left: "5%", duration: 26, range: 60 },
+  { color: "#4a2f7a", size: 460, top: "15%", left: "70%", duration: 32, range: 80 },
+  { color: "#8a63d6", size: 400, top: "60%", left: "10%", duration: 22, range: 50 },
+  { color: "#5c3a99", size: 380, top: "70%", left: "65%", duration: 28, range: 70 },
 ];
 
 export default function AnimatedBackground() {

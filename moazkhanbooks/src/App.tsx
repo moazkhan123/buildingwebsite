@@ -82,13 +82,13 @@ export default function App() {
           </motion.p>
           <motion.h1
             variants={fadeUp}
-            className="max-w-2xl text-balance font-serif text-4xl leading-tight text-[#f8f3e6] sm:text-6xl"
+            className="max-w-2xl text-balance font-serif text-4xl leading-tight text-[#f3ecff] sm:text-6xl"
           >
             Stories that live in morally complex worlds.
           </motion.h1>
           <motion.p
             variants={fadeUp}
-            className="max-w-xl text-balance text-lg leading-relaxed text-[#f8f3e6]/80"
+            className="max-w-xl text-balance text-lg leading-relaxed text-[#f3ecff]/80"
           >
             Moaz Khan writes across genres — literary crime fiction, thrillers,
             and books for younger readers — drawing on a decade of experience as
@@ -103,7 +103,7 @@ export default function App() {
               target="_blank"
               rel="noopener noreferrer"
               variant="secondary"
-              className="text-[#f8f3e6]"
+              className="text-[#f3ecff]"
             >
               View on Amazon
               <ExternalLink className="h-3.5 w-3.5" />

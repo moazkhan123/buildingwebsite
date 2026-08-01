@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from "motion/react";
 import { Feather } from "lucide-react";
 
-const GOLD = "#c9a35a";
+const GOLD = "#cfa04a";
 
 export default function Logo() {
   const prefersReducedMotion = useReducedMotion();
@@ -36,10 +36,7 @@ export default function Logo() {
         <span className="block whitespace-nowrap font-serif text-base font-semibold tracking-tight text-foreground">
           Moaz Khan
         </span>
-        <span
-          className="block text-[10px] font-medium uppercase tracking-[0.3em]"
-          style={{ color: GOLD }}
-        >
+        <span className="block text-[10px] font-medium uppercase tracking-[0.3em] text-accent">
           Books
         </span>
       </span>
