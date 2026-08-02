@@ -16,6 +16,7 @@ import bullseyeConfidence from "@/assets/covers/bullseye-confidence.jpeg";
 import theConfidencePrompt from "@/assets/covers/the-confidence-prompt.jpeg";
 import mercies from "@/assets/covers/mercies.jpeg";
 import limbicMemory from "@/assets/covers/limbic-memory.jpeg";
+import theEmperorsWit from "@/assets/covers/the-emperors-wit.jpeg";
 
 export interface Review {
   name: string;
@@ -119,6 +120,20 @@ export const books: Book[] = [
       in: "https://amzn.in/d/06tXjlaX",
     },
     cover: mercies,
+  },
+  {
+    title: "The Emperor's Wit",
+    genre: "Historical fiction · Mughal India",
+    category: "Fiction",
+    description:
+      "A novel of Akbar and Birbal — the wisdom that built an empire.",
+    coverColor: "#1c3a24",
+    links: {
+      us: "https://a.co/d/0iY0GFRS",
+      ca: "https://a.co/d/0byI5cpR",
+      in: "https://amzn.in/d/05dycbPf",
+    },
+    cover: theEmperorsWit,
   },
 
   // --- Children's ---
