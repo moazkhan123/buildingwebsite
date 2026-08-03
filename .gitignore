@@ -1,3 +1,25 @@
 
 __pycache__/
 *.pyc
+
+# Arcads skill pack (github.com/krusemediallc/arcads-claude-code)
+.env
+.env.*
+!.env.example
+MASTER_CONTEXT.md
+outputs/
+output/
+logs/*.jsonl
+
+# reference media is local-only — drop your own photos into references/*/
+references/*
+!references/.gitignore
+!references/influencers
+!references/products
+!references/aesthetics
+references/influencers/*
+!references/influencers/.gitkeep
+references/products/*
+!references/products/.gitkeep
+references/aesthetics/*
+!references/aesthetics/.gitkeep
