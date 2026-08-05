@@ -66,6 +66,7 @@ export default function App() {
         </div>
       </header>
 
+      <main>
       <section className="relative overflow-hidden border-b border-border">
         <BookshelfBackground />
         <motion.div
@@ -218,6 +219,7 @@ export default function App() {
           </p>
         </motion.footer>
       </div>
+      </main>
     </>
   );
 }
