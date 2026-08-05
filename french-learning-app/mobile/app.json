@@ -41,14 +41,23 @@
           "image": "./assets/splash.png",
           "backgroundColor": "#0B1B3B"
         }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "kotlinVersion": "1.9.25"
+          }
+        }
       ]
     ],
     "extra": {
       "apiBaseUrl": "https://french-app-server.onrender.com",
       "defaultAvatarUrl": "",
       "eas": {
-        "projectId": "REPLACE_WITH_YOUR_EAS_PROJECT_ID"
+        "projectId": "0f1c54b1-8219-4f8a-aa3a-8eaaa374c459"
       }
-    }
+    },
+    "owner": "moazkhan"
   }
 }
