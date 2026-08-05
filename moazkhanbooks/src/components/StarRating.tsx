@@ -38,6 +38,7 @@ export default function StarRating({ value, onChange, size = 20 }: StarRatingPro
             className={cn(
               n <= shown ? "fill-accent text-accent" : "fill-none text-muted-foreground"
             )}
+            aria-hidden="true"
           />
         </button>
       ))}

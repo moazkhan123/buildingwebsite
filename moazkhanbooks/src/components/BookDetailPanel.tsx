@@ -50,7 +50,7 @@ export default function BookDetailPanel({ book }: { book: Book }) {
               onClick={() => setReviewOpen(true)}
               className="inline-flex items-center gap-1.5 text-sm font-medium text-accent transition hover:opacity-80"
             >
-              <MessageSquarePlus className="h-3.5 w-3.5" />
+              <MessageSquarePlus className="h-3.5 w-3.5" aria-hidden="true" />
               Write a review
             </button>
           </div>
@@ -63,7 +63,7 @@ export default function BookDetailPanel({ book }: { book: Book }) {
               variant="secondary"
               className="mt-1"
             >
-              <BookOpen className="h-3.5 w-3.5" />
+              <BookOpen className="h-3.5 w-3.5" aria-hidden="true" />
               Read a sample on Amazon
             </Button>
           )}

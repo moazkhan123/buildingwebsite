@@ -28,7 +28,12 @@ export default function Logo() {
           }
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         >
-          <Feather className="h-6 w-6" style={{ color: GOLD }} strokeWidth={1.5} />
+          <Feather
+            className="h-6 w-6"
+            style={{ color: GOLD }}
+            strokeWidth={1.5}
+            aria-hidden="true"
+          />
         </motion.span>
       </span>
 
