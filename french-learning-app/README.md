@@ -125,8 +125,10 @@ isn't something I can create or pay for on your behalf. Here's exactly what's le
    hours to a couple of days for a new app's first submission.
 
 Before submitting, also:
-- Replace the placeholder icons in `mobile/assets/` (`icon.png`, `splash.png`,
-  `adaptive-icon.png`, `favicon.png`) with real artwork.
+- App icon, splash screen, and adaptive icon in `mobile/assets/` are already designed
+  (speech-bubble avatar mark, French tricolor accent) — swap them only if you want a
+  different look. `mobile/assets/store/` has a ready-to-upload Play Store feature
+  graphic (`feature-graphic.png`, 1024×500) and listing icon (`play-store-icon-512.png`).
 - Change `ios.bundleIdentifier` / `android.package` in `app.json` from
   `com.moazkhan.bonjourai` to whatever reverse-DNS ID you want to own.
 - Deploy `server/` somewhere reachable over HTTPS (Render, Railway, Fly.io, a VPS,
