@@ -107,7 +107,7 @@ export default function App() {
               className="text-[#fbeee0]"
             >
               View on Amazon
-              <ExternalLink className="h-3.5 w-3.5" />
+              <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
             </Button>
           </motion.div>
         </motion.div>
@@ -189,7 +189,7 @@ export default function App() {
             </div>
 
             <p className="flex items-center gap-2 pt-2 text-sm text-muted-foreground">
-              <MapPin className="h-4 w-4" />
+              <MapPin className="h-4 w-4" aria-hidden="true" />
               Mississauga, Ontario
             </p>
           </div>
@@ -211,7 +211,7 @@ export default function App() {
           <div className="flex flex-wrap gap-4 pt-2">
             <Button href={AMAZON_AUTHOR_URL} target="_blank" rel="noopener noreferrer" variant="secondary">
               Amazon Author Page
-              <ExternalLink className="h-3.5 w-3.5" />
+              <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
             </Button>
           </div>
           <p className="pt-10 text-sm text-muted-foreground">

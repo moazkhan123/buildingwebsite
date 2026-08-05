@@ -210,7 +210,7 @@ export default function BookCarousel({ books }: { books: Book[] }) {
           transition={{ type: "spring", stiffness: 400, damping: 20 }}
           className="glass reveal elevation-1 flex h-9 w-9 items-center justify-center rounded-full transition-shadow hover:elevation-2"
         >
-          <ChevronLeft className="h-4 w-4" />
+          <ChevronLeft className="h-4 w-4" aria-hidden="true" />
         </motion.button>
 
         <div className="flex max-w-[240px] flex-wrap justify-center gap-1.5">
@@ -243,7 +243,7 @@ export default function BookCarousel({ books }: { books: Book[] }) {
           transition={{ type: "spring", stiffness: 400, damping: 20 }}
           className="glass reveal elevation-1 flex h-9 w-9 items-center justify-center rounded-full transition-shadow hover:elevation-2"
         >
-          <ChevronRight className="h-4 w-4" />
+          <ChevronRight className="h-4 w-4" aria-hidden="true" />
         </motion.button>
       </div>
 

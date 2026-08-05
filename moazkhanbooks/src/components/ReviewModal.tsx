@@ -80,12 +80,12 @@ export default function ReviewModal({ bookTitle, reviews, open, onClose }: Revie
               className="glass reveal elevation-1 absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-shadow hover:elevation-2 hover:text-foreground"
               aria-label="Close"
             >
-              <X className="h-4 w-4" />
+              <X className="h-4 w-4" aria-hidden="true" />
             </button>
 
             {status === "success" ? (
               <div className="flex flex-col items-center gap-3 py-6 text-center">
-                <CheckCircle2 className="h-10 w-10 text-accent" />
+                <CheckCircle2 className="h-10 w-10 text-accent" aria-hidden="true" />
                 <p className="font-serif text-lg text-foreground">Thank you!</p>
                 <p className="text-sm text-muted-foreground">
                   Your review of <em>{bookTitle}</em> has been sent.
@@ -162,7 +162,9 @@ export default function ReviewModal({ bookTitle, reviews, open, onClose }: Revie
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   className="reveal elevation-2 inline-flex items-center justify-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-accent-foreground transition-shadow hover:elevation-3 disabled:opacity-50"
                 >
-                  {status === "submitting" && <Loader2 className="h-4 w-4 animate-spin" />}
+                  {status === "submitting" && (
+                    <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                  )}
                   Submit review
                 </motion.button>
               </form>
