@@ -44,7 +44,7 @@
       ]
     ],
     "extra": {
-      "apiBaseUrl": "https://your-backend-url.example.com",
+      "apiBaseUrl": "https://french-app-server.onrender.com",
       "defaultAvatarUrl": "",
       "eas": {
         "projectId": "REPLACE_WITH_YOUR_EAS_PROJECT_ID"
