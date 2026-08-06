@@ -15,11 +15,7 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.moazkhan.bonjourai",
-      "infoPlist": {
-        "NSMicrophoneUsageDescription": "Bonjour AI uses your microphone so you can speak French with your AI conversation partner.",
-        "NSSpeechRecognitionUsageDescription": "Bonjour AI transcribes your spoken French so the AI avatar can understand and correct you."
-      }
+      "bundleIdentifier": "com.moazkhan.bonjourai"
     },
     "android": {
       "package": "com.moazkhan.bonjourai",
@@ -48,6 +44,14 @@
           "android": {
             "kotlinVersion": "1.9.25"
           }
+        }
+      ],
+      [
+        "expo-speech-recognition",
+        {
+          "microphonePermission": "Bonjour AI uses your microphone so you can speak French with your AI conversation partner.",
+          "speechRecognitionPermission": "Bonjour AI transcribes your spoken French so the AI avatar can understand and correct you.",
+          "androidSpeechServicePackages": ["com.google.android.googlequicksearchbox"]
         }
       ]
     ],
