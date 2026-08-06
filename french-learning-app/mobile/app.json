@@ -53,7 +53,8 @@
           "speechRecognitionPermission": "Bonjour AI transcribes your spoken French so the AI avatar can understand and correct you.",
           "androidSpeechServicePackages": ["com.google.android.googlequicksearchbox"]
         }
-      ]
+      ],
+      "./plugins/withAndroidManifestFix.js"
     ],
     "extra": {
       "apiBaseUrl": "https://french-app-server.onrender.com",
