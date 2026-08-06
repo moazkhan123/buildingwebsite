@@ -10,7 +10,10 @@
       "ios": { "simulator": true }
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "android": {
+        "gradleCommand": ":app:assembleRelease --stacktrace"
+      }
     },
     "production": {
       "autoIncrement": true
