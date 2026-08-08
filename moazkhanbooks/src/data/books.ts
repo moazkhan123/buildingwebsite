@@ -17,6 +17,7 @@ import theConfidencePrompt from "@/assets/covers/the-confidence-prompt.jpeg";
 import mercies from "@/assets/covers/mercies.jpeg";
 import limbicMemory from "@/assets/covers/limbic-memory.jpeg";
 import theEmperorsWit from "@/assets/covers/the-emperors-wit.jpeg";
+import thirstyOrchid from "@/assets/covers/thirsty-orchid.jpeg";
 
 export interface Review {
   name: string;
@@ -134,6 +135,20 @@ export const books: Book[] = [
       in: "https://amzn.in/d/05dycbPf",
     },
     cover: theEmperorsWit,
+  },
+  {
+    title: "Thirsty Orchid",
+    genre: "Literary thriller",
+    category: "Fiction",
+    description:
+      "Three men came for a discovery. None of them understood the price.",
+    coverColor: "#5f6e4f",
+    links: {
+      us: "https://a.co/d/0eoqCIDg",
+      ca: "https://a.co/d/02YTUm6a",
+      in: "https://amzn.in/d/08EGfyD2",
+    },
+    cover: thirstyOrchid,
   },
 
   // --- Children's ---
