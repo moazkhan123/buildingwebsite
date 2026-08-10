@@ -91,9 +91,9 @@ export default function App() {
             variants={fadeUp}
             className="max-w-xl text-balance text-lg leading-relaxed text-[#fbeee0]/80"
           >
-            Moaz Khan writes across genres — literary crime fiction, thrillers,
-            and books for younger readers — drawing on a decade of experience as
-            a manufacturing engineer in the automotive industry.
+            Moaz Khan writes across genres, from literary crime fiction and
+            thrillers to books for younger readers, drawing on a decade of
+            experience as a manufacturing engineer in the automotive industry.
           </motion.p>
           <motion.div variants={fadeUp} className="flex flex-wrap gap-4 pt-2">
             <Button href="#books" variant="primary">
@@ -134,10 +134,10 @@ export default function App() {
           <h2 className="mt-2 font-serif text-3xl">About</h2>
           <div className="mt-6 max-w-2xl space-y-6 text-base leading-relaxed text-muted-foreground">
             <p>
-              Moaz Khan writes across genres — literary crime fiction, thrillers,
-              children's books, and practical nonfiction — drawing on a decade
-              of experience as a manufacturing engineer in the automotive
-              industry.
+              Moaz Khan writes across genres, from literary crime fiction and
+              thrillers to children's books and practical nonfiction, drawing
+              on a decade of experience as a manufacturing engineer in the
+              automotive industry.
             </p>
 
             <div className="space-y-2">
