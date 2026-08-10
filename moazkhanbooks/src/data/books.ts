@@ -18,6 +18,7 @@ import mercies from "@/assets/covers/mercies.jpeg";
 import limbicMemory from "@/assets/covers/limbic-memory.jpeg";
 import theEmperorsWit from "@/assets/covers/the-emperors-wit.jpeg";
 import thirstyOrchid from "@/assets/covers/thirsty-orchid.jpeg";
+import lavender from "@/assets/covers/lavender.jpeg";
 
 export interface Review {
   name: string;
@@ -149,6 +150,19 @@ export const books: Book[] = [
       in: "https://amzn.in/d/08EGfyD2",
     },
     cover: thirstyOrchid,
+  },
+  {
+    title: "Lavender",
+    genre: "Literary novel",
+    category: "Fiction",
+    description: "The scar was never the problem.",
+    coverColor: "#3d2c4f",
+    links: {
+      us: "https://a.co/d/06Cf2pYD",
+      ca: "https://a.co/d/09iDK8UC",
+      in: "https://amzn.in/d/029exSDb",
+    },
+    cover: lavender,
   },
 
   // --- Children's ---
