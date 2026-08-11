@@ -3,10 +3,12 @@ import { AnimatePresence, motion } from "motion/react";
 import StarRating from "@/components/StarRating";
 import ReviewModal from "@/components/ReviewModal";
 import SampleReader from "@/components/SampleReader";
+import BuyEbookButton from "@/components/BuyEbookButton";
 import MarketLinks from "@/components/MarketLinks";
 import Button from "@/components/Button";
 import { useReveal } from "@/lib/useReveal";
 import { sampleLoaders } from "@/data/sampleLoaders";
+import { findEbook } from "@/data/ebooks";
 import type { Book } from "@/data/books";
 import { MessageSquarePlus, BookOpen } from "lucide-react";
 
@@ -21,6 +23,7 @@ export default function BookDetailPanel({ book }: { book: Book }) {
       : 0;
   const sampleLink = book.links?.us ?? book.links?.ca ?? book.links?.in;
   const loadSample = sampleLoaders[book.title];
+  const ebook = findEbook(book.title);
 
   return (
     <>
@@ -89,6 +92,8 @@ export default function BookDetailPanel({ book }: { book: Book }) {
               </Button>
             )
           )}
+
+          {ebook && <BuyEbookButton ebook={ebook} />}
 
           <MarketLinks links={book.links} />
         </motion.div>

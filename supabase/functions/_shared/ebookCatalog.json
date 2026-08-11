@@ -1,0 +1,4 @@
+{
+  "_comment": "One entry per book sold as an ebook. slug is used for the Supabase Storage file names (<slug>.epub / <slug>.pdf) and must be unique. priceCents is the price in the smallest currency unit (e.g. 499 = $4.99). Add real entries here once prices are decided.",
+  "books": []
+}
