@@ -20,6 +20,9 @@ import theEmperorsWit from "@/assets/covers/the-emperors-wit.jpeg";
 import thirstyOrchid from "@/assets/covers/thirsty-orchid.jpeg";
 import lavender from "@/assets/covers/lavender.jpeg";
 import { theGodmanSample } from "@/data/samples/the-godman";
+import { theStressExpertsSample } from "@/data/samples/the-stress-experts";
+import { aiEdgeSample } from "@/data/samples/ai-edge";
+import { whyICantLeaveIslamSample } from "@/data/samples/why-i-cant-leave-islam";
 
 export interface Review {
   name: string;
@@ -111,6 +114,7 @@ export const books: Book[] = [
       in: "https://amzn.in/d/0dTChgBt",
     },
     cover: theStressExperts,
+    samplePages: theStressExpertsSample,
   },
   {
     title: "Mercies",
@@ -252,6 +256,7 @@ export const books: Book[] = [
       in: "https://amzn.in/d/0g7wy3Iq",
     },
     cover: aiEdge,
+    samplePages: aiEdgeSample,
   },
   {
     title: "From the Plant Floor",
@@ -279,6 +284,7 @@ export const books: Book[] = [
       in: "https://amzn.in/d/06ZPvPJY",
     },
     cover: whyICantLeaveIslam,
+    samplePages: whyICantLeaveIslamSample,
   },
   {
     title: "Bullseye Confidence",
