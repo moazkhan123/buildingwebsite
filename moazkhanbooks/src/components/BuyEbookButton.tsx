@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { Download, Loader2 } from "lucide-react";
 import { useReveal } from "@/lib/useReveal";
 import { startEbookCheckout } from "@/lib/ebookApi";
+import StripeSecuredBadge from "@/components/StripeSecuredBadge";
 import type { EbookProduct } from "@/data/ebooks";
 
 function formatPrice(cents: number, currency: string) {
@@ -49,6 +50,7 @@ export default function BuyEbookButton({ ebook }: { ebook: EbookProduct }) {
       {error && (
         <p className="text-xs text-red-600">Something went wrong. Please try again.</p>
       )}
+      <StripeSecuredBadge />
     </div>
   );
 }
