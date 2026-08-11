@@ -11,7 +11,15 @@ export interface EbookProduct {
   formats: ("epub" | "pdf")[];
 }
 
-export const ebooks: EbookProduct[] = [];
+export const ebooks: EbookProduct[] = [
+  {
+    slug: "the-godman",
+    title: "The Godman",
+    priceCents: 2099,
+    currency: "usd",
+    formats: ["epub"],
+  },
+];
 
 export function findEbook(title: string): EbookProduct | undefined {
   return ebooks.find((b) => b.title === title);
