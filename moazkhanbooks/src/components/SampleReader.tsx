@@ -1,19 +1,26 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import { useReveal } from "@/lib/useReveal";
 import MarketLinks from "@/components/MarketLinks";
 import type { MarketLinks as MarketLinksData } from "@/data/books";
 
 interface SampleReaderProps {
   bookTitle: string;
-  pages: string[];
+  loadPages: () => Promise<string[]>;
   open: boolean;
   onClose: () => void;
   links?: MarketLinksData;
 }
 
-export default function SampleReader({ bookTitle, pages, open, onClose, links }: SampleReaderProps) {
+export default function SampleReader({
+  bookTitle,
+  loadPages,
+  open,
+  onClose,
+  links,
+}: SampleReaderProps) {
+  const [pages, setPages] = useState<string[] | null>(null);
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const prefersReducedMotion = useReducedMotion();
@@ -21,9 +28,21 @@ export default function SampleReader({ bookTitle, pages, open, onClose, links }:
   const prevReveal = useReveal<HTMLButtonElement>();
   const nextReveal = useReveal<HTMLButtonElement>();
 
-  const total = pages.length;
+  const total = pages?.length ?? 0;
   const isFirst = index === 0;
   const isLast = index === total - 1;
+
+  useEffect(() => {
+    if (!open || pages) return;
+    let cancelled = false;
+    loadPages().then((loaded) => {
+      if (!cancelled) setPages(loaded);
+    });
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
 
   const goTo = (next: number) => {
     if (next < 0 || next >= total) return;
@@ -53,8 +72,6 @@ export default function SampleReader({ bookTitle, pages, open, onClose, links }:
     center: { rotateY: 0, opacity: 1 },
     exit: (dir: number) => ({ rotateY: dir > 0 ? -90 : 90, opacity: 0 }),
   };
-
-  if (total === 0) return null;
 
   return (
     <AnimatePresence>
@@ -97,30 +114,39 @@ export default function SampleReader({ bookTitle, pages, open, onClose, links }:
               className="relative flex-1 overflow-y-auto bg-card px-8 py-8 sm:px-12"
               style={{ perspective: 1600 }}
             >
-              <AnimatePresence mode="popLayout" custom={direction} initial={false}>
-                <motion.div
-                  key={index}
-                  custom={direction}
-                  variants={prefersReducedMotion ? undefined : pageVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                  style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}
-                  className="whitespace-pre-line font-serif text-base leading-relaxed text-foreground"
-                >
-                  {pages[index]}
+              {pages === null ? (
+                <div className="flex h-full items-center justify-center">
+                  <Loader2
+                    className="h-6 w-6 animate-spin text-muted-foreground"
+                    aria-hidden="true"
+                  />
+                </div>
+              ) : (
+                <AnimatePresence mode="popLayout" custom={direction} initial={false}>
+                  <motion.div
+                    key={index}
+                    custom={direction}
+                    variants={prefersReducedMotion ? undefined : pageVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}
+                    className="whitespace-pre-line font-serif text-base leading-relaxed text-foreground"
+                  >
+                    {pages[index]}
 
-                  {isLast && (
-                    <div className="mt-10 flex flex-col items-center gap-3 border-t border-border pt-8 text-center">
-                      <p className="text-sm text-muted-foreground">
-                        End of sample. Continue reading <em>{bookTitle}</em>:
-                      </p>
-                      <MarketLinks links={links} />
-                    </div>
-                  )}
-                </motion.div>
-              </AnimatePresence>
+                    {isLast && (
+                      <div className="mt-10 flex flex-col items-center gap-3 border-t border-border pt-8 text-center">
+                        <p className="text-sm text-muted-foreground">
+                          End of sample. Continue reading <em>{bookTitle}</em>:
+                        </p>
+                        <MarketLinks links={links} />
+                      </div>
+                    )}
+                  </motion.div>
+                </AnimatePresence>
+              )}
             </div>
 
             <div className="flex items-center justify-between gap-4 border-t border-border px-6 py-4">
@@ -140,7 +166,7 @@ export default function SampleReader({ bookTitle, pages, open, onClose, links }:
               </motion.button>
 
               <p className="text-sm text-muted-foreground">
-                Page {index + 1} of {total}
+                {pages === null ? "Loading…" : `Page ${index + 1} of ${total}`}
               </p>
 
               <motion.button

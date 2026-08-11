@@ -6,6 +6,7 @@ import SampleReader from "@/components/SampleReader";
 import MarketLinks from "@/components/MarketLinks";
 import Button from "@/components/Button";
 import { useReveal } from "@/lib/useReveal";
+import { sampleLoaders } from "@/data/sampleLoaders";
 import type { Book } from "@/data/books";
 import { MessageSquarePlus, BookOpen } from "lucide-react";
 
@@ -19,7 +20,7 @@ export default function BookDetailPanel({ book }: { book: Book }) {
       ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
       : 0;
   const sampleLink = book.links?.us ?? book.links?.ca ?? book.links?.in;
-  const hasReader = Boolean(book.samplePages && book.samplePages.length > 0);
+  const loadSample = sampleLoaders[book.title];
 
   return (
     <>
@@ -60,7 +61,7 @@ export default function BookDetailPanel({ book }: { book: Book }) {
             </button>
           </div>
 
-          {hasReader ? (
+          {loadSample ? (
             <motion.button
               ref={sampleReveal.ref}
               onMouseMove={sampleReveal.onMouseMove}
@@ -100,10 +101,10 @@ export default function BookDetailPanel({ book }: { book: Book }) {
         onClose={() => setReviewOpen(false)}
       />
 
-      {hasReader && (
+      {loadSample && (
         <SampleReader
           bookTitle={book.title}
-          pages={book.samplePages ?? []}
+          loadPages={loadSample}
           open={sampleOpen}
           onClose={() => setSampleOpen(false)}
           links={book.links}
