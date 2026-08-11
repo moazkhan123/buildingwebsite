@@ -20,34 +20,41 @@ GitHub Pages deploy; this is a separate small backend it talks to.
    in private Supabase Storage. The `?download=` link itself never expires,
    so buyers can always come back and re-download.
 
+## Deployment
+
+Deploys automatically via `.github/workflows/deploy-supabase.yml` whenever
+anything in `supabase/` changes on `main` — no local CLI needed. That
+workflow links the project, pushes database migrations, deploys all edge
+functions, and syncs edge function secrets from GitHub Actions secrets.
+
 ## One-time setup
 
 1. **Create a Supabase project** at supabase.com (free tier is fine).
 2. **Storage**: create a private bucket named `ebooks`. Upload each book's
    files as `<slug>.epub` and `<slug>.pdf` (slug matches the `slug` field in
    `functions/_shared/ebookCatalog.json`).
-3. **Database**: run the migration in `migrations/0001_ebooks.sql` (via the
-   Supabase SQL editor, or `supabase db push` with the CLI).
-4. **Edge functions**: deploy everything in `functions/` (via
-   `supabase functions deploy` with the CLI, once linked to the project).
-5. **Secrets** (Project Settings → Edge Functions → Secrets):
-   - `STRIPE_SECRET_KEY` — from your Stripe dashboard
+3. **GitHub Actions secrets** (Settings → Secrets and variables → Actions
+   on the repo) — the deploy workflow reads all of these:
+   - `SUPABASE_ACCESS_TOKEN` — Supabase account → Access Tokens
+   - `SUPABASE_DB_PASSWORD` — the database password set when the project
+     was created (Project Settings → Database if you need to reset it)
+   - `STRIPE_SECRET_KEY` — Stripe dashboard → Developers → API keys
    - `STRIPE_WEBHOOK_SECRET` — created in the next step
    - `RESEND_API_KEY` — from resend.com
    - `EMAIL_FROM` — e.g. `orders@moazkhanbooks.com` (must be a verified
      sending domain in Resend)
-   - `SITE_URL` — `https://moazkhanbooks.com`
-   - `SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` — Supabase sets these
-     automatically for edge functions, no action needed.
-6. **Stripe webhook**: in the Stripe dashboard, add an endpoint pointing to
-   `<your-functions-url>/stripe-webhook`, subscribed to
-   `checkout.session.completed`. Copy the signing secret into
-   `STRIPE_WEBHOOK_SECRET` above.
-7. **Frontend**: set these as GitHub Actions repo secrets (Settings →
-   Secrets and variables → Actions) so the build picks them up:
-   - `VITE_SUPABASE_FUNCTIONS_URL` = `https://<project-ref>.supabase.co/functions/v1`
-   - `VITE_SUPABASE_FUNCTIONS_ORIGIN` = `https://<project-ref>.supabase.co`
-8. **Catalog**: add real entries to `functions/_shared/ebookCatalog.json`
+   - `VITE_SUPABASE_FUNCTIONS_URL` = `https://sdfkcsurcgxnslhytznn.supabase.co/functions/v1`
+   - `VITE_SUPABASE_FUNCTIONS_ORIGIN` = `https://sdfkcsurcgxnslhytznn.supabase.co`
+
+   (`SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` are injected automatically
+   into edge functions by Supabase — nothing to set for those.)
+4. **Stripe webhook**: once the functions have deployed at least once, add
+   an endpoint in the Stripe dashboard pointing to
+   `https://sdfkcsurcgxnslhytznn.supabase.co/functions/v1/stripe-webhook`,
+   subscribed to `checkout.session.completed`. Copy the signing secret into
+   the `STRIPE_WEBHOOK_SECRET` GitHub secret above (re-run the workflow, or
+   push any change under `supabase/`, to sync it).
+5. **Catalog**: add real entries to `functions/_shared/ebookCatalog.json`
    (backend pricing authority) and the matching entries in
    `moazkhanbooks/src/data/ebooks.ts` (frontend display) — same slug/title/
    price/formats in both.
