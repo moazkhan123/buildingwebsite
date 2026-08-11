@@ -12,6 +12,7 @@ export default function EbookDownloadPage({ token }: { token: string }) {
   const [order, setOrder] = useState<OrderStatus | null>(null);
   const [notFound, setNotFound] = useState(false);
   const [downloadingFormat, setDownloadingFormat] = useState<string | null>(null);
+  const [downloadError, setDownloadError] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -39,9 +40,14 @@ export default function EbookDownloadPage({ token }: { token: string }) {
 
   const handleDownload = async (format: "epub" | "pdf") => {
     setDownloadingFormat(format);
+    setDownloadError(null);
     try {
       const url = await getDownloadUrl(token, format);
       window.location.href = url;
+    } catch {
+      setDownloadError(
+        "That download isn't available right now. Please contact us and we'll sort it out.",
+      );
     } finally {
       setDownloadingFormat(null);
     }
@@ -103,6 +109,7 @@ export default function EbookDownloadPage({ token }: { token: string }) {
           <p className="text-xs text-muted-foreground">
             This link works any time you need it — bookmark or save the email for later.
           </p>
+          {downloadError && <p className="text-sm text-red-600">{downloadError}</p>}
         </motion.div>
       )}
     </div>
