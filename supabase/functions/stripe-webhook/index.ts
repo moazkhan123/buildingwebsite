@@ -11,9 +11,12 @@ const fromEmail = Deno.env.get("EMAIL_FROM") ?? "orders@moazkhanbooks.com";
 const SITE_URL = Deno.env.get("SITE_URL") ?? "https://moazkhanbooks.com";
 
 async function sendDownloadEmail(to: string, bookTitle: string, token: string) {
-  if (!resendApiKey) return;
+  if (!resendApiKey) {
+    console.error("RESEND_API_KEY not set; skipping download email");
+    return;
+  }
   const link = `${SITE_URL}/?download=${token}`;
-  await fetch("https://api.resend.com/emails", {
+  const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${resendApiKey}`,
@@ -30,6 +33,10 @@ async function sendDownloadEmail(to: string, bookTitle: string, token: string) {
       `,
     }),
   });
+  if (!res.ok) {
+    const body = await res.text();
+    console.error("Resend send failed", res.status, body);
+  }
 }
 
 Deno.serve(async (req) => {
