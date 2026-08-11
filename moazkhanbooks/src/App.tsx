@@ -6,6 +6,7 @@ import BookshelfBackground from "@/components/BookshelfBackground";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
 import Logo from "@/components/Logo";
 import Button from "@/components/Button";
+import EbookDownloadPage from "@/components/EbookDownloadPage";
 import { useBookStructuredData } from "@/lib/useBookStructuredData";
 import { MapPin, ExternalLink } from "lucide-react";
 
@@ -34,6 +35,7 @@ function revealOnScroll(amount: number) {
 
 export default function App() {
   useBookStructuredData(books);
+  const downloadToken = new URLSearchParams(window.location.search).get("download");
 
   return (
     <>
@@ -67,6 +69,10 @@ export default function App() {
       </header>
 
       <main>
+      {downloadToken ? (
+        <EbookDownloadPage token={downloadToken} />
+      ) : (
+        <>
       <section className="relative overflow-hidden border-b border-border">
         <BookshelfBackground />
         <motion.div
@@ -223,6 +229,8 @@ export default function App() {
           </p>
         </motion.footer>
       </div>
+        </>
+      )}
       </main>
     </>
   );

@@ -35,6 +35,9 @@ jobs:
 
       - name: Build
         working-directory: moazkhanbooks
+        env:
+          VITE_SUPABASE_FUNCTIONS_URL: ${{ secrets.VITE_SUPABASE_FUNCTIONS_URL }}
+          VITE_SUPABASE_FUNCTIONS_ORIGIN: ${{ secrets.VITE_SUPABASE_FUNCTIONS_ORIGIN }}
         run: npm run build
 
       - uses: actions/configure-pages@v5

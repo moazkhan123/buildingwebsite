@@ -1,0 +1,13 @@
+project_id = "moazkhanbooks"
+
+[functions.stripe-webhook]
+verify_jwt = false
+
+[functions.create-checkout]
+verify_jwt = false
+
+[functions.get-order]
+verify_jwt = false
+
+[functions.download]
+verify_jwt = false
