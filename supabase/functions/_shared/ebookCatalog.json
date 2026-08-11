@@ -7,6 +7,13 @@
       "priceCents": 2099,
       "currency": "usd",
       "formats": ["epub"]
+    },
+    {
+      "slug": "lavender",
+      "title": "Lavender",
+      "priceCents": 399,
+      "currency": "usd",
+      "formats": ["epub"]
     }
   ]
 }

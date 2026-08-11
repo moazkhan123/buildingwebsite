@@ -19,6 +19,13 @@ export const ebooks: EbookProduct[] = [
     currency: "usd",
     formats: ["epub"],
   },
+  {
+    slug: "lavender",
+    title: "Lavender",
+    priceCents: 399,
+    currency: "usd",
+    formats: ["epub"],
+  },
 ];
 
 export function findEbook(title: string): EbookProduct | undefined {
