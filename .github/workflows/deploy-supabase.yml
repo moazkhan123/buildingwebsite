@@ -11,6 +11,7 @@ on:
 env:
   SUPABASE_PROJECT_REF: sdfkcsurcgxnslhytznn
   SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+  HAS_STRIPE_KEY: ${{ secrets.STRIPE_SECRET_KEY != '' }}
 
 jobs:
   deploy:
@@ -44,4 +45,4 @@ jobs:
             RESEND_API_KEY="${{ secrets.RESEND_API_KEY }}" \
             EMAIL_FROM="${{ secrets.EMAIL_FROM }}" \
             SITE_URL="https://moazkhanbooks.com"
-        if: ${{ secrets.STRIPE_SECRET_KEY != '' }}
+        if: ${{ env.HAS_STRIPE_KEY == 'true' }}
