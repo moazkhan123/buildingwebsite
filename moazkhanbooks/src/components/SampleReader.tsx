@@ -33,6 +33,11 @@ export default function SampleReader({
   const isLast = index === total - 1;
 
   useEffect(() => {
+    setPages(null);
+    setIndex(0);
+  }, [loadPages]);
+
+  useEffect(() => {
     if (!open || pages) return;
     let cancelled = false;
     loadPages().then((loaded) => {
@@ -42,7 +47,7 @@ export default function SampleReader({
       cancelled = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open]);
+  }, [open, loadPages, pages]);
 
   const goTo = (next: number) => {
     if (next < 0 || next >= total) return;
