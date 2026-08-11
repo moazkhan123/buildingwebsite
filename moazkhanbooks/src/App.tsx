@@ -8,7 +8,7 @@ import Logo from "@/components/Logo";
 import Button from "@/components/Button";
 import EbookDownloadPage from "@/components/EbookDownloadPage";
 import { useBookStructuredData } from "@/lib/useBookStructuredData";
-import { MapPin, ExternalLink } from "lucide-react";
+import { Mail, MapPin, ExternalLink } from "lucide-react";
 
 const AMAZON_AUTHOR_URL = "https://www.amazon.com/author/moazkhan";
 
@@ -217,6 +217,12 @@ export default function App() {
           <p className="max-w-xl text-muted-foreground">
             For rights inquiries, review copies, or events, find the full
             catalog and author profile on Amazon.
+          </p>
+          <p className="flex items-center gap-2 text-sm text-muted-foreground">
+            <Mail className="h-4 w-4" aria-hidden="true" />
+            <a href="mailto:info@moazkhanbooks.com" className="hover:text-foreground">
+              info@moazkhanbooks.com
+            </a>
           </p>
           <div className="flex flex-wrap gap-4 pt-2">
             <Button href={AMAZON_AUTHOR_URL} target="_blank" rel="noopener noreferrer" variant="secondary">
