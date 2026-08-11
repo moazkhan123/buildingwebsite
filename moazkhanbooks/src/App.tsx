@@ -149,8 +149,12 @@ export default function App() {
                 Prague-set thriller <em>A Memory of Smell</em>; the literary
                 novel <em>Mirrored Falls</em>, published in both English and
                 Hindustani Hindi editions; the psychological novel{" "}
-                <em>The Stress Experts</em>; and <em>Mercies</em>, a novel of
-                magic, medicine, and faith in ancient Egypt.
+                <em>The Stress Experts</em>; <em>Mercies</em>, a novel of
+                magic, medicine, and faith in ancient Egypt;{" "}
+                <em>The Emperor's Wit</em>, a novel of Akbar and Birbal in
+                Mughal India; the literary thriller{" "}
+                <em>Thirsty Orchid</em>; and the literary novel{" "}
+                <em>Lavender</em>.
               </p>
             </div>
 
