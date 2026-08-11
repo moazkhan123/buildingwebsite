@@ -2,19 +2,24 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import StarRating from "@/components/StarRating";
 import ReviewModal from "@/components/ReviewModal";
+import SampleReader from "@/components/SampleReader";
 import MarketLinks from "@/components/MarketLinks";
 import Button from "@/components/Button";
+import { useReveal } from "@/lib/useReveal";
 import type { Book } from "@/data/books";
 import { MessageSquarePlus, BookOpen } from "lucide-react";
 
 export default function BookDetailPanel({ book }: { book: Book }) {
   const [reviewOpen, setReviewOpen] = useState(false);
+  const [sampleOpen, setSampleOpen] = useState(false);
+  const sampleReveal = useReveal<HTMLButtonElement>();
   const reviews = book.reviews ?? [];
   const averageRating =
     reviews.length > 0
       ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
       : 0;
   const sampleLink = book.links?.us ?? book.links?.ca ?? book.links?.in;
+  const hasReader = Boolean(book.samplePages && book.samplePages.length > 0);
 
   return (
     <>
@@ -55,17 +60,33 @@ export default function BookDetailPanel({ book }: { book: Book }) {
             </button>
           </div>
 
-          {sampleLink && (
-            <Button
-              href={sampleLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="secondary"
-              className="mt-1"
+          {hasReader ? (
+            <motion.button
+              ref={sampleReveal.ref}
+              onMouseMove={sampleReveal.onMouseMove}
+              type="button"
+              onClick={() => setSampleOpen(true)}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 420, damping: 22 }}
+              className="glass reveal elevation-1 mt-1 inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-foreground transition-shadow duration-200 hover:elevation-2"
             >
               <BookOpen className="h-3.5 w-3.5" aria-hidden="true" />
-              Read a sample on Amazon
-            </Button>
+              Read Sample
+            </motion.button>
+          ) : (
+            sampleLink && (
+              <Button
+                href={sampleLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="secondary"
+                className="mt-1"
+              >
+                <BookOpen className="h-3.5 w-3.5" aria-hidden="true" />
+                Read a sample on Amazon
+              </Button>
+            )
           )}
 
           <MarketLinks links={book.links} />
@@ -78,6 +99,16 @@ export default function BookDetailPanel({ book }: { book: Book }) {
         open={reviewOpen}
         onClose={() => setReviewOpen(false)}
       />
+
+      {hasReader && (
+        <SampleReader
+          bookTitle={book.title}
+          pages={book.samplePages ?? []}
+          open={sampleOpen}
+          onClose={() => setSampleOpen(false)}
+          links={book.links}
+        />
+      )}
     </>
   );
 }
