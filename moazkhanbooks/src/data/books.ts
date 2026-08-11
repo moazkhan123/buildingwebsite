@@ -19,6 +19,7 @@ import limbicMemory from "@/assets/covers/limbic-memory.jpeg";
 import theEmperorsWit from "@/assets/covers/the-emperors-wit.jpeg";
 import thirstyOrchid from "@/assets/covers/thirsty-orchid.jpeg";
 import lavender from "@/assets/covers/lavender.jpeg";
+import { theGodmanSample } from "@/data/samples/the-godman";
 
 export interface Review {
   name: string;
@@ -43,6 +44,7 @@ export interface Book {
   links?: MarketLinks;
   cover?: string;
   reviews?: Review[];
+  samplePages?: string[];
 }
 
 export const books: Book[] = [
@@ -60,6 +62,7 @@ export const books: Book[] = [
       in: "https://amzn.in/d/02qSpa5E",
     },
     cover: theGodman,
+    samplePages: theGodmanSample,
   },
   {
     title: "The Closing Number",
