@@ -1,4 +1,5 @@
 import type { MarketLinks as MarketLinksData } from "@/data/books";
+import AmazonIcon from "@/components/AmazonIcon";
 
 const MARKETS: { key: keyof MarketLinksData; label: string; flag: string }[] = [
   { key: "us", label: "United States", flag: "🇺🇸" },
@@ -15,8 +16,9 @@ export default function MarketLinks({ links }: { links?: MarketLinksData }) {
 
   return (
     <div className="flex flex-col items-center gap-2 pt-1">
-      <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
-        Amazon
+      <span className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-widest text-muted-foreground">
+        <AmazonIcon className="h-3.5 w-3.5" />
+        Also available on Amazon
       </span>
       <div className="flex flex-wrap items-center justify-center gap-2">
         {available.map((m) => (
