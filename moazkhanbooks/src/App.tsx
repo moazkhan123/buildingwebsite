@@ -6,11 +6,13 @@ import BookshelfBackground from "@/components/BookshelfBackground";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
 import Logo from "@/components/Logo";
 import Button from "@/components/Button";
+import InstagramIcon from "@/components/InstagramIcon";
 import EbookDownloadPage from "@/components/EbookDownloadPage";
 import { useBookStructuredData } from "@/lib/useBookStructuredData";
 import { Mail, MapPin, ExternalLink } from "lucide-react";
 
 const AMAZON_AUTHOR_URL = "https://www.amazon.com/author/moazkhan";
+const INSTAGRAM_URL = "https://www.instagram.com/moazkhanbooks?igsh=MTczbDV6ejlwcXhlMw==";
 
 const EASE_OUT_EXPO = [0.16, 1, 0.3, 1] as const;
 
@@ -228,6 +230,10 @@ export default function App() {
             <Button href={AMAZON_AUTHOR_URL} target="_blank" rel="noopener noreferrer" variant="secondary">
               Amazon Author Page
               <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+            </Button>
+            <Button href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" variant="secondary">
+              <InstagramIcon className="h-3.5 w-3.5" />
+              Follow on Instagram
             </Button>
           </div>
           <p className="pt-10 text-sm text-muted-foreground">
