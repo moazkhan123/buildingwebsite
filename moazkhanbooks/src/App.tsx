@@ -7,12 +7,16 @@ import ScrollProgressBar from "@/components/ScrollProgressBar";
 import Logo from "@/components/Logo";
 import Button from "@/components/Button";
 import InstagramIcon from "@/components/InstagramIcon";
+import TikTokIcon from "@/components/TikTokIcon";
+import YouTubeIcon from "@/components/YouTubeIcon";
 import EbookDownloadPage from "@/components/EbookDownloadPage";
 import { useBookStructuredData } from "@/lib/useBookStructuredData";
 import { Mail, MapPin, ExternalLink } from "lucide-react";
 
 const AMAZON_AUTHOR_URL = "https://www.amazon.com/author/moazkhan";
 const INSTAGRAM_URL = "https://www.instagram.com/moazkhanbooks?igsh=MTczbDV6ejlwcXhlMw==";
+const TIKTOK_URL = "https://www.tiktok.com/@moaz.khan.books";
+const YOUTUBE_URL = "https://www.youtube.com/@moazartz";
 
 const EASE_OUT_EXPO = [0.16, 1, 0.3, 1] as const;
 
@@ -234,6 +238,14 @@ export default function App() {
             <Button href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" variant="secondary">
               <InstagramIcon className="h-3.5 w-3.5" />
               Follow on Instagram
+            </Button>
+            <Button href={TIKTOK_URL} target="_blank" rel="noopener noreferrer" variant="secondary">
+              <TikTokIcon className="h-3.5 w-3.5" />
+              Follow on TikTok
+            </Button>
+            <Button href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer" variant="secondary">
+              <YouTubeIcon className="h-3.5 w-3.5" />
+              Subscribe on YouTube
             </Button>
           </div>
           <p className="pt-10 text-sm text-muted-foreground">
