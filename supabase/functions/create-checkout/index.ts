@@ -62,6 +62,7 @@ Deno.serve(async (req) => {
       success_url: `${SITE_URL}/?download=${order.download_token}`,
       cancel_url: `${SITE_URL}/`,
       metadata: { order_id: order.id, book_slug: book.slug },
+      allow_promotion_codes: true,
     });
 
     // Now that we have the real Stripe session id, store it on the order.
