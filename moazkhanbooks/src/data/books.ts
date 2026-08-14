@@ -339,6 +339,8 @@ export const books: Book[] = [
     coverColor: "#1c3440",
     links: {
       us: "https://a.co/d/03S7Lwa0",
+      ca: "https://a.co/d/04Twhg6z",
+      in: "https://amzn.in/d/0bd8H5so",
     },
     cover: habitsMisunderstood,
   },
