@@ -19,6 +19,7 @@ import limbicMemory from "@/assets/covers/limbic-memory.jpeg";
 import theEmperorsWit from "@/assets/covers/the-emperors-wit.jpeg";
 import thirstyOrchid from "@/assets/covers/thirsty-orchid.jpeg";
 import lavender from "@/assets/covers/lavender.jpeg";
+import habitsMisunderstood from "@/assets/covers/habits-misunderstood.jpeg";
 export interface Review {
   name: string;
   rating: number;
@@ -329,5 +330,16 @@ export const books: Book[] = [
       in: "https://amzn.in/d/07KjRXBf",
     },
     cover: limbicMemory,
+  },
+  {
+    title: "Habits, Misunderstood",
+    genre: "Nonfiction · Psychology & habits",
+    category: "Nonfiction",
+    description: "What we were never told about why habits survive.",
+    coverColor: "#1c3440",
+    links: {
+      us: "https://a.co/d/03S7Lwa0",
+    },
+    cover: habitsMisunderstood,
   },
 ];
