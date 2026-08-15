@@ -22,7 +22,7 @@ export default function DealsPage() {
   return (
     <div className="mx-auto max-w-5xl px-6 py-16 sm:py-24">
       <a
-        href="/"
+        href="/#books"
         className="reveal relative inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
       >
         <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />

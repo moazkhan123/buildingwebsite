@@ -56,7 +56,7 @@ export default function App() {
           <Logo />
           <nav className="flex gap-4 text-sm text-muted-foreground sm:gap-6">
             <a
-              href="#books"
+              href="/#books"
               className="reveal relative rounded-full px-3 py-1.5 transition-colors after:absolute after:inset-x-3 after:-bottom-0 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:text-foreground hover:after:scale-x-100"
             >
               Books
@@ -68,13 +68,13 @@ export default function App() {
               Deals
             </a>
             <a
-              href="#about"
+              href="/#about"
               className="reveal relative rounded-full px-3 py-1.5 transition-colors after:absolute after:inset-x-3 after:-bottom-0 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:text-foreground hover:after:scale-x-100"
             >
               About
             </a>
             <a
-              href="#contact"
+              href="/#contact"
               className="reveal relative rounded-full px-3 py-1.5 transition-colors after:absolute after:inset-x-3 after:-bottom-0 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:text-foreground hover:after:scale-x-100"
             >
               Contact
