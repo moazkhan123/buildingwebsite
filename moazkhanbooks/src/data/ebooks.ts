@@ -9,6 +9,10 @@ export interface EbookProduct {
   priceCents: number;
   currency: string;
   formats: ("epub" | "pdf")[];
+  // Optional: the book's current Amazon list price in cents, for the same
+  // currency. Set this to make the book eligible for the Deals page — it
+  // only shows up there when priceCents is actually lower than this.
+  amazonPriceCents?: number;
 }
 
 export const ebooks: EbookProduct[] = [
