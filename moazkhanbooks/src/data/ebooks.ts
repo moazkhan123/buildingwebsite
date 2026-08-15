@@ -30,7 +30,7 @@ export const ebooks: EbookProduct[] = [
     priceCents: 399,
     currency: "usd",
     formats: ["epub"],
-    amazonPriceCents: 399,
+    amazonPriceCents: 499,
   },
   {
     slug: "habits-misunderstood",
@@ -38,7 +38,7 @@ export const ebooks: EbookProduct[] = [
     priceCents: 399,
     currency: "usd",
     formats: ["epub"],
-    amazonPriceCents: 399,
+    amazonPriceCents: 499,
   },
 ];
 
