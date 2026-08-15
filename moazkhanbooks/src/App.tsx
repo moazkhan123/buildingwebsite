@@ -10,6 +10,7 @@ import InstagramIcon from "@/components/InstagramIcon";
 import TikTokIcon from "@/components/TikTokIcon";
 import YouTubeIcon from "@/components/YouTubeIcon";
 import EbookDownloadPage from "@/components/EbookDownloadPage";
+import DealsPage from "@/components/DealsPage";
 import { useBookStructuredData } from "@/lib/useBookStructuredData";
 import { Mail, MapPin, ExternalLink } from "lucide-react";
 
@@ -41,7 +42,9 @@ function revealOnScroll(amount: number) {
 
 export default function App() {
   useBookStructuredData(books);
-  const downloadToken = new URLSearchParams(window.location.search).get("download");
+  const searchParams = new URLSearchParams(window.location.search);
+  const downloadToken = searchParams.get("download");
+  const showDeals = searchParams.has("deals");
 
   return (
     <>
@@ -57,6 +60,12 @@ export default function App() {
               className="reveal relative rounded-full px-3 py-1.5 transition-colors after:absolute after:inset-x-3 after:-bottom-0 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:text-foreground hover:after:scale-x-100"
             >
               Books
+            </a>
+            <a
+              href="/?deals"
+              className="reveal relative rounded-full px-3 py-1.5 transition-colors after:absolute after:inset-x-3 after:-bottom-0 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:text-foreground hover:after:scale-x-100"
+            >
+              Deals
             </a>
             <a
               href="#about"
@@ -77,6 +86,8 @@ export default function App() {
       <main>
       {downloadToken ? (
         <EbookDownloadPage token={downloadToken} />
+      ) : showDeals ? (
+        <DealsPage />
       ) : (
         <>
       <section className="relative overflow-hidden border-b border-border">
@@ -248,7 +259,23 @@ export default function App() {
               Subscribe on YouTube
             </Button>
           </div>
-          <p className="pt-10 text-sm text-muted-foreground">
+          <div id="refund-policy" className="max-w-xl space-y-1 pt-10">
+            <h3 className="text-sm font-medium uppercase tracking-widest text-accent">
+              Refund policy
+            </h3>
+            <p className="text-sm text-muted-foreground">
+              Ebooks are delivered as instant digital downloads. Because the file becomes
+              accessible immediately after purchase, ebook orders are not eligible for a refund
+              once the file has been downloaded. If you haven't downloaded your ebook yet and
+              believe there's been a mistake, contact us at{" "}
+              <a href="mailto:info@moazkhanbooks.com" className="hover:text-foreground">
+                info@moazkhanbooks.com
+              </a>{" "}
+              and we'll help sort it out.
+            </p>
+          </div>
+
+          <p className="pt-6 text-sm text-muted-foreground">
             &copy; {new Date().getFullYear()} Moaz Khan
           </p>
         </motion.footer>

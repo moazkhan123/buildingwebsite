@@ -59,6 +59,12 @@ export default function BuyEbookButton({ ebook }: { ebook: EbookProduct }) {
       )}
       <StripeSecuredBadge />
       <PaymentMethodsBanner />
+      <a
+        href="/#refund-policy"
+        className="text-xs text-muted-foreground underline decoration-dotted underline-offset-2 hover:text-foreground"
+      >
+        Ebooks are non-refundable once downloaded
+      </a>
     </div>
   );
 }
