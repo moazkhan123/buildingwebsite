@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Google Merchant Center product feed for the ebooks sold directly on
+  moazkhanbooks.com. Must be kept in sync by hand with
+  src/data/ebooks.ts and supabase/functions/_shared/ebookCatalog.json
+  whenever a book, price, or cover changes.
+
+  Cover images referenced here live in /covers/ (this public folder,
+  unhashed) rather than the hashed build assets under /assets/, so their
+  URLs stay stable across deploys for Merchant Center's crawler.
+-->
+<rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
+  <channel>
+    <title>Moaz Khan Books — Ebooks</title>
+    <link>https://moazkhanbooks.com/</link>
+    <description>Ebooks by Moaz Khan, available as instant digital downloads.</description>
+
+    <item>
+      <g:id>the-godman</g:id>
+      <title>The Godman</title>
+      <description>A literary crime thriller that explores a morally complex world and refuses an easy ending. Instant EPUB download.</description>
+      <link>https://moazkhanbooks.com/#books</link>
+      <g:image_link>https://moazkhanbooks.com/covers/the-godman.jpeg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>20.99 USD</g:price>
+      <g:brand>Moaz Khan</g:brand>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>false</g:identifier_exists>
+      <g:google_product_category>Media &gt; Books</g:google_product_category>
+      <g:product_type>Fiction &gt; Literary Crime Thriller</g:product_type>
+      <g:shipping>
+        <g:country>US</g:country>
+        <g:service>Digital delivery</g:service>
+        <g:price>0.00 USD</g:price>
+      </g:shipping>
+    </item>
+
+    <item>
+      <g:id>lavender</g:id>
+      <title>Lavender</title>
+      <description>A literary novel. The scar was never the problem. Instant EPUB download.</description>
+      <link>https://moazkhanbooks.com/#books</link>
+      <g:image_link>https://moazkhanbooks.com/covers/lavender.jpeg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>3.99 USD</g:price>
+      <g:brand>Moaz Khan</g:brand>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>false</g:identifier_exists>
+      <g:google_product_category>Media &gt; Books</g:google_product_category>
+      <g:product_type>Fiction &gt; Literary Novel</g:product_type>
+      <g:shipping>
+        <g:country>US</g:country>
+        <g:service>Digital delivery</g:service>
+        <g:price>0.00 USD</g:price>
+      </g:shipping>
+    </item>
+
+    <item>
+      <g:id>habits-misunderstood</g:id>
+      <title>Habits, Misunderstood</title>
+      <description>What we were never told about why habits survive. Instant EPUB download.</description>
+      <link>https://moazkhanbooks.com/#books</link>
+      <g:image_link>https://moazkhanbooks.com/covers/habits-misunderstood.jpeg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>3.99 USD</g:price>
+      <g:brand>Moaz Khan</g:brand>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>false</g:identifier_exists>
+      <g:google_product_category>Media &gt; Books</g:google_product_category>
+      <g:product_type>Nonfiction &gt; Psychology</g:product_type>
+      <g:shipping>
+        <g:country>US</g:country>
+        <g:service>Digital delivery</g:service>
+        <g:price>0.00 USD</g:price>
+      </g:shipping>
+    </item>
+  </channel>
+</rss>
