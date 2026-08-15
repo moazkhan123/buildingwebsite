@@ -52,30 +52,30 @@ export default function App() {
       <AnimatedBackground />
 
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-xl backdrop-saturate-150">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5">
+        <div className="mx-auto flex max-w-5xl items-center justify-between gap-2 px-3 py-5 sm:px-6">
           <Logo />
-          <nav className="flex gap-4 text-sm text-muted-foreground sm:gap-6">
+          <nav className="flex gap-0.5 text-xs text-muted-foreground sm:gap-6 sm:text-sm">
             <a
               href="/#books"
-              className="reveal relative rounded-full px-3 py-1.5 transition-colors after:absolute after:inset-x-3 after:-bottom-0 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:text-foreground hover:after:scale-x-100"
+              className="reveal relative rounded-full px-1.5 py-1 transition-colors after:absolute after:inset-x-1.5 after:-bottom-0 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:text-foreground hover:after:scale-x-100 sm:px-3 sm:py-1.5"
             >
               Books
             </a>
             <a
               href="/?deals"
-              className="reveal relative rounded-full px-3 py-1.5 transition-colors after:absolute after:inset-x-3 after:-bottom-0 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:text-foreground hover:after:scale-x-100"
+              className="reveal relative rounded-full px-1.5 py-1 transition-colors after:absolute after:inset-x-1.5 after:-bottom-0 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:text-foreground hover:after:scale-x-100 sm:px-3 sm:py-1.5"
             >
               Deals
             </a>
             <a
               href="/#about"
-              className="reveal relative rounded-full px-3 py-1.5 transition-colors after:absolute after:inset-x-3 after:-bottom-0 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:text-foreground hover:after:scale-x-100"
+              className="reveal relative rounded-full px-1.5 py-1 transition-colors after:absolute after:inset-x-1.5 after:-bottom-0 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:text-foreground hover:after:scale-x-100 sm:px-3 sm:py-1.5"
             >
               About
             </a>
             <a
               href="/#contact"
-              className="reveal relative rounded-full px-3 py-1.5 transition-colors after:absolute after:inset-x-3 after:-bottom-0 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:text-foreground hover:after:scale-x-100"
+              className="reveal relative rounded-full px-1.5 py-1 transition-colors after:absolute after:inset-x-1.5 after:-bottom-0 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:text-foreground hover:after:scale-x-100 sm:px-3 sm:py-1.5"
             >
               Contact
             </a>
