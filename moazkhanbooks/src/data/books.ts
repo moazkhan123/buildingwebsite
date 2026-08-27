@@ -20,6 +20,7 @@ import theEmperorsWit from "@/assets/covers/the-emperors-wit.jpeg";
 import thirstyOrchid from "@/assets/covers/thirsty-orchid.jpeg";
 import lavender from "@/assets/covers/lavender.jpeg";
 import habitsMisunderstood from "@/assets/covers/habits-misunderstood.jpeg";
+import stolenArgument from "@/assets/covers/stolen-argument.jpeg";
 export interface Review {
   name: string;
   rating: number;
@@ -163,6 +164,19 @@ export const books: Book[] = [
       in: "https://amzn.in/d/029exSDb",
     },
     cover: lavender,
+  },
+  {
+    title: "Stolen Argument",
+    genre: "Legal thriller",
+    category: "Fiction",
+    description: "He knows the law, but does the law know him?",
+    coverColor: "#2a1f14",
+    links: {
+      us: "https://a.co/d/02dmOWqh",
+      ca: "https://a.co/d/06qJHYBo",
+      in: "https://amzn.in/d/06JgnPAd",
+    },
+    cover: stolenArgument,
   },
 
   // --- Children's ---
