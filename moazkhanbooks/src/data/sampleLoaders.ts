@@ -22,4 +22,6 @@ export const sampleLoaders: Partial<Record<string, () => Promise<string[]>>> = {
     import("@/data/samples/the-emperors-wit").then((m) => m.theEmperorsWitSample),
   "Habits, Misunderstood": () =>
     import("@/data/samples/habits-misunderstood").then((m) => m.habitsMisunderstoodSample),
+  "Stolen Argument": () =>
+    import("@/data/samples/stolen-argument").then((m) => m.stolenArgumentSample),
 };
