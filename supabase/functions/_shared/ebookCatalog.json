@@ -21,6 +21,13 @@
       "priceCents": 399,
       "currency": "usd",
       "formats": ["epub"]
+    },
+    {
+      "slug": "stolen-argument",
+      "title": "Stolen Argument",
+      "priceCents": 599,
+      "currency": "usd",
+      "formats": ["epub"]
     }
   ]
 }
