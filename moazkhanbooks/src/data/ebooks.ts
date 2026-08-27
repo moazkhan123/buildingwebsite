@@ -40,6 +40,13 @@ export const ebooks: EbookProduct[] = [
     formats: ["epub"],
     amazonPriceCents: 499,
   },
+  {
+    slug: "stolen-argument",
+    title: "Stolen Argument",
+    priceCents: 599,
+    currency: "usd",
+    formats: ["epub"],
+  },
 ];
 
 export function findEbook(title: string): EbookProduct | undefined {
