@@ -169,7 +169,8 @@ export const books: Book[] = [
     title: "Stolen Argument",
     genre: "Courtroom thriller",
     category: "Fiction",
-    description: "He knows the law, but does the law know him?",
+    description:
+      "A conman steals a stranger's identity as a licensed advocate to save his brother from a rigged case, and discovers he may be the better lawyer. He knows the law, but does the law know him?",
     coverColor: "#2a1f14",
     links: {
       us: "https://a.co/d/02dmOWqh",
