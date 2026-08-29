@@ -167,7 +167,7 @@ export const books: Book[] = [
   },
   {
     title: "Stolen Argument",
-    genre: "Legal thriller",
+    genre: "Courtroom thriller",
     category: "Fiction",
     description: "He knows the law, but does the law know him?",
     coverColor: "#2a1f14",
@@ -222,7 +222,7 @@ export const books: Book[] = [
   },
   {
     title: "Math Is My Favorite",
-    genre: "Children's nonfiction · Education",
+    genre: "Mathematics books for children",
     category: "Children's",
     description:
       "A visual, household approach to mathematics, Standard 1 through 8.",
@@ -252,10 +252,10 @@ export const books: Book[] = [
   },
   {
     title: "AI Edge",
-    genre: "Nonfiction · Trading & AI",
+    genre: "Nonfiction · Stock trading & AI",
     category: "Nonfiction",
     description:
-      "A day trader's playbook for using AI to find opportunities, execute with precision, and manage risk like a pro.",
+      "A day trader's playbook for using AI to find stock market opportunities, execute with precision, and manage risk like a pro.",
     coverColor: "#1f4a3a",
     links: {
       us: "https://a.co/d/0a1mrfb1",
@@ -293,7 +293,7 @@ export const books: Book[] = [
   },
   {
     title: "Bullseye Confidence",
-    genre: "Nonfiction · Personal development",
+    genre: "Nonfiction · Self-help & personal development",
     category: "Nonfiction",
     description: "Hit the exact mark in 20 high-stakes moments.",
     coverColor: "#1f3350",
@@ -320,7 +320,7 @@ export const books: Book[] = [
   },
   {
     title: "The Confidence Prompt",
-    genre: "Nonfiction · Personal development",
+    genre: "Nonfiction · Self-help & personal development",
     category: "Nonfiction",
     description: "Reprogram your mind for unshakable confidence under pressure.",
     coverColor: "#1c2b45",
