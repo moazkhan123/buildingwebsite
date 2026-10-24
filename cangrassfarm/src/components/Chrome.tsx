@@ -8,6 +8,7 @@ import { flowers } from "@/data/flowers"
 import { cn } from "@/lib/cn"
 import { GelButton, spring } from "./ui/gel"
 import { GrassField } from "./Ambient"
+import { LogoMark, Wordmark } from "./Logo"
 
 const links: { to: Route; label: string; icon: typeof Flower2 }[] = [
   { to: "/", label: "Flowers", icon: Flower2 },
@@ -24,15 +25,11 @@ export function Nav({ route, basket, onBasket }: { route: Route; basket: Basket;
             e.preventDefault()
             navigate("/")
           }}
-          className="mr-auto flex min-h-11 items-center gap-2 rounded-full pr-2"
+          aria-label="Canadian Grass Farm & Flower Nursery, home"
+          className="logo-hover mr-auto flex min-h-11 items-center gap-2.5 rounded-full pr-2"
         >
-          <span className="gel-btn grid size-9 place-items-center rounded-full">
-            <Sprout className="size-5" aria-hidden />
-          </span>
-          <span className="hidden font-serif text-base font-bold leading-tight sm:block">
-            Canadian Grass Farm
-            <span className="block font-sans text-[11px] font-semibold tracking-wide text-muted-foreground">& Flower Nursery</span>
-          </span>
+          <LogoMark className="size-11 drop-shadow-md sm:size-14" />
+          <Wordmark className="hidden sm:block" />
         </a>
 
         <ul className="flex items-center gap-1">
@@ -285,8 +282,11 @@ export function Footer() {
       <div className="-mt-px bg-gradient-to-b from-primary-2 to-primary px-6 pb-10 pt-8 text-on-primary">
         <div className="mx-auto grid max-w-6xl gap-8 sm:grid-cols-3">
           <div>
-            <p className="font-serif text-xl font-bold">Canadian Grass Farm & Flower Nursery</p>
-            <p className="mt-1 text-sm opacity-90">Har rang, har mausam, phoolon ka sang.</p>
+            <div className="logo-hover flex items-center gap-3">
+              <LogoMark className="size-16 drop-shadow-lg" />
+              <Wordmark size="lg" plain />
+            </div>
+            <p className="mt-3 text-sm opacity-90">Har rang, har mausam, phoolon ka sang.</p>
           </div>
           <div className="text-sm">
             <p className="mb-1 font-bold uppercase tracking-wider opacity-80">Visit</p>

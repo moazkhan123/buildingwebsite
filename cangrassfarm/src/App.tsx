@@ -1,11 +1,13 @@
 import { AnimatePresence, MotionConfig, motion } from "motion/react"
-import { useEffect, useRef, useState } from "react"
+import { Suspense, lazy, useEffect, useRef, useState } from "react"
 import { BasketDrawer, FloatingCall, Footer, Nav } from "@/components/Chrome"
 import { GelBackdrop } from "@/components/Ambient"
 import { useBasket } from "@/lib/basket"
 import { useRoute } from "@/lib/router"
 import FlowersPage from "@/pages/Flowers"
-import LandscapingPage from "@/pages/Landscaping"
+
+// Loaded on demand so the Flowers page ships less JavaScript.
+const LandscapingPage = lazy(() => import("@/pages/Landscaping"))
 
 const titles = {
   "/": "Canadian Grass Farm & Flower Nursery — Flowers, Plants & Lawn Grass in Malerkotla",
@@ -44,7 +46,13 @@ export default function App() {
             exit={{ opacity: 0, y: -10, transition: { duration: 0.15 } }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
           >
-            {route === "/" ? <FlowersPage basket={basket} /> : <LandscapingPage />}
+            {route === "/" ? (
+              <FlowersPage basket={basket} />
+            ) : (
+              <Suspense fallback={<div className="min-h-dvh" />}>
+                <LandscapingPage />
+              </Suspense>
+            )}
           </motion.div>
         </AnimatePresence>
       </main>

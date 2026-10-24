@@ -11,7 +11,7 @@ export function GelButton({ className, variant = "green", ...props }: HTMLMotion
       whileTap={{ scale: 0.96 }}
       transition={spring}
       className={cn(
-        "inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold",
+        "inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-semibold",
         variant === "green" && "gel-btn",
         variant === "sun" && "gel-btn gel-btn-sun",
         variant === "glass" && "gel text-foreground",
