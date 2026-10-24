@@ -5,7 +5,7 @@ React + Vite + Tailwind CSS v4 + Motion (Framer Motion), "liquid gel grass" them
 
 ## Pages
 
-- `/`: flower catalogue. All 31 flowers from the banner, with benefits, tea/medicine/kitchen uses, care tips, safety notes, search and filters, plus an order list that is sent to Moaviz on WhatsApp.
+- `/`: flower catalogue. All 31 flowers we grow, with benefits, tea/medicine/kitchen uses, care tips, safety notes, search and filters, plus an order list that is sent to Moaviz on WhatsApp.
 - `/landscaping`: project gallery, sun/space concept planner, grass finder (soil, sun, use, water, season), the five grasses (Canadian, Bermuda, Golf, All Season, Winter) and hire CTA.
 
 Orders and projects: Moaviz, +91 90413 76098.
@@ -30,7 +30,7 @@ shadcn-style layout (`components.json`): reusable UI goes in `src/components/ui/
 - Flowers: `src/data/flowers.ts`
 - Grasses, concepts, projects: `src/data/landscaping.ts`
 - Phone number: `src/lib/contact.ts`
-- Images: `public/img/flowers/<slug>.webp` (240×240) and `public/img/scenes/`. They are cropped from the banner, so replace them with real photos for sharper results (same file names).
+- Images: `public/img/flowers/<slug>.webp` (240×240) and `public/img/scenes/`. They are low-resolution crops, so replace them with real photos for sharper results (same file names).
 
 ## Deploy
 

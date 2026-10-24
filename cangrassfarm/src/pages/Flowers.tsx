@@ -31,6 +31,7 @@ import { DewDrops, GrassField } from "@/components/Ambient"
 import { GelButton, Reveal, SectionHeading, spring } from "@/components/ui/gel"
 
 const useIcon = { Tea: Coffee, Medicine: Pill, Kitchen: Leaf, "Home & Beauty": Sparkles, Garden: Sprout } as const
+const heroFlowers = ["rose", "sunflower", "orchid", "marigold", "lily", "hibiscus", "lavender", "dahlia", "tulip"]
 const sunIcon = { "Full sun": Sun, "Part sun": CloudSun, Shade: SunDim } as const
 
 function Hero() {
@@ -112,25 +113,36 @@ function Hero() {
         </div>
 
         <motion.div style={{ y, rotate }} className="relative">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.92, rotate: 3 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="gel rounded-[2rem] p-2"
+          <motion.ul
+            initial="hidden"
+            animate="show"
+            variants={{ show: { transition: { staggerChildren: 0.06, delayChildren: 0.15 } } }}
+            className="gel grid grid-cols-3 gap-2 rounded-[2rem] p-2 pb-6 sm:gap-3 sm:p-3 sm:pb-9"
+            aria-label="Some of the flowers we grow"
           >
-            <img
-              src="/img/banner.jpg"
-              alt="Canadian Grass Farm & Flower Nursery banner showing roses, marigolds, sunflowers, orchids, lawn grass and garden plants"
-              width={1206}
-              height={605}
-              className="w-full rounded-[1.6rem]"
-            />
-          </motion.div>
+            {heroFlowers.map((slug, i) => {
+              const f = flowers.find((x) => x.slug === slug)!
+              return (
+                <motion.li
+                  key={slug}
+                  variants={{ hidden: { opacity: 0, scale: 0.8, y: 20 }, show: { opacity: 1, scale: 1, y: 0 } }}
+                  transition={spring}
+                  className={cn(i % 3 === 1 && "translate-y-4 sm:translate-y-6")}
+                >
+                  <figure className="relative overflow-hidden rounded-[1.4rem]">
+                    <img src={`/img/flowers/${slug}.webp`} alt={f.name} width={240} height={240} className="aspect-square w-full object-cover" />
+                    <span className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-white/35 to-transparent" aria-hidden />
+                    <figcaption className="gel absolute bottom-1.5 left-1.5 rounded-full px-2 py-0.5 text-[11px] font-bold">{f.name}</figcaption>
+                  </figure>
+                </motion.li>
+              )
+            })}
+          </motion.ul>
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.6, ...spring }}
-            className="gel absolute -bottom-14 left-4 flex items-center gap-3 rounded-2xl px-4 py-3"
+            className="gel absolute -bottom-12 right-4 flex items-center gap-3 rounded-2xl px-4 py-3"
           >
             <span className="gel-btn grid size-10 place-items-center rounded-full">
               <Phone className="size-5" aria-hidden />
@@ -347,7 +359,7 @@ function FlowerExplorer({ basket }: { basket: Basket }) {
 
   return (
     <section id="flowers" className="scroll-mt-24 px-4 pt-20 sm:px-6" aria-labelledby="flowers-title">
-      <SectionHeading eyebrow="Our flowers" title="Every flower on our banner, and what it can do for you" id="flowers-title">
+      <SectionHeading eyebrow="Our flowers" title="Every flower we grow, and what it can do for you" id="flowers-title">
         Tap a flower to see its benefits, how it's used in teas, remedies and the kitchen, and how to care for it.
       </SectionHeading>
 
@@ -404,7 +416,7 @@ function FlowerExplorer({ basket }: { basket: Basket }) {
                 >
                   <Sprout className="mb-auto size-8" aria-hidden />
                   <span className="font-serif text-xl font-semibold">Looking for something else?</span>
-                  <span className="mt-1 text-sm opacity-90">We grow many more plants than fit on a banner. Ask Moaviz on WhatsApp.</span>
+                  <span className="mt-1 text-sm opacity-90">We grow many more plants than we can list here. Ask Moaviz on WhatsApp.</span>
                   <span className="mt-3 inline-flex items-center gap-1 text-sm font-bold">
                     Ask now <ArrowRight className="size-4" aria-hidden />
                   </span>
