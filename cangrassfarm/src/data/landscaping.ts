@@ -225,13 +225,6 @@ export const exposure: Record<Sun, { label: string; hours: string; plants: strin
   },
 }
 
-export const grassForSpace: Record<Space, Record<Sun, GrassId>> = {
-  courtyard: { full: "canadian", partial: "all-season", shade: "all-season" },
-  "front-yard": { full: "canadian", partial: "all-season", shade: "all-season" },
-  farmhouse: { full: "bermuda", partial: "all-season", shade: "all-season" },
-  commercial: { full: "bermuda", partial: "all-season", shade: "all-season" },
-}
-
 export const projects = [
   { img: "/img/scenes/lawn.webp", title: "Open lawn installation", kind: "Lawn", grass: "Canadian Grass" },
   { img: "/img/scenes/garden.webp", title: "Stepping-stone garden walk", kind: "Garden design", grass: "All Season Grass" },
@@ -239,3 +232,147 @@ export const projects = [
   { img: "/img/scenes/seasonal.webp", title: "Seasonal flower beds", kind: "Nursery", grass: "—" },
   { img: "/img/scenes/all-kinds.webp", title: "Our growing houses", kind: "Nursery", grass: "—" },
 ]
+
+export type Concept = {
+  id: string
+  img: string
+  width: number
+  height: number
+  title: string
+  space: Space
+  sun: Sun
+  grass: GrassId
+  plants: string
+  text: string
+}
+
+export const concepts: Concept[] = [
+  {
+    id: "begonia-border",
+    img: "/img/concepts/begonia-border.webp",
+    width: 612,
+    height: 408,
+    title: "Curved begonia ribbon",
+    space: "front-yard",
+    sun: "full",
+    grass: "canadian",
+    plants: "Begonia, canna, clipped boxwood",
+    text: "A sweeping bed edge follows the house, with pink and white begonias in bands and clipped shrubs for structure.",
+  },
+  {
+    id: "open-lawn-hedges",
+    img: "/img/concepts/open-lawn-hedges.webp",
+    width: 612,
+    height: 407,
+    title: "Open lawn with clipped hedges",
+    space: "commercial",
+    sun: "partial",
+    grass: "all-season",
+    plants: "Hedging, crotons, young shade trees",
+    text: "One large, uninterrupted lawn framed by low hedges, with staked young trees that will give shade as they grow.",
+  },
+  {
+    id: "curved-paver-walk",
+    img: "/img/concepts/curved-paver-walk.webp",
+    width: 612,
+    height: 408,
+    title: "Curved paver walk",
+    space: "front-yard",
+    sun: "partial",
+    grass: "canadian",
+    plants: "Hydrangea-style shrubs, thuja, salvia",
+    text: "A gently curving path cuts through the lawn, with a row of tall conifers screening the boundary.",
+  },
+  {
+    id: "island-bed-pond",
+    img: "/img/concepts/island-bed-pond.webp",
+    width: 612,
+    height: 408,
+    title: "Island bed with water feature",
+    space: "farmhouse",
+    sun: "full",
+    grass: "bermuda",
+    plants: "Red-leaf shrubs, lavender, ornamental grass",
+    text: "A raised island of colour and texture beside a small pond and stone bridge. A sunny-lawn showpiece.",
+  },
+  {
+    id: "cottage-arbour",
+    img: "/img/concepts/cottage-arbour.webp",
+    width: 408,
+    height: 612,
+    title: "Cottage arbour corner",
+    space: "courtyard",
+    sun: "partial",
+    grass: "all-season",
+    plants: "Climbers, hosta-style foliage, marigold, zinnia",
+    text: "A climber-covered arch over a lawn patch, with layered foliage and bright annuals along the path.",
+  },
+  {
+    id: "shade-townhouse",
+    img: "/img/concepts/shade-townhouse.webp",
+    width: 612,
+    height: 408,
+    title: "Shady townhouse front",
+    space: "courtyard",
+    sun: "shade",
+    grass: "all-season",
+    plants: "Ferns, impatiens, topiary, wall creepers",
+    text: "Ferns, clipped topiary and impatiens brighten a front garden that gets little direct sun, around a neat strip of lawn.",
+  },
+  {
+    id: "striped-lawn-bed",
+    img: "/img/concepts/striped-lawn-bed.webp",
+    width: 612,
+    height: 406,
+    title: "Flower island on a striped lawn",
+    space: "commercial",
+    sun: "full",
+    grass: "golf",
+    plants: "Rudbeckia, salvia, coleus, dusty miller",
+    text: "A mixed flower island set into a mown-striped lawn. Ideal for hotel entrances, parks and school grounds.",
+  },
+  {
+    id: "rockery-gravel",
+    img: "/img/concepts/rockery-gravel.webp",
+    width: 612,
+    height: 294,
+    title: "Rockery with gravel edging",
+    space: "courtyard",
+    sun: "full",
+    grass: "bermuda",
+    plants: "Dwarf conifers, ornamental grass, alyssum",
+    text: "Boulders, white gravel and drought-tolerant plants make a low-water feature in a sunny corner.",
+  },
+  {
+    id: "porch-impatiens",
+    img: "/img/concepts/porch-impatiens.webp",
+    width: 612,
+    height: 406,
+    title: "Porch beds & hanging baskets",
+    space: "front-yard",
+    sun: "shade",
+    grass: "all-season",
+    plants: "Impatiens, petunia baskets, rounded shrubs",
+    text: "Curved beds of impatiens hug a shaded porch, with hanging baskets adding colour at eye level.",
+  },
+  {
+    id: "clipped-front-yard",
+    img: "/img/concepts/clipped-front-yard.webp",
+    width: 612,
+    height: 408,
+    title: "Clipped shrubs & colour border",
+    space: "farmhouse",
+    sun: "partial",
+    grass: "canadian",
+    plants: "Clipped hedging, azalea-style red blooms, Japanese maple",
+    text: "Formal clipped shrubs with a red flowering border and mulched beds. Low effort and always tidy.",
+  },
+]
+
+// Which photo to show in the planner for each space + sun choice.
+export const conceptFor: Record<Space, Record<Sun, string>> = {
+  courtyard: { full: "rockery-gravel", partial: "cottage-arbour", shade: "shade-townhouse" },
+  "front-yard": { full: "begonia-border", partial: "curved-paver-walk", shade: "porch-impatiens" },
+  farmhouse: { full: "island-bed-pond", partial: "clipped-front-yard", shade: "cottage-arbour" },
+  commercial: { full: "striped-lawn-bed", partial: "open-lawn-hedges", shade: "shade-townhouse" },
+}

@@ -3,12 +3,14 @@ import { Check, CloudSun, Droplets, Footprints, Layers, Phone, Ruler, Shovel, Sn
 import { useEffect, useMemo, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 import {
+  conceptFor,
+  concepts,
   exposure,
-  grassForSpace,
   grasses,
   projects,
   recommendGrass,
   spaces,
+  type Concept,
   type Grass,
   type SiteAnswers,
   type Space,
@@ -177,8 +179,15 @@ function ConceptPlanner() {
   const [sun, setSun] = useState<SunLevel>("full")
   const s = spaces.find((x) => x.id === space)!
   const e = exposure[sun]
-  const g = grassById(grassForSpace[space][sun])
+  const c = concepts.find((x) => x.id === conceptFor[space][sun])!
+  const g = grassById(c.grass)
   const SunIcon = sunIcons[sun]
+
+  const pick = (x: Concept) => {
+    setSpace(x.space)
+    setSun(x.sun)
+    document.getElementById("concept-result")?.scrollIntoView({ behavior: "smooth", block: "center" })
+  }
 
   return (
     <section id="concepts" className="scroll-mt-24 px-4 pt-24 sm:px-6" aria-labelledby="concepts-title">
@@ -240,9 +249,15 @@ function ConceptPlanner() {
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             exit={{ opacity: 0, y: -10, filter: "blur(6px)", transition: { duration: 0.15 } }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="gel relative overflow-hidden rounded-[2rem] p-6 sm:p-8"
+            id="concept-result"
+            className="gel relative scroll-mt-24 overflow-hidden rounded-[2rem] p-6 sm:p-8"
             aria-live="polite"
           >
+            <figure className="relative -mx-4 -mt-4 mb-5 overflow-hidden rounded-[1.6rem] sm:-mx-6 sm:-mt-6">
+              <img src={c.img} alt={c.title} width={c.width} height={c.height} className="aspect-[16/9] w-full object-cover" />
+              <span className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-white/30 to-transparent" aria-hidden />
+              <figcaption className="gel absolute bottom-3 left-3 rounded-full px-3 py-1 text-xs font-bold">{c.title}</figcaption>
+            </figure>
             <div className="absolute -right-10 -top-10 size-40 rounded-full opacity-30 blur-2xl" style={{ background: sun === "shade" ? "var(--primary)" : "var(--sun)" }} aria-hidden />
             <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-primary">
               <SunIcon className="size-4" aria-hidden /> {e.label} · {s.label}
@@ -272,7 +287,93 @@ function ConceptPlanner() {
           </motion.div>
         </AnimatePresence>
       </div>
+      <ConceptGallery onPick={pick} />
     </section>
+  )
+}
+
+const spaceLabel = Object.fromEntries(spaces.map((x) => [x.id, x.label])) as Record<Space, string>
+
+function ConceptGallery({ onPick }: { onPick: (c: Concept) => void }) {
+  const [filter, setFilter] = useState<SunLevel | "all">("all")
+  const shown = concepts.filter((c) => filter === "all" || c.sun === filter)
+
+  return (
+    <div className="mx-auto mt-16 max-w-6xl">
+      <div className="mb-6 flex flex-col items-center justify-between gap-4 sm:flex-row">
+        <div>
+          <h3 className="text-2xl font-semibold">Concept gallery</h3>
+          <p className="text-sm text-muted-foreground">Tap a look you like to load it into the planner above.</p>
+        </div>
+        <div className="w-full sm:w-auto sm:min-w-96">
+          <GelSegment
+            name="gallery-sun"
+            label="Filter concepts by sunlight"
+            value={filter}
+            onChange={setFilter}
+            options={[
+              { id: "all", label: "All" },
+              { id: "full", label: "Full sun" },
+              { id: "partial", label: "Partial" },
+              { id: "shade", label: "Shade" },
+            ]}
+          />
+        </div>
+      </div>
+      <motion.ul layout className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <AnimatePresence mode="popLayout">
+          {shown.map((c, i) => {
+            const SunIcon = sunIcons[c.sun]
+            // Two wide cards make 10 photos fill 3-column rows evenly.
+            const wide = filter === "all" && (i === 0 || i === 6)
+            return (
+              <motion.li
+                key={c.id}
+                layout
+                className={cn(wide && "lg:col-span-2")}
+                initial={{ opacity: 0, scale: 0.94 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.94, transition: { duration: 0.15 } }}
+                transition={spring}
+              >
+                <motion.button
+                  type="button"
+                  onClick={() => onPick(c)}
+                  whileHover={{ y: -6 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={spring}
+                  className="gel group flex h-full w-full cursor-pointer flex-col overflow-hidden rounded-[1.75rem] p-1.5 text-left"
+                  aria-label={`Load concept: ${c.title}`}
+                >
+                  <span className="relative block overflow-hidden rounded-[1.4rem]">
+                    <img
+                      src={c.img}
+                      alt={c.title}
+                      width={c.width}
+                      height={c.height}
+                      loading="lazy"
+                      className={cn("aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105", wide && "lg:aspect-[8/3]")}
+                    />
+                    <span className="gel absolute left-2 top-2 flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-bold">
+                      <SunIcon className="size-3.5 text-accent" aria-hidden /> {exposure[c.sun].label}
+                    </span>
+                  </span>
+                  <span className="flex flex-1 flex-col px-3 pb-3 pt-3">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-primary">{spaceLabel[c.space]}</span>
+                    <span className="font-serif text-lg font-semibold">{c.title}</span>
+                    <span className="mt-1 text-sm text-muted-foreground">{c.text}</span>
+                    <span className="mt-3 flex flex-wrap gap-1.5 text-xs font-semibold">
+                      <span className="rounded-full bg-[var(--glass-tint)] px-2.5 py-1">{grassById(c.grass).name}</span>
+                      <span className="rounded-full bg-[var(--glass-tint)] px-2.5 py-1">{c.plants}</span>
+                    </span>
+                  </span>
+                </motion.button>
+              </motion.li>
+            )
+          })}
+        </AnimatePresence>
+      </motion.ul>
+    </div>
   )
 }
 
