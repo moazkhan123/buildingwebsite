@@ -16,6 +16,5 @@ export const ADDRESS = {
 
 export const ADDRESS_ONE_LINE = `${ADDRESS.street}, ${ADDRESS.landmarks.map((l) => l[0].toLowerCase() + l.slice(1)).join(", ")}, ${ADDRESS.area}, ${ADDRESS.city}, ${ADDRESS.region} ${ADDRESS.postcode}`
 
-export const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-  `Canadian Grass Farm, ${ADDRESS.street}, opposite Sham Filling Station, ${ADDRESS.area}, ${ADDRESS.city}, ${ADDRESS.region} ${ADDRESS.postcode}`,
-)}`
+// Share link from the nursery's own Google Maps pin.
+export const MAPS_URL = "https://maps.app.goo.gl/mKiFUdfWi6t65VYd9"
