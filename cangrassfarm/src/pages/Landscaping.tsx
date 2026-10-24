@@ -177,13 +177,16 @@ function Projects() {
 function ConceptPlanner() {
   const [space, setSpace] = useState<Space>("front-yard")
   const [sun, setSun] = useState<SunLevel>("full")
+  const [picked, setPicked] = useState<Concept | null>(null)
   const s = spaces.find((x) => x.id === space)!
   const e = exposure[sun]
-  const c = concepts.find((x) => x.id === conceptFor[space][sun])!
-  const g = grassById(c.grass)
+  // A concept tapped in the gallery wins until the visitor changes space or sun.
+  const c = picked && picked.space === space && picked.sun === sun ? picked : concepts.find((x) => x.id === conceptFor[space][sun])!
+  const g = grassById(c.grass ?? "all-season")
   const SunIcon = sunIcons[sun]
 
   const pick = (x: Concept) => {
+    setPicked(x)
     setSpace(x.space)
     setSun(x.sun)
     document.getElementById("concept-result")?.scrollIntoView({ behavior: "smooth", block: "center" })
@@ -244,7 +247,7 @@ function ConceptPlanner() {
 
         <AnimatePresence mode="wait">
           <motion.div
-            key={space + sun}
+            key={c.id + space + sun}
             initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             exit={{ opacity: 0, y: -10, filter: "blur(6px)", transition: { duration: 0.15 } }}
@@ -296,7 +299,9 @@ const spaceLabel = Object.fromEntries(spaces.map((x) => [x.id, x.label])) as Rec
 
 function ConceptGallery({ onPick }: { onPick: (c: Concept) => void }) {
   const [filter, setFilter] = useState<SunLevel | "all">("all")
-  const shown = concepts.filter((c) => filter === "all" || c.sun === filter)
+  const [expanded, setExpanded] = useState(false)
+  const matching = concepts.filter((c) => filter === "all" || c.sun === filter)
+  const shown = expanded || filter !== "all" ? matching : matching.slice(0, 9)
 
   return (
     <div className="mx-auto mt-16 max-w-6xl">
@@ -322,15 +327,12 @@ function ConceptGallery({ onPick }: { onPick: (c: Concept) => void }) {
       </div>
       <motion.ul layout className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <AnimatePresence mode="popLayout">
-          {shown.map((c, i) => {
+          {shown.map((c) => {
             const SunIcon = sunIcons[c.sun]
-            // Two wide cards make 10 photos fill 3-column rows evenly.
-            const wide = filter === "all" && (i === 0 || i === 6)
             return (
               <motion.li
                 key={c.id}
                 layout
-                className={cn(wide && "lg:col-span-2")}
                 initial={{ opacity: 0, scale: 0.94 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.94, transition: { duration: 0.15 } }}
@@ -352,7 +354,7 @@ function ConceptGallery({ onPick }: { onPick: (c: Concept) => void }) {
                       width={c.width}
                       height={c.height}
                       loading="lazy"
-                      className={cn("aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105", wide && "lg:aspect-[8/3]")}
+                      className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <span className="gel absolute left-2 top-2 flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-bold">
                       <SunIcon className="size-3.5 text-accent" aria-hidden /> {exposure[c.sun].label}
@@ -363,7 +365,7 @@ function ConceptGallery({ onPick }: { onPick: (c: Concept) => void }) {
                     <span className="font-serif text-lg font-semibold">{c.title}</span>
                     <span className="mt-1 text-sm text-muted-foreground">{c.text}</span>
                     <span className="mt-3 flex flex-wrap gap-1.5 text-xs font-semibold">
-                      <span className="rounded-full bg-[var(--glass-tint)] px-2.5 py-1">{grassById(c.grass).name}</span>
+                      <span className="rounded-full bg-[var(--glass-tint)] px-2.5 py-1">{c.grass ? grassById(c.grass).name : "No lawn: pavers & mulch"}</span>
                       <span className="rounded-full bg-[var(--glass-tint)] px-2.5 py-1">{c.plants}</span>
                     </span>
                   </span>
@@ -373,6 +375,21 @@ function ConceptGallery({ onPick }: { onPick: (c: Concept) => void }) {
           })}
         </AnimatePresence>
       </motion.ul>
+      {filter === "all" && matching.length > 9 && (
+        <div className="mt-8 flex justify-center">
+          <GelButton
+            href="#concepts"
+            variant="glass"
+            aria-expanded={expanded}
+            onClick={(e) => {
+              e.preventDefault()
+              setExpanded((v) => !v)
+            }}
+          >
+            {expanded ? "Show fewer concepts" : `Show all ${matching.length} concepts`}
+          </GelButton>
+        </div>
+      )}
     </div>
   )
 }
