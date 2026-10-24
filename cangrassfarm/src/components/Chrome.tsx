@@ -6,7 +6,7 @@ import { PHONE_DISPLAY, PHONE_TEL, whatsappLink } from "@/lib/contact"
 import { navigate, type Route } from "@/lib/router"
 import { flowers } from "@/data/flowers"
 import { cn } from "@/lib/cn"
-import { GelButton, spring } from "./ui"
+import { GelButton, spring } from "./ui/gel"
 import { GrassField } from "./Ambient"
 
 const links: { to: Route; label: string; icon: typeof Flower2 }[] = [

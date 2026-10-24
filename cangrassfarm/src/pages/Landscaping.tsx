@@ -17,14 +17,19 @@ import {
 import { cn } from "@/lib/cn"
 import { PHONE_DISPLAY, PHONE_TEL, whatsappLink } from "@/lib/contact"
 import { DewDrops, GrassField } from "@/components/Ambient"
-import { GelButton, GelSegment, Reveal, SectionHeading, spring } from "@/components/ui"
+import { GelButton, GelSegment, Reveal, SectionHeading, spring } from "@/components/ui/gel"
+import { GradientBackground } from "@/components/ui/jade-sky"
 
 const grassById = (id: string) => grasses.find((g) => g.id === id)!
 const sunIcons = { full: Sun, partial: CloudSun, shade: SunDim } as const
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden pt-10 sm:pt-16" aria-labelledby="land-title">
+    <section className="relative isolate overflow-hidden pt-10 sm:pt-16" aria-labelledby="land-title">
+      {/* Jade Sky: a soft sky over the hero lawn; dimmed in dark mode so it doesn't wash out the theme */}
+      <div className="absolute inset-0 -z-10 opacity-90 [mask-image:linear-gradient(to_bottom,transparent,black_30%)] dark:opacity-15">
+        <GradientBackground />
+      </div>
       <DewDrops />
       <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
         <motion.p

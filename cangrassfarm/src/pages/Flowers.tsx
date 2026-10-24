@@ -28,7 +28,7 @@ import { cn } from "@/lib/cn"
 import { PHONE_DISPLAY, PHONE_TEL, whatsappLink } from "@/lib/contact"
 import { navigate } from "@/lib/router"
 import { DewDrops, GrassField } from "@/components/Ambient"
-import { GelButton, Reveal, SectionHeading, spring } from "@/components/ui"
+import { GelButton, Reveal, SectionHeading, spring } from "@/components/ui/gel"
 
 const useIcon = { Tea: Coffee, Medicine: Pill, Kitchen: Leaf, "Home & Beauty": Sparkles, Garden: Sprout } as const
 const sunIcon = { "Full sun": Sun, "Part sun": CloudSun, Shade: SunDim } as const

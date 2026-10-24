@@ -18,6 +18,13 @@ npm run dev
 npm run build   # outputs dist/ (incl. dist/landscaping/index.html and 404.html for static hosts)
 ```
 
+## Components
+
+shadcn-style layout (`components.json`): reusable UI goes in `src/components/ui/`, imported as `@/components/ui/<name>`.
+
+- `ui/gel.tsx`: gel buttons, segmented control, reveal animation, section headings
+- `ui/jade-sky.tsx`: "Jade Sky" gradient from 21st.dev, used behind the Landscaping hero (demo in `src/demos/jade-sky-demo.tsx`)
+
 ## Content
 
 - Flowers: `src/data/flowers.ts`
