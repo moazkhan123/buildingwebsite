@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+:root {
+  /* Liquid gel grass: dew-glass over lawn greens, sun-yellow accent */
+  --background: #e9f7ec;
+  --background-2: #d3efd9;
+  --foreground: #0d2a18;
+  --muted-foreground: #3d5c48;
+  --primary: #15803d;
+  --primary-2: #22c55e;
+  --on-primary: #ffffff;
+  --accent: #b45309;
+  --sun: #f59e0b;
+  --border: rgba(21, 128, 61, 0.18);
+  --glass: rgba(255, 255, 255, 0.58);
+  --glass-strong: rgba(255, 255, 255, 0.8);
+  --glass-edge: rgba(255, 255, 255, 0.85);
+  --glass-tint: rgba(34, 197, 94, 0.1);
+  --blade-1: #16a34a;
+  --blade-2: #22c55e;
+  --blade-3: #4ade80;
+  --serif: "Lora Variable", ui-serif, Georgia, serif;
+  --sans: "Raleway Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --shadow-gel: 0 18px 40px -18px rgba(13, 64, 32, 0.35), 0 4px 10px -4px rgba(13, 64, 32, 0.15);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #05160c;
+    --background-2: #0a2615;
+    --foreground: #e6f6ea;
+    --muted-foreground: #a3c9b0;
+    --primary: #22c55e;
+    --primary-2: #4ade80;
+    --on-primary: #04210f;
+    --accent: #fbbf24;
+    --sun: #fbbf24;
+    --border: rgba(134, 239, 172, 0.16);
+    --glass: rgba(16, 52, 30, 0.5);
+    --glass-strong: rgba(14, 44, 26, 0.85);
+    --glass-edge: rgba(187, 247, 208, 0.22);
+    --glass-tint: rgba(74, 222, 128, 0.08);
+    --blade-1: #14532d;
+    --blade-2: #166534;
+    --blade-3: #15803d;
+    --shadow-gel: 0 18px 40px -18px rgba(0, 0, 0, 0.7), 0 4px 10px -4px rgba(0, 0, 0, 0.5);
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--primary);
+  --color-primary-2: var(--primary-2);
+  --color-on-primary: var(--on-primary);
+  --color-accent: var(--accent);
+  --color-sun: var(--sun);
+  --color-border: var(--border);
+  --font-serif: var(--serif);
+  --font-sans: var(--sans);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: var(--sans);
+  color: var(--foreground);
+  background:
+    radial-gradient(1200px 600px at 10% -10%, var(--background-2), transparent 60%),
+    radial-gradient(900px 500px at 100% 10%, color-mix(in srgb, var(--sun) 14%, transparent), transparent 60%),
+    var(--background);
+  background-attachment: fixed;
+  line-height: 1.6;
+  overflow-x: clip;
+}
+
+h1, h2, h3 {
+  font-family: var(--serif);
+  line-height: 1.15;
+}
+
+button, a {
+  touch-action: manipulation;
+}
+
+:focus-visible {
+  outline: 3px solid var(--primary-2);
+  outline-offset: 3px;
+  border-radius: 12px;
+}
+
+@layer components {
+/* Liquid glass panel: frosted body, bright rim, soft inner glow */
+.gel {
+  position: relative;
+  background: linear-gradient(160deg, var(--glass-strong) 0%, var(--glass) 45%, var(--glass-tint) 100%);
+  backdrop-filter: blur(18px) saturate(170%);
+  border: 1px solid var(--glass-edge);
+  box-shadow:
+    var(--shadow-gel),
+    inset 0 1px 0 var(--glass-edge),
+    inset 0 -10px 24px -12px color-mix(in srgb, var(--primary) 35%, transparent);
+}
+
+/* Glossy gel button: a green droplet with a specular highlight */
+.gel-btn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: var(--on-primary);
+  background: linear-gradient(180deg, var(--primary-2), var(--primary) 70%);
+  box-shadow:
+    0 10px 24px -10px color-mix(in srgb, var(--primary) 80%, transparent),
+    inset 0 -3px 8px rgba(0, 0, 0, 0.15),
+    inset 0 2px 0 rgba(255, 255, 255, 0.45);
+}
+.gel-btn::before {
+  content: "";
+  position: absolute;
+  inset: 2px 10% auto;
+  height: 45%;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0));
+  z-index: -1;
+  pointer-events: none;
+}
+
+.gel-btn-sun {
+  color: #3b2300;
+  background: linear-gradient(180deg, #fcd34d, #f59e0b 70%);
+  box-shadow:
+    0 10px 24px -10px rgba(245, 158, 11, 0.8),
+    inset 0 -3px 8px rgba(0, 0, 0, 0.12),
+    inset 0 2px 0 rgba(255, 255, 255, 0.6);
+}
+}
+
+/* Swaying grass blades */
+@keyframes sway {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+.blade {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  animation: sway var(--d, 4s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes drift {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  15% { opacity: 0.9; }
+  100% { transform: translateY(-120px) translateX(20px); opacity: 0; }
+}
+.dew {
+  animation: drift var(--d, 9s) linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .blade, .dew {
+    animation: none;
+  }
+}
