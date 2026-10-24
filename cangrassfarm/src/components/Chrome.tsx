@@ -18,7 +18,7 @@ const links: { to: Route; label: string; icon: typeof Flower2 }[] = [
 export function Nav({ route, basket, onBasket }: { route: Route; basket: Basket; onBasket: () => void }) {
   return (
     <header className="sticky top-0 z-40 px-3 pt-3 sm:px-6">
-      <nav aria-label="Main" className="gel mx-auto flex max-w-6xl items-center gap-2 rounded-full py-1.5 pl-3 pr-1.5">
+      <nav aria-label="Main" className="gel mx-auto flex max-w-6xl items-center gap-1 rounded-full py-1.5 pl-2 pr-1 sm:gap-2 sm:pl-3 sm:pr-1.5">
         <a
           href="/"
           onClick={(e) => {
@@ -26,13 +26,18 @@ export function Nav({ route, basket, onBasket }: { route: Route; basket: Basket;
             navigate("/")
           }}
           aria-label="Canadian Grass Farm & Flower Nursery, home"
-          className="logo-hover mr-auto flex min-h-11 items-center gap-2.5 rounded-full pr-2"
+          className="logo-hover mr-auto flex min-h-11 items-center gap-2 rounded-full pr-1 sm:gap-2.5 sm:pr-2"
         >
           <LogoMark className="size-11 drop-shadow-md sm:size-14" />
+          {/* Phones: the name stacks on two lines beside the tabs; too tight under 360px. */}
+          <span className="cgf-word block font-serif text-[clamp(13px,3.9vw,15px)] font-bold leading-[1.1] max-[359px]:hidden sm:hidden">
+            <span className="block whitespace-nowrap">Canadian</span>
+            <span className="block whitespace-nowrap">Grass Farm</span>
+          </span>
           <Wordmark className="hidden sm:block" />
         </a>
 
-        <ul className="flex items-center gap-1">
+        <ul className="flex items-center gap-0.5 sm:gap-1">
           {links.map((l) => {
             const active = route === l.to
             return (
@@ -45,11 +50,11 @@ export function Nav({ route, basket, onBasket }: { route: Route; basket: Basket;
                     navigate(l.to)
                   }}
                   className={cn(
-                    "relative flex min-h-11 items-center gap-1.5 rounded-full px-3 text-sm font-semibold transition-colors duration-200 sm:px-4",
+                    "relative flex min-h-11 flex-col items-center justify-center gap-0.5 rounded-2xl px-2 text-[11px] font-semibold leading-none transition-colors duration-200 sm:flex-row sm:gap-1.5 sm:rounded-full sm:px-4 sm:text-sm sm:leading-normal",
                     active ? "text-on-primary" : "text-muted-foreground hover:text-foreground",
                   )}
                 >
-                  {active && <motion.span layoutId="nav-pill" transition={spring} className="gel-btn absolute inset-0 rounded-full" />}
+                  {active && <motion.span layoutId="nav-pill" transition={spring} className="gel-btn absolute inset-0 rounded-2xl sm:rounded-full" />}
                   <l.icon className="relative size-4" aria-hidden />
                   <span className="relative">{l.label}</span>
                 </a>
