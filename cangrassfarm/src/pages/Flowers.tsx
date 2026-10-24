@@ -31,7 +31,7 @@ import { DewDrops, GrassField } from "@/components/Ambient"
 import { GelButton, Reveal, SectionHeading, spring } from "@/components/ui/gel"
 
 const useIcon = { Tea: Coffee, Medicine: Pill, Kitchen: Leaf, "Home & Beauty": Sparkles, Garden: Sprout } as const
-const heroFlowers = ["rose", "sunflower", "orchid", "marigold", "lily", "hibiscus", "lavender", "dahlia", "tulip"]
+const heroFlowers = ["rose", "marigold", "orchid", "hibiscus", "lily", "tulip", "carnation", "pansy", "jasmine"]
 const sunIcon = { "Full sun": Sun, "Part sun": CloudSun, Shade: SunDim } as const
 
 function Hero() {
