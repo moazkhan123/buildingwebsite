@@ -34,5 +34,6 @@ shadcn-style layout (`components.json`): reusable UI goes in `src/components/ui/
 
 ## Deploy
 
-`dist/` is a static site. `public/CNAME` is set to `cangrassfarm.com`.
-This repo's GitHub Pages slot is already used by moazkhanbooks.com, so host this site on Netlify, Cloudflare Pages or Vercel (root `cangrassfarm`, build `npm run build`, output `dist`), or move it into its own repo for GitHub Pages.
+Hosted on Netlify. `netlify.toml` at the repo root holds the settings (base `cangrassfarm`, build `npm run build`, publish `dist`, Node 22), so importing the repo in Netlify needs no manual build settings. Pushes to `main` that don't touch `cangrassfarm/` are skipped.
+
+`public/CNAME` is left for GitHub Pages compatibility and is ignored by Netlify. This repo's GitHub Pages slot serves moazkhanbooks.com.
