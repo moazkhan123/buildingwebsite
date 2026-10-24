@@ -16,5 +16,8 @@ export const ADDRESS = {
 
 export const ADDRESS_ONE_LINE = `${ADDRESS.street}, ${ADDRESS.landmarks.map((l) => l[0].toLowerCase() + l.slice(1)).join(", ")}, ${ADDRESS.area}, ${ADDRESS.city}, ${ADDRESS.region} ${ADDRESS.postcode}`
 
-// Share link from the nursery's own Google Maps pin.
-export const MAPS_URL = "https://maps.app.goo.gl/mKiFUdfWi6t65VYd9"
+// The nursery's exact pin (dropped beside Mehal Point).
+export const GEO = { lat: 30.5455439, lng: 75.8806352 }
+
+// Opens Google Maps directions straight to the pin.
+export const MAPS_URL = `https://www.google.com/maps/dir/?api=1&destination=${GEO.lat},${GEO.lng}`
