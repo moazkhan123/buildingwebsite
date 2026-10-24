@@ -1,8 +1,8 @@
 import { AnimatePresence, motion } from "motion/react"
-import { Flower2, MapPin, Minus, Phone, Plus, ShoppingBasket, Sprout, Trash2, X } from "lucide-react"
+import { Flower2, MapPin, Navigation, Minus, Phone, Plus, ShoppingBasket, Sprout, Trash2, X } from "lucide-react"
 import { useEffect, useRef } from "react"
 import type { Basket } from "@/lib/basket"
-import { PHONE_DISPLAY, PHONE_TEL, whatsappLink } from "@/lib/contact"
+import { ADDRESS, ADDRESS_ONE_LINE, MAPS_URL, PHONE_DISPLAY, PHONE_TEL, whatsappLink } from "@/lib/contact"
 import { navigate, type Route } from "@/lib/router"
 import { flowers } from "@/data/flowers"
 import { cn } from "@/lib/cn"
@@ -233,10 +233,55 @@ export function BasketDrawer({ open, onClose, basket }: { open: boolean; onClose
   )
 }
 
+function VisitNursery() {
+  return (
+    <section id="visit" className="scroll-mt-24 px-4 sm:px-6" aria-labelledby="visit-title">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        className="gel mx-auto grid max-w-5xl items-center gap-6 rounded-[2.5rem] p-6 sm:p-10 md:grid-cols-[auto_1fr_auto]"
+      >
+        <span className="gel-btn grid size-16 place-items-center rounded-3xl">
+          <MapPin className="size-8" aria-hidden />
+        </span>
+        <div>
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">Visit our nursery</p>
+          <h2 id="visit-title" className="mt-1 text-2xl font-semibold sm:text-3xl">
+            Come see the plants in person
+          </h2>
+          <address className="mt-3 not-italic leading-relaxed text-muted-foreground">
+            {ADDRESS.street}
+            <br />
+            {ADDRESS.area}, {ADDRESS.city}, {ADDRESS.region} {ADDRESS.postcode}
+          </address>
+          <ul className="mt-3 flex flex-wrap gap-2" aria-label="Landmarks">
+            {ADDRESS.landmarks.map((l) => (
+              <li key={l} className="rounded-full bg-[var(--glass-tint)] px-3 py-1 text-sm font-semibold text-primary">
+                {l}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="flex flex-col gap-2">
+          <GelButton href={MAPS_URL} target="_blank" rel="noopener" className="px-6">
+            <Navigation className="size-4" aria-hidden /> Get directions
+          </GelButton>
+          <GelButton href={PHONE_TEL} variant="glass" className="px-6">
+            <Phone className="size-4" aria-hidden /> Call Moaviz
+          </GelButton>
+        </div>
+      </motion.div>
+    </section>
+  )
+}
+
 export function Footer() {
   return (
     <footer className="relative mt-24">
-      <GrassField height={70} density={180} />
+      <VisitNursery />
+      <GrassField height={70} density={180} className="mt-16" />
       <div className="-mt-px bg-gradient-to-b from-primary-2 to-primary px-6 pb-10 pt-8 text-on-primary">
         <div className="mx-auto grid max-w-6xl gap-8 sm:grid-cols-3">
           <div>
@@ -245,10 +290,13 @@ export function Footer() {
           </div>
           <div className="text-sm">
             <p className="mb-1 font-bold uppercase tracking-wider opacity-80">Visit</p>
-            <p className="flex items-center gap-2">
-              <MapPin className="size-4" aria-hidden /> Malerkotla, Punjab
-            </p>
-            <p className="mt-1 opacity-90">cangrassfarm.com</p>
+            <address className="flex gap-2 not-italic">
+              <MapPin className="mt-0.5 size-4 shrink-0" aria-hidden />
+              <span>{ADDRESS_ONE_LINE}</span>
+            </address>
+            <a href={MAPS_URL} target="_blank" rel="noopener" className="mt-1 flex min-h-11 items-center gap-2 font-semibold underline-offset-4 hover:underline">
+              <Navigation className="size-4" aria-hidden /> Get directions
+            </a>
           </div>
           <div className="text-sm">
             <p className="mb-1 font-bold uppercase tracking-wider opacity-80">Orders & projects</p>
