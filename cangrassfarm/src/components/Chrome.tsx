@@ -70,7 +70,7 @@ export function Nav({ route, basket, onBasket }: { route: Route; basket: Basket;
             e.preventDefault()
             navigate("/")
           }}
-          aria-label="Canadian Grass Farm, home"
+          aria-label="Canadian Grass Farm & Flower Nursery, home"
           className="logo-hover mr-auto flex min-h-11 min-w-0 items-center gap-2 rounded-full pr-1 sm:gap-3 sm:pr-2"
         >
           <LogoMark className="size-10 shrink-0 drop-shadow-md sm:size-14" />
@@ -80,7 +80,8 @@ export function Nav({ route, basket, onBasket }: { route: Route; basket: Basket;
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="cgf-title whitespace-nowrap font-serif text-[clamp(0.95rem,5.2vw,1.6rem)] font-bold leading-none tracking-tight sm:text-[2rem] lg:text-[2.4rem]"
           >
-            Canadian Grass Farm
+            <span className="block">Canadian Grass Farm</span>
+            <span className="mt-0.5 block text-[0.68em] tracking-normal">& Flower Nursery</span>
           </motion.span>
         </a>
 
