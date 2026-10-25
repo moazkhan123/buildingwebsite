@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "motion/react"
-import { Flower2, MapPin, Navigation, Minus, Phone, Plus, ShoppingBasket, Sprout, Trash2, X } from "lucide-react"
-import { useEffect, useRef } from "react"
+import { ChevronDown, Flower2, MapPin, Menu as MenuIcon, Navigation, Minus, Phone, Plus, ShoppingBasket, Sprout, Trash2, X } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
 import type { Basket } from "@/lib/basket"
 import { ADDRESS, ADDRESS_ONE_LINE, MAPS_URL, PHONE_DISPLAY, PHONE_TEL, whatsappLink } from "@/lib/contact"
 import { navigate, type Route } from "@/lib/router"
@@ -10,84 +10,155 @@ import { GelButton, spring } from "./ui/gel"
 import { GrassField } from "./Ambient"
 import { LogoMark, Wordmark } from "./Logo"
 
-const links: { to: Route; label: string; icon: typeof Flower2 }[] = [
-  { to: "/", label: "Flowers", icon: Flower2 },
-  { to: "/landscaping", label: "Landscaping", icon: Sprout },
+const links: { to: Route; label: string; hint: string; icon: typeof Flower2 }[] = [
+  { to: "/", label: "Flowers", hint: "31 flowers and what they're good for", icon: Flower2 },
+  { to: "/landscaping", label: "Landscaping", hint: "Lawns, design concepts, grass finder", icon: Sprout },
 ]
 
 export function Nav({ route, basket, onBasket }: { route: Route; basket: Basket; onBasket: () => void }) {
+  const [open, setOpen] = useState(false)
+  const wrapRef = useRef<HTMLDivElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
+  const panelRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!open) return
+    panelRef.current?.querySelector<HTMLElement>("a, button")?.focus()
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false)
+        buttonRef.current?.focus()
+      }
+    }
+    const onDown = (e: PointerEvent) => {
+      if (!wrapRef.current?.contains(e.target as Node)) setOpen(false)
+    }
+    window.addEventListener("keydown", onKey)
+    window.addEventListener("pointerdown", onDown)
+    return () => {
+      window.removeEventListener("keydown", onKey)
+      window.removeEventListener("pointerdown", onDown)
+    }
+  }, [open])
+
   return (
     <header className="sticky top-0 z-40 px-3 pt-3 sm:px-6">
-      <nav aria-label="Main" className="gel mx-auto flex max-w-6xl items-center gap-1 rounded-full py-1.5 pl-2 pr-1 sm:gap-2 sm:pl-3 sm:pr-1.5">
+      <nav aria-label="Main" className="gel mx-auto flex max-w-6xl items-center gap-1 rounded-full py-1.5 pl-2 pr-1.5 sm:gap-2 sm:py-2 sm:pl-3 sm:pr-2">
         <a
           href="/"
           onClick={(e) => {
             e.preventDefault()
             navigate("/")
           }}
-          aria-label="Canadian Grass Farm & Flower Nursery, home"
-          className="logo-hover mr-auto flex min-h-11 items-center gap-2 rounded-full pr-1 sm:gap-2.5 sm:pr-2"
+          aria-label="Canadian Grass Farm, home"
+          className="logo-hover mr-auto flex min-h-11 min-w-0 items-center gap-2 rounded-full pr-1 sm:gap-3 sm:pr-2"
         >
-          <LogoMark className="size-11 drop-shadow-md sm:size-14" />
-          {/* Phones: the name stacks on two lines beside the tabs; too tight under 360px. */}
-          <span className="cgf-word block font-serif text-[clamp(13px,3.9vw,15px)] font-bold leading-[1.1] max-[359px]:hidden sm:hidden">
-            <span className="block whitespace-nowrap">Canadian</span>
-            <span className="block whitespace-nowrap">Grass Farm</span>
-          </span>
-          <Wordmark className="hidden sm:block" />
+          <LogoMark className="size-10 shrink-0 drop-shadow-md sm:size-14" />
+          <motion.span
+            initial={{ opacity: 0, y: 8, filter: "blur(6px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="cgf-title whitespace-nowrap font-serif text-[clamp(0.95rem,5.2vw,1.6rem)] font-bold leading-none tracking-tight sm:text-[2rem] lg:text-[2.4rem]"
+          >
+            Canadian Grass Farm
+          </motion.span>
         </a>
 
-        <ul className="flex items-center gap-0.5 sm:gap-1">
-          {links.map((l) => {
-            const active = route === l.to
-            return (
-              <li key={l.to}>
-                <a
-                  href={l.to}
-                  aria-current={active ? "page" : undefined}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    navigate(l.to)
-                  }}
-                  className={cn(
-                    "relative flex min-h-11 flex-col items-center justify-center gap-0.5 rounded-2xl px-2 text-[11px] font-semibold leading-none transition-colors duration-200 sm:flex-row sm:gap-1.5 sm:rounded-full sm:px-4 sm:text-sm sm:leading-normal",
-                    active ? "text-on-primary" : "text-muted-foreground hover:text-foreground",
-                  )}
-                >
-                  {active && <motion.span layoutId="nav-pill" transition={spring} className="gel-btn absolute inset-0 rounded-2xl sm:rounded-full" />}
-                  <l.icon className="relative size-4" aria-hidden />
-                  <span className="relative">{l.label}</span>
-                </a>
-              </li>
-            )
-          })}
-        </ul>
-
-        <button
-          type="button"
-          onClick={onBasket}
-          aria-label={`Order list, ${basket.count} plants`}
-          className="relative grid size-11 cursor-pointer place-items-center rounded-full text-foreground transition-colors hover:bg-[var(--glass-tint)]"
-        >
-          <ShoppingBasket className="size-5" aria-hidden />
+        <div ref={wrapRef} className="relative">
+          <button
+            ref={buttonRef}
+            type="button"
+            aria-expanded={open}
+            aria-controls="site-menu"
+            aria-label={basket.count > 0 ? `Menu, ${basket.count} plants in your order` : "Menu"}
+            onClick={() => setOpen((o) => !o)}
+            className="gel-btn relative flex min-h-11 min-w-11 cursor-pointer items-center justify-center gap-1.5 rounded-full px-3 text-sm font-semibold sm:px-5"
+          >
+            <MenuIcon className="size-5" aria-hidden />
+            <span className="hidden sm:inline">Menu</span>
+            <ChevronDown className={cn("hidden size-4 transition-transform duration-200 sm:block", open && "rotate-180")} aria-hidden />
+          </button>
+          {/* Outside the button: .gel-btn clips its overflow. */}
           <AnimatePresence>
             {basket.count > 0 && (
               <motion.span
                 key={basket.count}
+                aria-hidden
                 initial={{ scale: 0.4 }}
                 animate={{ scale: 1 }}
                 exit={{ scale: 0 }}
                 transition={spring}
-                className="gel-btn-sun gel-btn absolute -right-0.5 -top-0.5 grid min-w-5 place-items-center rounded-full px-1 text-[11px] font-bold"
+                className="gel-btn-sun gel-btn pointer-events-none absolute -right-1 -top-1 grid min-w-5 place-items-center rounded-full px-1 text-[11px] font-bold"
               >
                 {basket.count}
               </motion.span>
             )}
           </AnimatePresence>
-        </button>
-        <GelButton href={PHONE_TEL} className="hidden md:inline-flex" aria-label={`Call Moaviz at ${PHONE_DISPLAY}`}>
-          <Phone className="size-4" aria-hidden /> Call Moaviz
-        </GelButton>
+
+          <AnimatePresence>
+            {open && (
+              <motion.div
+                ref={panelRef}
+                id="site-menu"
+                initial={{ opacity: 0, y: -8, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -6, scale: 0.97, transition: { duration: 0.12 } }}
+                transition={spring}
+                className="gel absolute right-0 top-full mt-3 w-[min(20rem,calc(100vw-1.5rem))] origin-top-right rounded-3xl p-2"
+                style={{ background: "color-mix(in srgb, var(--background) 94%, transparent)" }}
+              >
+                <p className="px-3 pb-1 pt-2 text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">Pages</p>
+                <ul>
+                  {links.map((l) => {
+                    const active = route === l.to
+                    return (
+                      <li key={l.to}>
+                        <a
+                          href={l.to}
+                          aria-current={active ? "page" : undefined}
+                          onClick={(e) => {
+                            e.preventDefault()
+                            setOpen(false)
+                            navigate(l.to)
+                          }}
+                          className={cn(
+                            "flex min-h-14 items-center gap-3 rounded-2xl px-3 py-2 transition-colors duration-150 hover:bg-[var(--glass-tint)]",
+                            active && "bg-[var(--glass-tint)]",
+                          )}
+                        >
+                          <span className={cn("grid size-10 shrink-0 place-items-center rounded-xl", active ? "gel-btn" : "bg-[var(--glass-tint)] text-primary")}>
+                            <l.icon className="size-5" aria-hidden />
+                          </span>
+                          <span className="min-w-0 flex-1">
+                            <span className="block font-semibold">{l.label}</span>
+                            <span className="block text-xs text-muted-foreground">{l.hint}</span>
+                          </span>
+                          {active && <span className="size-2 shrink-0 rounded-full bg-primary" aria-hidden />}
+                        </a>
+                      </li>
+                    )
+                  })}
+                </ul>
+                <div className="my-2 h-px bg-border" />
+                <button
+                  type="button"
+                  onClick={() => {
+                    setOpen(false)
+                    onBasket()
+                  }}
+                  className="flex min-h-12 w-full cursor-pointer items-center gap-3 rounded-2xl px-3 text-left font-semibold transition-colors hover:bg-[var(--glass-tint)]"
+                >
+                  <ShoppingBasket className="size-5 text-primary" aria-hidden />
+                  <span className="flex-1">Your order list</span>
+                  {basket.count > 0 && <span className="gel-btn-sun gel-btn rounded-full px-2 py-0.5 text-xs font-bold tabular-nums">{basket.count}</span>}
+                </button>
+                <GelButton href={PHONE_TEL} className="mt-2 w-full" aria-label={`Call Moaviz at ${PHONE_DISPLAY}`}>
+                  <Phone className="size-4" aria-hidden /> Call Moaviz · {PHONE_DISPLAY}
+                </GelButton>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </nav>
     </header>
   )

@@ -182,6 +182,24 @@ button, a {
 .cgf-tagline {
   color: var(--muted-foreground);
 }
+
+/* Nav title: flower colours flowing slowly through the letters; faster on hover. */
+.cgf-title {
+  background-image: linear-gradient(90deg, #3f6212, #a16207, #c2410c, #be185d, #6d28d9, #0f766e, #3f6212);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: cgf-flow 12s linear infinite;
+  padding-bottom: 0.08em;
+}
+.logo-hover:hover .cgf-title {
+  animation-duration: 4s;
+}
+@keyframes cgf-flow {
+  from { background-position: 0% 0; }
+  to { background-position: -200% 0; }
+}
 .cgf-word-plain .cgf-word {
   background: none;
   color: inherit;
@@ -246,6 +264,6 @@ button, a {
   to { transform: translateX(90px) skewX(-20deg); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .cgf-blade, .cgf-pop, .cgf-bob, .logo-hover:hover .cgf-shine { animation: none; }
+  .cgf-blade, .cgf-pop, .cgf-bob, .logo-hover:hover .cgf-shine, .cgf-title { animation: none; }
   .cgf-badge, .cgf-spin { transition: none; }
 }
