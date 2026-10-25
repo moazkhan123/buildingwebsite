@@ -146,7 +146,7 @@ export function Nav({ route, basket, onBasket }: { route: Route; basket: Basket;
                 animate={{ scale: 1 }}
                 exit={{ scale: 0 }}
                 transition={spring}
-                className="gel-btn-sun gel-btn pointer-events-none absolute -right-1 -top-1 grid min-w-5 place-items-center rounded-full px-1 text-[11px] font-bold"
+                className="pointer-events-none absolute -right-1 -top-1 grid min-w-5 place-items-center rounded-full bg-white px-1 text-[11px] font-bold text-[var(--maple)] shadow-md ring-2 ring-[var(--maple)]"
               >
                 {basket.count}
               </motion.span>
