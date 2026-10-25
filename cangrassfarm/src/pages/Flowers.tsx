@@ -31,15 +31,15 @@ import { DewDrops, GrassField } from "@/components/Ambient"
 import { GelButton, Reveal, SectionHeading, spring } from "@/components/ui/gel"
 
 const useIcon = { Tea: Coffee, Medicine: Pill, Kitchen: Leaf, "Home & Beauty": Sparkles, Garden: Sprout } as const
-// Each use gets its own flower colour (light tints for contrast on the dark theme).
+// Each use gets its own flower colour (deep shades so they read on the light background).
 const tagColor: Record<Tag, string> = {
-  Tea: "#5eead4",
-  Medicinal: "#c4b5fd",
-  Edible: "#fdba74",
-  Fragrant: "#f9a8d4",
-  Indoor: "#7dd3fc",
-  Pollinators: "#fde047",
-  Ornamental: "#fda4af",
+  Tea: "#0f766e",
+  Medicinal: "#6d28d9",
+  Edible: "#c2410c",
+  Fragrant: "#be185d",
+  Indoor: "#0369a1",
+  Pollinators: "#a16207",
+  Ornamental: "#be123c",
 }
 
 const heroFlowers = ["rose", "marigold", "orchid", "hibiscus", "lily", "tulip", "carnation", "pansy", "jasmine"]
@@ -209,7 +209,7 @@ function FlowerCard({ f, onOpen, onAdd }: { f: Flower; onOpen: () => void; onAdd
         </button>
         <div className="mt-auto flex flex-wrap gap-1 px-2 pb-2 pt-2">
           {f.tags.slice(0, 3).map((t) => (
-            <span key={t} className="rounded-full px-2 py-0.5 text-[11px] font-bold" style={{ color: tagColor[t], background: `color-mix(in srgb, ${tagColor[t]} 16%, transparent)` }}>
+            <span key={t} className="rounded-full px-2 py-0.5 text-[11px] font-bold" style={{ color: tagColor[t], background: `color-mix(in srgb, ${tagColor[t]} 12%, transparent)` }}>
               {t}
             </span>
           ))}

@@ -1,28 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  /* Aurora Night: deep northern sky, teal aurora glow, violet accents */
-  --background: #0b1730;
-  --background-2: #13264a;
-  --foreground: #e6eefc;
-  --muted-foreground: #a9b8d6;
-  --primary: #14b8a6;
-  --primary-2: #2dd4bf;
-  --on-primary: #042a26;
-  --accent: #a78bfa;
-  --sun: #8b5cf6;
-  --border: rgba(167, 139, 250, 0.2);
-  --glass: rgba(22, 38, 74, 0.55);
-  --glass-strong: rgba(18, 32, 64, 0.86);
-  --glass-edge: rgba(180, 200, 255, 0.2);
-  --glass-tint: rgba(139, 92, 246, 0.1);
-  --blade-1: #0f766e;
-  --blade-2: #14b8a6;
-  --blade-3: #2dd4bf;
+  /* Autumn Maple: warm sand, olive greens and burnt orange, with multicolour flower accents */
+  --background: #f7efe3;
+  --background-2: #f1dcc0;
+  --foreground: #2b1d12;
+  --muted-foreground: #6b4f3a;
+  --primary: #3f6212;
+  --primary-2: #4d7c0f;
+  --on-primary: #ffffff;
+  --accent: #c2410c;
+  --sun: #e8a33d;
+  --border: rgba(194, 65, 12, 0.18);
+  --glass: rgba(255, 250, 242, 0.6);
+  --glass-strong: rgba(255, 250, 242, 0.86);
+  --glass-edge: rgba(255, 250, 242, 0.95);
+  --glass-tint: rgba(217, 84, 30, 0.08);
+  --blade-1: #4d7c0f;
+  --blade-2: #65a30d;
+  --blade-3: #84cc16;
   --serif: "Lora Variable", ui-serif, Georgia, serif;
   --sans: "Raleway Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --shadow-gel: 0 18px 40px -18px rgba(0, 0, 0, 0.7), 0 4px 10px -4px rgba(0, 0, 0, 0.5);
-  color-scheme: dark;
+  --shadow-gel: 0 18px 40px -18px rgba(92, 52, 20, 0.35), 0 4px 10px -4px rgba(92, 52, 20, 0.15);
+  color-scheme: light;
 }
 
 @theme inline {
@@ -111,9 +111,9 @@ button, a {
 
 .gel-btn-sun {
   color: #ffffff;
-  background: linear-gradient(180deg, #a78bfa, #7c3aed 70%);
+  background: linear-gradient(180deg, #f97316, #c2410c 70%);
   box-shadow:
-    0 10px 24px -10px rgba(124, 58, 237, 0.8),
+    0 10px 24px -10px rgba(194, 65, 12, 0.8),
     inset 0 -3px 8px rgba(0, 0, 0, 0.15),
     inset 0 2px 0 rgba(255, 255, 255, 0.45);
 }
@@ -133,7 +133,7 @@ button, a {
 
 /* Multicolour flower gradient for headline highlights */
 .bloom-text {
-  background: linear-gradient(90deg, #2dd4bf, #facc15 30%, #fb923c 52%, #f472b6 74%, #a78bfa);
+  background: linear-gradient(90deg, #0f766e, #a16207 28%, #c2410c 50%, #be185d 74%, #6d28d9);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -174,7 +174,7 @@ button, a {
 
 /* Logo: "Bloom & Lawn" emblem and wordmark */
 .cgf-word {
-  background: linear-gradient(90deg, #5eead4, #fde047 35%, #fb923c 60%, #f472b6 80%, #c4b5fd);
+  background: linear-gradient(90deg, #3f6212, #a16207 30%, #c2410c 55%, #be185d 78%, #6d28d9);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
