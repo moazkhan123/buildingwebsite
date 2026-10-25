@@ -131,6 +131,24 @@ button, a {
   animation-delay: var(--delay, 0s);
 }
 
+/* Multicolour flower gradient for headline highlights */
+.bloom-text {
+  background: linear-gradient(90deg, #2dd4bf, #facc15 30%, #fb923c 52%, #f472b6 74%, #a78bfa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Background flowers: slow drift and turn */
+@keyframes bloom-float {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(14px, -22px) rotate(40deg); }
+}
+.bloom {
+  animation: bloom-float var(--d, 30s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
 @keyframes drift {
   0% { transform: translateY(0) translateX(0); opacity: 0; }
   15% { opacity: 0.9; }
@@ -149,14 +167,14 @@ button, a {
   html {
     scroll-behavior: auto;
   }
-  .blade, .dew {
+  .blade, .dew, .bloom {
     animation: none;
   }
 }
 
 /* Logo: "Bloom & Lawn" emblem and wordmark */
 .cgf-word {
-  background: linear-gradient(90deg, #99f6e4, #2dd4bf 55%, #a78bfa);
+  background: linear-gradient(90deg, #5eead4, #fde047 35%, #fb923c 60%, #f472b6 80%, #c4b5fd);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

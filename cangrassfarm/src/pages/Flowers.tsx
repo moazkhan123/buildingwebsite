@@ -31,6 +31,17 @@ import { DewDrops, GrassField } from "@/components/Ambient"
 import { GelButton, Reveal, SectionHeading, spring } from "@/components/ui/gel"
 
 const useIcon = { Tea: Coffee, Medicine: Pill, Kitchen: Leaf, "Home & Beauty": Sparkles, Garden: Sprout } as const
+// Each use gets its own flower colour (light tints for contrast on the dark theme).
+const tagColor: Record<Tag, string> = {
+  Tea: "#5eead4",
+  Medicinal: "#c4b5fd",
+  Edible: "#fdba74",
+  Fragrant: "#f9a8d4",
+  Indoor: "#7dd3fc",
+  Pollinators: "#fde047",
+  Ornamental: "#fda4af",
+}
+
 const heroFlowers = ["rose", "marigold", "orchid", "hibiscus", "lily", "tulip", "carnation", "pansy", "jasmine"]
 const sunIcon = { "Full sun": Sun, "Part sun": CloudSun, Shade: SunDim } as const
 
@@ -60,7 +71,7 @@ function Hero() {
             className="text-balance text-4xl font-bold sm:text-6xl"
           >
             Green today,{" "}
-            <span className="bg-gradient-to-r from-primary via-primary-2 to-sun bg-clip-text text-transparent">beautiful tomorrow.</span>
+            <span className="bloom-text">beautiful tomorrow.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -198,7 +209,7 @@ function FlowerCard({ f, onOpen, onAdd }: { f: Flower; onOpen: () => void; onAdd
         </button>
         <div className="mt-auto flex flex-wrap gap-1 px-2 pb-2 pt-2">
           {f.tags.slice(0, 3).map((t) => (
-            <span key={t} className="rounded-full bg-[var(--glass-tint)] px-2 py-0.5 text-[11px] font-bold text-primary">
+            <span key={t} className="rounded-full px-2 py-0.5 text-[11px] font-bold" style={{ color: tagColor[t], background: `color-mix(in srgb, ${tagColor[t]} 16%, transparent)` }}>
               {t}
             </span>
           ))}

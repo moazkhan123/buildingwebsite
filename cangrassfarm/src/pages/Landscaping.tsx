@@ -49,7 +49,7 @@ function Hero() {
           className="text-balance text-4xl font-bold sm:text-6xl"
         >
           Lawns and gardens designed around{" "}
-          <span className="bg-gradient-to-r from-primary via-primary-2 to-sun bg-clip-text text-transparent">your soil, sun and season.</span>
+          <span className="bloom-text">your soil, sun and season.</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
