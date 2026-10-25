@@ -54,7 +54,7 @@ function Hero() {
 
   return (
     <section ref={ref} className="relative isolate overflow-hidden pt-10 sm:pt-16" aria-labelledby="hero-title">
-      {/* Looping nature video behind the hero, under a sand veil so the text stays readable.
+      {/* Looping butterfly-and-flowers video behind the hero, under a sand veil so the text stays readable.
           Visitors who prefer reduced motion get the still poster instead. */}
       <video
         className="absolute inset-0 -z-20 h-full w-full object-cover"
@@ -67,8 +67,11 @@ function Hero() {
         aria-hidden="true"
         tabIndex={-1}
       >
-        <source src="/video/hero.webm" type="video/webm" />
-        <source src="/video/hero.mp4" type="video/mp4" />
+        {/* Portrait screens get the full vertical clip; everything else gets a wide crop. */}
+        <source src="/video/hero-tall.webm" type="video/webm" media="(orientation: portrait)" />
+        <source src="/video/hero-tall.mp4" type="video/mp4" media="(orientation: portrait)" />
+        <source src="/video/hero-wide.webm" type="video/webm" />
+        <source src="/video/hero-wide.mp4" type="video/mp4" />
       </video>
       <div
         aria-hidden
