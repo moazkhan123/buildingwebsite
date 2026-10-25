@@ -11,10 +11,12 @@ export function LogoMark({ className }: { className?: string }) {
   return (
     <svg viewBox="-2150 -2100 4300 4300" className={cn("shrink-0 overflow-visible", className)} aria-hidden="true">
       <defs>
-        <linearGradient id={`${id}-red`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#b0503a" />
-          <stop offset="1" stopColor="#7a2e1a" />
-        </linearGradient>
+        {/* Autumn maple: golden centre fading to orange and a deep red-orange edge */}
+        <radialGradient id={`${id}-red`} cx="55%" cy="58%" r="62%">
+          <stop offset="0" stopColor="#f6b04e" />
+          <stop offset=".45" stopColor="#ea6a2e" />
+          <stop offset="1" stopColor="#b5361b" />
+        </radialGradient>
       </defs>
       <path className="cgf-leaf" d={LEAF} fill={`url(#${id}-red)`} />
     </svg>
