@@ -20,7 +20,7 @@ import { cn } from "@/lib/cn"
 import { PHONE_DISPLAY, PHONE_TEL, whatsappLink } from "@/lib/contact"
 import { DewDrops, GrassField } from "@/components/Ambient"
 import { GelButton, GelSegment, Reveal, SectionHeading, spring } from "@/components/ui/gel"
-import { GradientBackground } from "@/components/ui/jade-sky"
+import { HeroVideo } from "@/components/HeroVideo"
 
 const grassById = (id: string) => grasses.find((g) => g.id === id)!
 const sunIcons = { full: Sun, partial: CloudSun, shade: SunDim } as const
@@ -28,10 +28,7 @@ const sunIcons = { full: Sun, partial: CloudSun, shade: SunDim } as const
 function Hero() {
   return (
     <section className="relative isolate overflow-hidden pt-10 sm:pt-16" aria-labelledby="land-title">
-      {/* Jade Sky: a faint glow over the hero lawn, dimmed so its cool tones sit under the warm Autumn theme */}
-      <div className="absolute inset-0 -z-10 opacity-15 [mask-image:linear-gradient(to_bottom,transparent,black_30%)]">
-        <GradientBackground />
-      </div>
+      <HeroVideo veil="center" />
       <DewDrops />
       <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
         <motion.p
