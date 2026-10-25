@@ -30,7 +30,7 @@ shadcn-style layout (`components.json`): reusable UI goes in `src/components/ui/
 - Flowers: `src/data/flowers.ts`
 - Grasses, concepts, projects: `src/data/landscaping.ts`
 - Phone number: `src/lib/contact.ts`
-- Images: `public/img/flowers/<slug>.webp` (square photos, up to 480×480); project photos in `public/img/projects/`; concept photos in `public/img/concepts/`.
+- Images: `public/img/flowers/<slug>.webp` (square photos, up to 480×480); project photos in `public/img/projects/`; concept photos in `public/img/concepts/`; the Flowers page hero background video is `public/video/hero.webm` / `hero.mp4` (720p, no audio) with `hero-poster.webp` as its still frame.
 
 ## Deploy
 

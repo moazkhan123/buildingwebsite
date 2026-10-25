@@ -1,4 +1,4 @@
-import { AnimatePresence, LayoutGroup, motion, useScroll, useTransform } from "motion/react"
+import { AnimatePresence, LayoutGroup, motion, useReducedMotion, useScroll, useTransform } from "motion/react"
 import {
   ArrowRight,
   Award,
@@ -31,6 +31,17 @@ import { DewDrops, GrassField } from "@/components/Ambient"
 import { GelButton, Reveal, SectionHeading, spring } from "@/components/ui/gel"
 
 const useIcon = { Tea: Coffee, Medicine: Pill, Kitchen: Leaf, "Home & Beauty": Sparkles, Garden: Sprout } as const
+// Each use gets its own flower colour (deep shades so they read on the light background).
+const tagColor: Record<Tag, string> = {
+  Tea: "#0f766e",
+  Medicinal: "#6d28d9",
+  Edible: "#c2410c",
+  Fragrant: "#be185d",
+  Indoor: "#0369a1",
+  Pollinators: "#a16207",
+  Ornamental: "#be123c",
+}
+
 const heroFlowers = ["rose", "marigold", "orchid", "hibiscus", "lily", "tulip", "carnation", "pansy", "jasmine"]
 const sunIcon = { "Full sun": Sun, "Part sun": CloudSun, Shade: SunDim } as const
 
@@ -39,9 +50,34 @@ function Hero() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] })
   const y = useTransform(scrollYProgress, [0, 1], [0, 80])
   const rotate = useTransform(scrollYProgress, [0, 1], [0, -4])
+  const reduce = useReducedMotion()
 
   return (
-    <section ref={ref} className="relative overflow-hidden pt-10 sm:pt-16" aria-labelledby="hero-title">
+    <section ref={ref} className="relative isolate overflow-hidden pt-10 sm:pt-16" aria-labelledby="hero-title">
+      {/* Looping nature video behind the hero, under a sand veil so the text stays readable.
+          Visitors who prefer reduced motion get the still poster instead. */}
+      <video
+        className="absolute inset-0 -z-20 h-full w-full object-cover"
+        autoPlay={!reduce}
+        muted
+        loop
+        playsInline
+        preload={reduce ? "none" : "auto"}
+        poster="/video/hero-poster.webp"
+        aria-hidden="true"
+        tabIndex={-1}
+      >
+        <source src="/video/hero.webm" type="video/webm" />
+        <source src="/video/hero.mp4" type="video/mp4" />
+      </video>
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10"
+        style={{
+          background:
+            "linear-gradient(90deg, color-mix(in srgb, var(--background) 88%, transparent) 0%, color-mix(in srgb, var(--background) 62%, transparent) 55%, color-mix(in srgb, var(--background) 30%, transparent) 100%), linear-gradient(180deg, transparent 70%, var(--background) 100%)",
+        }}
+      />
       <DewDrops />
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1.05fr_1fr]">
         <div>
@@ -60,7 +96,7 @@ function Hero() {
             className="text-balance text-4xl font-bold sm:text-6xl"
           >
             Green today,{" "}
-            <span className="bg-gradient-to-r from-primary via-primary-2 to-sun bg-clip-text text-transparent">beautiful tomorrow.</span>
+            <span className="bloom-text">beautiful tomorrow.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -198,7 +234,7 @@ function FlowerCard({ f, onOpen, onAdd }: { f: Flower; onOpen: () => void; onAdd
         </button>
         <div className="mt-auto flex flex-wrap gap-1 px-2 pb-2 pt-2">
           {f.tags.slice(0, 3).map((t) => (
-            <span key={t} className="rounded-full bg-[var(--glass-tint)] px-2 py-0.5 text-[11px] font-bold text-primary">
+            <span key={t} className="rounded-full px-2 py-0.5 text-[11px] font-bold" style={{ color: tagColor[t], background: `color-mix(in srgb, ${tagColor[t]} 12%, transparent)` }}>
               {t}
             </span>
           ))}

@@ -28,7 +28,7 @@ const sunIcons = { full: Sun, partial: CloudSun, shade: SunDim } as const
 function Hero() {
   return (
     <section className="relative isolate overflow-hidden pt-10 sm:pt-16" aria-labelledby="land-title">
-      {/* Jade Sky: a faint glow over the hero lawn, dimmed so it sits on the dark Aurora theme */}
+      {/* Jade Sky: a faint glow over the hero lawn, dimmed so its cool tones sit under the warm Autumn theme */}
       <div className="absolute inset-0 -z-10 opacity-15 [mask-image:linear-gradient(to_bottom,transparent,black_30%)]">
         <GradientBackground />
       </div>
@@ -49,7 +49,7 @@ function Hero() {
           className="text-balance text-4xl font-bold sm:text-6xl"
         >
           Lawns and gardens designed around{" "}
-          <span className="bg-gradient-to-r from-primary via-primary-2 to-sun bg-clip-text text-transparent">your soil, sun and season.</span>
+          <span className="bloom-text">your soil, sun and season.</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
