@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "motion/react"
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react"
 import { ChevronDown, Flower2, MapPin, Menu as MenuIcon, Navigation, Minus, Phone, Plus, ShoppingBasket, Sprout, Trash2, X } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import type { Basket } from "@/lib/basket"
@@ -20,6 +20,17 @@ export function Nav({ route, basket, onBasket }: { route: Route; basket: Basket;
   const wrapRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
   const panelRef = useRef<HTMLDivElement>(null)
+  // Hide the bar while scrolling down so it never sits over the content; bring it
+  // back on any upward scroll, near the top, or while the menu is open.
+  const { scrollY } = useScroll()
+  const [hidden, setHidden] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  useMotionValueEvent(scrollY, "change", (y) => {
+    const prev = scrollY.getPrevious() ?? 0
+    setScrolled(y > 8)
+    if (y < 70 || y < prev - 4) setHidden(false)
+    else if (y > prev) setHidden(true)
+  })
 
   useEffect(() => {
     if (!open) return
@@ -42,8 +53,17 @@ export function Nav({ route, basket, onBasket }: { route: Route; basket: Basket;
   }, [open])
 
   return (
-    <header className="sticky top-0 z-40 px-3 pt-3 sm:px-6">
-      <nav aria-label="Main" className="gel mx-auto flex max-w-6xl items-center gap-1 rounded-full py-1.5 pl-2 pr-1.5 sm:gap-2 sm:py-2 sm:pl-3 sm:pr-2">
+    <motion.header
+      className="sticky top-0 z-40 px-3 pt-3 sm:px-6"
+      animate={{ y: hidden && !open ? "-130%" : "0%" }}
+      transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+      onFocusCapture={() => setHidden(false)}
+    >
+      <nav
+        aria-label="Main"
+        className="gel mx-auto flex max-w-6xl items-center gap-1 rounded-full py-1.5 pl-2 pr-1.5 transition-[background-color] duration-300 sm:gap-2 sm:py-2 sm:pl-3 sm:pr-2"
+        style={scrolled ? { background: "color-mix(in srgb, var(--background) 96%, transparent)" } : undefined}
+      >
         <a
           href="/"
           onClick={(e) => {
@@ -160,7 +180,7 @@ export function Nav({ route, basket, onBasket }: { route: Route; basket: Basket;
           </AnimatePresence>
         </div>
       </nav>
-    </header>
+    </motion.header>
   )
 }
 
