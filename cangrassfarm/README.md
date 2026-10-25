@@ -30,7 +30,7 @@ shadcn-style layout (`components.json`): reusable UI goes in `src/components/ui/
 - Flowers: `src/data/flowers.ts`
 - Grasses, concepts, projects: `src/data/landscaping.ts`
 - Phone number: `src/lib/contact.ts`
-- Images: `public/img/flowers/<slug>.webp` (square; sharp photos up to 480×480 for rose, marigold, hibiscus, jasmine, mogra, lily, orchid, tulip, carnation, sweet pea, balsam, pansy and alyssum) and `public/img/scenes/`. The other flower images are low-resolution crops; replace them with real photos (same file names).
+- Images: `public/img/flowers/<slug>.webp` (square photos, up to 480×480) and `public/img/scenes/`. Gerbera and money palm are still low-resolution crops from the original banner; replace them with real photos (same file names).
 
 ## Deploy
 
