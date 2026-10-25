@@ -124,7 +124,7 @@ function Projects() {
           </motion.li>
         ))}
       </ul>
-      {createPortal(
+      {typeof document !== "undefined" && createPortal(
       <AnimatePresence>
         {open !== null && (
           <div className="fixed inset-0 z-50 grid place-items-center p-3 sm:p-8">

@@ -24,6 +24,7 @@ import { useEffect, useMemo, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 import { tagList, type Tag } from "@/data/flowers"
 import { useContent, useT, type LocalFlower } from "@/i18n/content"
+import { useHref } from "@/i18n/lang"
 import type { Basket } from "@/lib/basket"
 import { cn } from "@/lib/cn"
 import { PHONE_DISPLAY, PHONE_TEL, whatsappLink } from "@/lib/contact"
@@ -49,6 +50,7 @@ const sunIcon = { "Full sun": Sun, "Part sun": CloudSun, Shade: SunDim } as cons
 
 function Hero() {
   const t = useT()
+  const href = useHref()
   const { flowers } = useContent()
   const ref = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] })
@@ -88,7 +90,7 @@ function Hero() {
               {t.hero.explore} <ArrowRight className="size-4" aria-hidden />
             </GelButton>
             <GelButton
-              href="/landscaping"
+              href={href("/landscaping")}
               variant="glass"
               className="px-6 text-base"
               onClick={(e) => {
@@ -454,7 +456,7 @@ function FlowerExplorer({ basket }: { basket: Basket }) {
             </button>
           </p>
         )}
-        {createPortal(<AnimatePresence>{open && <FlowerModal f={open} onClose={() => setOpenSlug(null)} onAdd={() => add(open)} />}</AnimatePresence>, document.body)}
+        {typeof document !== "undefined" && createPortal(<AnimatePresence>{open && <FlowerModal f={open} onClose={() => setOpenSlug(null)} onAdd={() => add(open)} />}</AnimatePresence>, document.body)}
       </LayoutGroup>
 
       <div aria-live="polite" className="pointer-events-none fixed inset-x-0 bottom-24 z-50 flex justify-center px-4 md:bottom-6">
@@ -508,6 +510,7 @@ function Features() {
 
 function CallToAction() {
   const t = useT()
+  const href = useHref()
   return (
     <section className="px-4 pt-24 sm:px-6">
       <Reveal className="gel relative mx-auto max-w-5xl overflow-hidden rounded-[2.5rem] px-6 py-12 text-center sm:px-12">
@@ -518,7 +521,7 @@ function CallToAction() {
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <GelButton
-            href="/landscaping"
+            href={href("/landscaping")}
             onClick={(e) => {
               e.preventDefault()
               navigate("/landscaping")

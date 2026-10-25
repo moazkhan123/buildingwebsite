@@ -3,9 +3,17 @@ import { motion, useReducedMotion } from "motion/react"
 // Flower colours shared by the backdrop, the lawn and the tag chips.
 export const BLOOMS = ["#f472b6", "#fb923c", "#facc15", "#a78bfa", "#2dd4bf", "#f87171", "#60a5fa"]
 
+// Decoration is drawn only in the browser: build-time prerendered pages skip it to stay small.
+const isServer = typeof window === "undefined"
+
 // Gooey morphing gel blobs in flower colours, plus a field of glowing
 // flowers drifting behind the whole site.
 export function GelBackdrop() {
+  if (isServer) return null
+  return <Backdrop />
+}
+
+function Backdrop() {
   const reduce = useReducedMotion()
   const blobs = [
     { c: "#2dd4bf", x: "8%", y: "12%", s: 420, o: 0.22 },
@@ -101,6 +109,7 @@ export function GrassField({ height = 110, density = 140, className = "" }: { he
     const bloom = i % 9 === 4 ? BLOOMS[(i * 3) % BLOOMS.length] : null
     return { x, h, w, lean, fill, bloom, d: 3 + rand(i + 4) * 3, delay: -rand(i + 5) * 4 }
   })
+  if (isServer) return <div aria-hidden className={`pointer-events-none relative ${className}`} style={{ height }} />
   return (
     <div aria-hidden className={`pointer-events-none relative ${className}`} style={{ height }}>
     <svg
@@ -152,6 +161,7 @@ export function GrassField({ height = 110, density = 140, className = "" }: { he
 }
 
 export function DewDrops({ count = 14 }: { count?: number }) {
+  if (isServer) return null
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
       {Array.from({ length: count }, (_, i) => (

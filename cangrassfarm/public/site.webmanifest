@@ -1,0 +1,14 @@
+{
+  "name": "Canadian Grass Farm & Flower Nursery",
+  "short_name": "Can Grass Farm",
+  "description": "Flowers, plants, lawn grass and landscaping in Malerkotla, Punjab.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7efe3",
+  "theme_color": "#f7efe3",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

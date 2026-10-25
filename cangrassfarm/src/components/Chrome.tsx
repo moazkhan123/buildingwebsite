@@ -5,7 +5,7 @@ import type { Basket } from "@/lib/basket"
 import { ADDRESS, MAPS_URL, PHONE_DISPLAY, PHONE_TEL, whatsappLink } from "@/lib/contact"
 import { navigate, type Route } from "@/lib/router"
 import { useContent, useT } from "@/i18n/content"
-import { LANGS, useLang } from "@/i18n/lang"
+import { LANGS, useHref, useLang } from "@/i18n/lang"
 import { cn } from "@/lib/cn"
 import { GelButton, spring } from "./ui/gel"
 import { GrassField } from "./Ambient"
@@ -49,6 +49,7 @@ export function LanguageSwitch({ className, tone = "gel" }: { className?: string
 
 export function Nav({ route, basket, onBasket }: { route: Route; basket: Basket; onBasket: () => void }) {
   const t = useT()
+  const href = useHref()
   const links: { to: Route; label: string; hint: string; icon: typeof Flower2 }[] = [
     { to: "/", label: t.nav.flowers, hint: t.nav.flowersHint, icon: Flower2 },
     { to: "/landscaping", label: t.nav.landscaping, hint: t.nav.landscapingHint, icon: Sprout },
@@ -102,7 +103,7 @@ export function Nav({ route, basket, onBasket }: { route: Route; basket: Basket;
         style={scrolled ? { background: "color-mix(in srgb, var(--background) 96%, transparent)" } : undefined}
       >
         <a
-          href="/"
+          href={href("/")}
           onClick={(e) => {
             e.preventDefault()
             navigate("/")
@@ -172,7 +173,7 @@ export function Nav({ route, basket, onBasket }: { route: Route; basket: Basket;
                     return (
                       <li key={l.to}>
                         <a
-                          href={l.to}
+                          href={href(l.to)}
                           aria-current={active ? "page" : undefined}
                           onClick={(e) => {
                             e.preventDefault()

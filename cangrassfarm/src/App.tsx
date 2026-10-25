@@ -3,10 +3,11 @@ import { Suspense, lazy, useEffect, useRef, useState } from "react"
 import { BasketDrawer, FloatingCall, Footer, Nav } from "@/components/Chrome"
 import { GelBackdrop } from "@/components/Ambient"
 import { useT } from "@/i18n/content"
-import { LangProvider } from "@/i18n/lang"
+import { LangProvider, useLang } from "@/i18n/lang"
 import { useBasket } from "@/lib/basket"
 import { useRoute } from "@/lib/router"
 import FlowersPage from "@/pages/Flowers"
+import { pageMeta } from "@/seo"
 
 // Loaded on demand so the Flowers page ships less JavaScript.
 const LandscapingPage = lazy(() => import("@/pages/Landscaping"))
@@ -21,15 +22,20 @@ export default function App() {
 
 function Site() {
   const t = useT()
+  const { lang } = useLang()
   const route = useRoute()
   const basket = useBasket()
   const [basketOpen, setBasketOpen] = useState(false)
   const mainRef = useRef<HTMLElement>(null)
   const first = useRef(true)
 
+  // Keep the head in step when the visitor changes page or language without a reload.
   useEffect(() => {
-    document.title = t.titles[route]
-  }, [t, route])
+    const { title, description, url } = pageMeta(route, lang)
+    document.title = title
+    document.querySelector('meta[name="description"]')?.setAttribute("content", description)
+    document.querySelector('link[rel="canonical"]')?.setAttribute("href", url)
+  }, [lang, route])
 
   useEffect(() => {
     if (first.current) {
@@ -57,6 +63,10 @@ function Site() {
           >
             {route === "/" ? (
               <FlowersPage basket={basket} />
+            ) : import.meta.env.SSR ? (
+              // Build-time prerender: no Suspense boundary, so React waits for the page instead of
+              // emitting inline swap scripts (which the CSP would block).
+              <LandscapingPage />
             ) : (
               <Suspense fallback={<div className="min-h-dvh" />}>
                 <LandscapingPage />
