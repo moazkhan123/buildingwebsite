@@ -12,8 +12,8 @@ export function LogoMark({ className }: { className?: string }) {
     <svg viewBox="-2150 -2100 4300 4300" className={cn("shrink-0 overflow-visible", className)} aria-hidden="true">
       <defs>
         <linearGradient id={`${id}-red`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#ef4444" />
-          <stop offset="1" stopColor="#b91c1c" />
+          <stop offset="0" stopColor="#b0503a" />
+          <stop offset="1" stopColor="#7a2e1a" />
         </linearGradient>
       </defs>
       <path className="cgf-leaf" d={LEAF} fill={`url(#${id}-red)`} />
