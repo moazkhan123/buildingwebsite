@@ -57,13 +57,6 @@ function Hero() {
       <DewDrops />
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1.05fr_1fr]">
         <div>
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="gel mb-5 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-primary"
-          >
-            <Flower2 className="size-4" aria-hidden /> Malerkotla, Punjab
-          </motion.p>
           <motion.h1
             id="hero-title"
             initial={{ opacity: 0, y: 20 }}
