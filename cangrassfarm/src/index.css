@@ -1,52 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  /* Liquid gel grass: dew-glass over lawn greens, sun-yellow accent */
-  --background: #e9f7ec;
-  --background-2: #d3efd9;
-  --foreground: #0d2a18;
-  --muted-foreground: #3d5c48;
-  --primary: #15803d;
-  --primary-2: #22c55e;
-  --on-primary: #ffffff;
-  --accent: #b45309;
-  --sun: #f59e0b;
-  --border: rgba(21, 128, 61, 0.18);
-  --glass: rgba(255, 255, 255, 0.58);
-  --glass-strong: rgba(255, 255, 255, 0.8);
-  --glass-edge: rgba(255, 255, 255, 0.85);
-  --glass-tint: rgba(34, 197, 94, 0.1);
-  --blade-1: #16a34a;
-  --blade-2: #22c55e;
-  --blade-3: #4ade80;
+  /* Aurora Night: deep northern sky, teal aurora glow, violet accents */
+  --background: #0b1730;
+  --background-2: #13264a;
+  --foreground: #e6eefc;
+  --muted-foreground: #a9b8d6;
+  --primary: #14b8a6;
+  --primary-2: #2dd4bf;
+  --on-primary: #042a26;
+  --accent: #a78bfa;
+  --sun: #8b5cf6;
+  --border: rgba(167, 139, 250, 0.2);
+  --glass: rgba(22, 38, 74, 0.55);
+  --glass-strong: rgba(18, 32, 64, 0.86);
+  --glass-edge: rgba(180, 200, 255, 0.2);
+  --glass-tint: rgba(139, 92, 246, 0.1);
+  --blade-1: #0f766e;
+  --blade-2: #14b8a6;
+  --blade-3: #2dd4bf;
   --serif: "Lora Variable", ui-serif, Georgia, serif;
   --sans: "Raleway Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --shadow-gel: 0 18px 40px -18px rgba(13, 64, 32, 0.35), 0 4px 10px -4px rgba(13, 64, 32, 0.15);
-  color-scheme: light;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #05160c;
-    --background-2: #0a2615;
-    --foreground: #e6f6ea;
-    --muted-foreground: #a3c9b0;
-    --primary: #22c55e;
-    --primary-2: #4ade80;
-    --on-primary: #04210f;
-    --accent: #fbbf24;
-    --sun: #fbbf24;
-    --border: rgba(134, 239, 172, 0.16);
-    --glass: rgba(16, 52, 30, 0.5);
-    --glass-strong: rgba(14, 44, 26, 0.85);
-    --glass-edge: rgba(187, 247, 208, 0.22);
-    --glass-tint: rgba(74, 222, 128, 0.08);
-    --blade-1: #14532d;
-    --blade-2: #166534;
-    --blade-3: #15803d;
-    --shadow-gel: 0 18px 40px -18px rgba(0, 0, 0, 0.7), 0 4px 10px -4px rgba(0, 0, 0, 0.5);
-    color-scheme: dark;
-  }
+  --shadow-gel: 0 18px 40px -18px rgba(0, 0, 0, 0.7), 0 4px 10px -4px rgba(0, 0, 0, 0.5);
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -134,12 +110,12 @@ button, a {
 }
 
 .gel-btn-sun {
-  color: #3b2300;
-  background: linear-gradient(180deg, #fcd34d, #f59e0b 70%);
+  color: #ffffff;
+  background: linear-gradient(180deg, #a78bfa, #7c3aed 70%);
   box-shadow:
-    0 10px 24px -10px rgba(245, 158, 11, 0.8),
-    inset 0 -3px 8px rgba(0, 0, 0, 0.12),
-    inset 0 2px 0 rgba(255, 255, 255, 0.6);
+    0 10px 24px -10px rgba(124, 58, 237, 0.8),
+    inset 0 -3px 8px rgba(0, 0, 0, 0.15),
+    inset 0 2px 0 rgba(255, 255, 255, 0.45);
 }
 }
 
@@ -180,18 +156,13 @@ button, a {
 
 /* Logo: "Bloom & Lawn" emblem and wordmark */
 .cgf-word {
-  background: linear-gradient(90deg, #14532d, #16a34a 70%, #ca8a04);
+  background: linear-gradient(90deg, #99f6e4, #2dd4bf 55%, #a78bfa);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 .cgf-tagline {
   color: var(--muted-foreground);
-}
-@media (prefers-color-scheme: dark) {
-  .cgf-word {
-    background-image: linear-gradient(90deg, #bbf7d0, #4ade80 70%, #fbbf24);
-  }
 }
 .cgf-word-plain .cgf-word {
   background: none;

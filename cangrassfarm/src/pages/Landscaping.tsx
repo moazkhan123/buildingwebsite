@@ -28,8 +28,8 @@ const sunIcons = { full: Sun, partial: CloudSun, shade: SunDim } as const
 function Hero() {
   return (
     <section className="relative isolate overflow-hidden pt-10 sm:pt-16" aria-labelledby="land-title">
-      {/* Jade Sky: a soft sky over the hero lawn; dimmed in dark mode so it doesn't wash out the theme */}
-      <div className="absolute inset-0 -z-10 opacity-90 [mask-image:linear-gradient(to_bottom,transparent,black_30%)] dark:opacity-15">
+      {/* Jade Sky: a faint glow over the hero lawn, dimmed so it sits on the dark Aurora theme */}
+      <div className="absolute inset-0 -z-10 opacity-15 [mask-image:linear-gradient(to_bottom,transparent,black_30%)]">
         <GradientBackground />
       </div>
       <DewDrops />
