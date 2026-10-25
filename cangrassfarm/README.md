@@ -23,14 +23,14 @@ npm run build   # outputs dist/ (incl. dist/landscaping/index.html and 404.html 
 shadcn-style layout (`components.json`): reusable UI goes in `src/components/ui/`, imported as `@/components/ui/<name>`.
 
 - `ui/gel.tsx`: gel buttons, segmented control, reveal animation, section headings
-- `ui/jade-sky.tsx`: "Jade Sky" gradient from 21st.dev, used behind the Landscaping hero (demo in `src/demos/jade-sky-demo.tsx`)
+- `ui/jade-sky.tsx`: "Jade Sky" gradient from 21st.dev, currently unused since the hero video replaced it (demo in `src/demos/jade-sky-demo.tsx`)
 
 ## Content
 
 - Flowers: `src/data/flowers.ts`
 - Grasses, concepts, projects: `src/data/landscaping.ts`
 - Phone number: `src/lib/contact.ts`
-- Images: `public/img/flowers/<slug>.webp` (square photos, up to 480×480); project photos in `public/img/projects/`; concept photos in `public/img/concepts/`; the Flowers page hero background video is `public/video/hero-wide.*` (1280×720 crop) for landscape screens and `hero-tall.*` (720×1280) for portrait screens, WebM and MP4, no audio, with `hero-poster.webp` as its still frame.
+- Images: `public/img/flowers/<slug>.webp` (square photos, up to 480×480); project photos in `public/img/projects/`; concept photos in `public/img/concepts/`; the hero background video on both pages (`src/components/HeroVideo.tsx`) is `public/video/hero-wide.*` (1280×720 crop) for landscape screens and `hero-tall.*` (720×1280) for portrait screens, WebM and MP4, no audio, with `hero-poster.webp` as its still frame.
 
 ## Deploy
 
