@@ -226,11 +226,11 @@ export const exposure: Record<Sun, { label: string; hours: string; plants: strin
 }
 
 export const projects = [
-  { img: "/img/scenes/lawn.webp", title: "Open lawn installation", kind: "Lawn", grass: "Canadian Grass" },
-  { img: "/img/scenes/garden.webp", title: "Stepping-stone garden walk", kind: "Garden design", grass: "All Season Grass" },
-  { img: "/img/scenes/indoor-outdoor.webp", title: "Conifer & pot styling", kind: "Planting", grass: "—" },
-  { img: "/img/scenes/seasonal.webp", title: "Seasonal flower beds", kind: "Nursery", grass: "—" },
-  { img: "/img/scenes/all-kinds.webp", title: "Our growing houses", kind: "Nursery", grass: "—" },
+  { img: "/img/projects/curved-lawn-borders.webp", title: "Curved lawn & flower borders", kind: "Garden design", grass: "Canadian Grass" },
+  { img: "/img/projects/open-lawn.webp", title: "Open lawn installation", kind: "Lawn", grass: "Bermuda Grass" },
+  { img: "/img/projects/fence-conifers.webp", title: "Fence-line conifers & stone edging", kind: "Planting", grass: "Canadian Grass" },
+  { img: "/img/projects/stepping-stone-path.webp", title: "Shady stepping-stone path", kind: "Garden design", grass: "All Season Grass" },
+  { img: "/img/projects/flower-rows.webp", title: "Seasonal flower rows", kind: "Nursery", grass: "—" },
 ]
 
 export type Concept = {
