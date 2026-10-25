@@ -4,12 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 import {
   conceptFor,
-  concepts,
-  exposure,
-  grasses,
-  projects,
   recommendGrass,
-  spaces,
   type Concept,
   type Grass,
   type SiteAnswers,
@@ -21,11 +16,12 @@ import { PHONE_DISPLAY, PHONE_TEL, whatsappLink } from "@/lib/contact"
 import { DewDrops, GrassField } from "@/components/Ambient"
 import { GelButton, GelSegment, Reveal, SectionHeading, spring } from "@/components/ui/gel"
 import { HeroVideo } from "@/components/HeroVideo"
+import { useContent, useT } from "@/i18n/content"
 
-const grassById = (id: string) => grasses.find((g) => g.id === id)!
 const sunIcons = { full: Sun, partial: CloudSun, shade: SunDim } as const
 
 function Hero() {
+  const t = useT()
   return (
     <section className="relative isolate overflow-hidden pt-10 sm:pt-16" aria-labelledby="land-title">
       <HeroVideo veil="center" />
@@ -36,7 +32,7 @@ function Hero() {
           animate={{ opacity: 1, y: 0 }}
           className="gel mb-5 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-primary"
         >
-          <Trees className="size-4" aria-hidden /> Landscaping by Moaviz
+          <Trees className="size-4" aria-hidden /> {t.landHero.badge}
         </motion.p>
         <motion.h1
           id="land-title"
@@ -45,8 +41,8 @@ function Hero() {
           transition={{ delay: 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-balance text-4xl font-bold sm:text-6xl"
         >
-          Lawns and gardens designed around{" "}
-          <span className="bloom-text">your soil, sun and season.</span>
+          {t.landHero.title1}{" "}
+          <span className="bloom-text">{t.landHero.title2}</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -54,7 +50,7 @@ function Hero() {
           transition={{ delay: 0.2, duration: 0.6 }}
           className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground"
         >
-          We study your space, how much sun it gets, your soil and how you'll use it, then pick the grass and plants that will thrive there. Not just the ones that look good on day one.
+          {t.landHero.lead}
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -63,10 +59,10 @@ function Hero() {
           className="mt-8 flex flex-wrap justify-center gap-3"
         >
           <GelButton href={PHONE_TEL} className="px-6 text-base">
-            <Phone className="size-4" aria-hidden /> Hire Moaviz · {PHONE_DISPLAY}
+            <Phone className="size-4" aria-hidden /> {t.landHero.hire} · <span dir="ltr">{PHONE_DISPLAY}</span>
           </GelButton>
           <GelButton href="#grass-finder" variant="glass" className="px-6 text-base">
-            <Sprout className="size-4" aria-hidden /> Find your grass
+            <Sprout className="size-4" aria-hidden /> {t.landHero.findGrass}
           </GelButton>
         </motion.div>
       </div>
@@ -76,6 +72,8 @@ function Hero() {
 }
 
 function Projects() {
+  const t = useT()
+  const { projects } = useContent()
   const [open, setOpen] = useState<number | null>(null)
   const closeRef = useRef<HTMLButtonElement>(null)
   useEffect(() => {
@@ -88,17 +86,17 @@ function Projects() {
     }
     window.addEventListener("keydown", onKey)
     return () => window.removeEventListener("keydown", onKey)
-  }, [open])
+  }, [open, projects.length])
 
   return (
     <section id="projects" className="scroll-mt-24 px-4 pt-20 sm:px-6" aria-labelledby="projects-title">
-      <SectionHeading eyebrow="Our work" title="Projects & nursery" id="projects-title">
-        A look at the lawns, gardens and growing houses we look after.
+      <SectionHeading eyebrow={t.projects.eyebrow} title={t.projects.title} id="projects-title">
+        {t.projects.intro}
       </SectionHeading>
       <ul className="mx-auto grid max-w-6xl auto-rows-[220px] grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
         {projects.map((p, i) => (
           <motion.li
-            key={p.title}
+            key={p.img}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
@@ -108,7 +106,7 @@ function Projects() {
             <button
               type="button"
               onClick={() => setOpen(i)}
-              aria-label={`View ${p.title}`}
+              aria-label={t.projects.view(p.title)}
               className="gel group relative block h-full w-full cursor-pointer overflow-hidden rounded-[1.75rem] p-1.5"
             >
               <motion.img
@@ -148,15 +146,19 @@ function Projects() {
               <figcaption className="flex flex-wrap items-center justify-between gap-2 px-3 py-3">
                 <span>
                   <span className="font-serif text-lg font-semibold">{projects[open].title}</span>
-                  {projects[open].grass !== "—" && <span className="ml-2 text-sm text-muted-foreground">Grass: {projects[open].grass}</span>}
+                  {projects[open].grass !== "—" && (
+                    <span className="ml-2 text-sm text-muted-foreground">
+                      {t.projects.grass}: {projects[open].grass}
+                    </span>
+                  )}
                 </span>
-                <span className="text-xs text-muted-foreground">← → to browse · Esc to close</span>
+                <span className="text-xs text-muted-foreground">{t.projects.browseHint}</span>
               </figcaption>
               <button
                 ref={closeRef}
                 type="button"
                 onClick={() => setOpen(null)}
-                aria-label="Close"
+                aria-label={t.modal.close}
                 className="gel absolute right-4 top-4 grid size-11 cursor-pointer place-items-center rounded-full"
               >
                 <X className="size-5" aria-hidden />
@@ -172,18 +174,21 @@ function Projects() {
 }
 
 function ConceptPlanner() {
+  const t = useT()
+  const { spaces, exposure, concepts, grasses } = useContent()
   const [space, setSpace] = useState<Space>("front-yard")
   const [sun, setSun] = useState<SunLevel>("full")
-  const [picked, setPicked] = useState<Concept | null>(null)
+  const [pickedId, setPickedId] = useState<string | null>(null)
   const s = spaces.find((x) => x.id === space)!
   const e = exposure[sun]
   // A concept tapped in the gallery wins until the visitor changes space or sun.
+  const picked = concepts.find((x) => x.id === pickedId)
   const c = picked && picked.space === space && picked.sun === sun ? picked : concepts.find((x) => x.id === conceptFor[space][sun])!
-  const g = grassById(c.grass ?? "all-season")
+  const g = grasses.find((x) => x.id === (c.grass ?? "all-season"))!
   const SunIcon = sunIcons[sun]
 
   const pick = (x: Concept) => {
-    setPicked(x)
+    setPickedId(x.id)
     setSpace(x.space)
     setSun(x.sun)
     document.getElementById("concept-result")?.scrollIntoView({ behavior: "smooth", block: "center" })
@@ -191,16 +196,16 @@ function ConceptPlanner() {
 
   return (
     <section id="concepts" className="scroll-mt-24 px-4 pt-24 sm:px-6" aria-labelledby="concepts-title">
-      <SectionHeading eyebrow="Design concepts" title="Concepts based on your space and sunlight" id="concepts-title">
-        Pick your type of space and how much sun it gets to see the layout, plants and lawn we'd usually start from.
+      <SectionHeading eyebrow={t.planner.eyebrow} title={t.planner.title} id="concepts-title">
+        {t.planner.intro}
       </SectionHeading>
       <div className="mx-auto grid max-w-6xl gap-4 lg:grid-cols-[1fr_1.4fr]">
         <Reveal className="space-y-5">
           <div>
             <p className="mb-2 flex items-center gap-2 text-sm font-bold">
-              <Ruler className="size-4 text-primary" aria-hidden /> Your space
+              <Ruler className="size-4 text-primary" aria-hidden /> {t.planner.yourSpace}
             </p>
-            <div role="radiogroup" aria-label="Your space" className="grid grid-cols-2 gap-2">
+            <div role="radiogroup" aria-label={t.planner.yourSpace} className="grid grid-cols-2 gap-2">
               {spaces.map((x) => {
                 const active = x.id === space
                 return (
@@ -225,17 +230,17 @@ function ConceptPlanner() {
           </div>
           <div>
             <p className="mb-2 flex items-center gap-2 text-sm font-bold">
-              <Sun className="size-4 text-accent" aria-hidden /> Sun exposure
+              <Sun className="size-4 text-accent" aria-hidden /> {t.planner.sunExposure}
             </p>
             <GelSegment
               name="sun"
-              label="Sun exposure"
+              label={t.planner.sunExposure}
               value={sun}
               onChange={setSun}
               options={[
-                { id: "full", label: "Full sun" },
-                { id: "partial", label: "Partial" },
-                { id: "shade", label: "Shade" },
+                { id: "full", label: t.planner.sunOptions.full },
+                { id: "partial", label: t.planner.sunOptions.partial },
+                { id: "shade", label: t.planner.sunOptions.shade },
               ]}
             />
             <p className="mt-2 text-xs text-muted-foreground">{e.hours}</p>
@@ -262,7 +267,7 @@ function ConceptPlanner() {
             <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-primary">
               <SunIcon className="size-4" aria-hidden /> {e.label} · {s.label}
             </p>
-            <h3 className="mt-2 text-2xl font-semibold">Concept for your {s.label.toLowerCase()}</h3>
+            <h3 className="mt-2 text-2xl font-semibold">{t.planner.conceptFor(s.label)}</h3>
             <ul className="mt-4 space-y-2">
               {s.ideas.map((idea) => (
                 <li key={idea} className="flex gap-2 text-sm">
@@ -272,14 +277,14 @@ function ConceptPlanner() {
             </ul>
             <div className="mt-5 grid gap-3 sm:grid-cols-2">
               <div className="rounded-2xl bg-[var(--glass-tint)] p-4">
-                <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Suggested lawn</p>
+                <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{t.planner.suggestedLawn}</p>
                 <p className="mt-1 flex items-center gap-2 font-serif text-lg font-semibold">
                   <span className="size-3 rounded-full" style={{ background: g.hue }} aria-hidden /> {g.name}
                 </p>
                 <p className="text-sm text-muted-foreground">{g.tagline}</p>
               </div>
               <div className="rounded-2xl bg-[var(--glass-tint)] p-4">
-                <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Plants that will thrive</p>
+                <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{t.planner.plantsThrive}</p>
                 <p className="mt-1 text-sm font-semibold">{e.plants.join(", ")}</p>
               </div>
             </div>
@@ -292,9 +297,10 @@ function ConceptPlanner() {
   )
 }
 
-const spaceLabel = Object.fromEntries(spaces.map((x) => [x.id, x.label])) as Record<Space, string>
-
 function ConceptGallery({ onPick }: { onPick: (c: Concept) => void }) {
+  const t = useT()
+  const { spaces, exposure, concepts, grassName } = useContent()
+  const spaceLabel = Object.fromEntries(spaces.map((x) => [x.id, x.label])) as Record<Space, string>
   const [filter, setFilter] = useState<SunLevel | "all">("all")
   const [expanded, setExpanded] = useState(false)
   const matching = concepts.filter((c) => filter === "all" || c.sun === filter)
@@ -304,20 +310,20 @@ function ConceptGallery({ onPick }: { onPick: (c: Concept) => void }) {
     <div className="mx-auto mt-16 max-w-6xl">
       <div className="mb-6 flex flex-col items-center justify-between gap-4 sm:flex-row">
         <div>
-          <h3 className="text-2xl font-semibold">Concept gallery</h3>
-          <p className="text-sm text-muted-foreground">Tap a look you like to load it into the planner above.</p>
+          <h3 className="text-2xl font-semibold">{t.gallery.title}</h3>
+          <p className="text-sm text-muted-foreground">{t.gallery.intro}</p>
         </div>
         <div className="w-full sm:w-auto sm:min-w-96">
           <GelSegment
             name="gallery-sun"
-            label="Filter concepts by sunlight"
+            label={t.gallery.filterAria}
             value={filter}
             onChange={setFilter}
             options={[
-              { id: "all", label: "All" },
-              { id: "full", label: "Full sun" },
-              { id: "partial", label: "Partial" },
-              { id: "shade", label: "Shade" },
+              { id: "all", label: t.all },
+              { id: "full", label: t.planner.sunOptions.full },
+              { id: "partial", label: t.planner.sunOptions.partial },
+              { id: "shade", label: t.planner.sunOptions.shade },
             ]}
           />
         </div>
@@ -342,7 +348,7 @@ function ConceptGallery({ onPick }: { onPick: (c: Concept) => void }) {
                   whileTap={{ scale: 0.98 }}
                   transition={spring}
                   className="gel group flex h-full w-full cursor-pointer flex-col overflow-hidden rounded-[1.75rem] p-1.5 text-left"
-                  aria-label={`Load concept: ${c.title}`}
+                  aria-label={t.gallery.load(c.title)}
                 >
                   <span className="relative block overflow-hidden rounded-[1.4rem]">
                     <img
@@ -362,7 +368,7 @@ function ConceptGallery({ onPick }: { onPick: (c: Concept) => void }) {
                     <span className="font-serif text-lg font-semibold">{c.title}</span>
                     <span className="mt-1 text-sm text-muted-foreground">{c.text}</span>
                     <span className="mt-3 flex flex-wrap gap-1.5 text-xs font-semibold">
-                      <span className="rounded-full bg-[var(--glass-tint)] px-2.5 py-1">{c.grass ? grassById(c.grass).name : "No lawn: pavers & mulch"}</span>
+                      <span className="rounded-full bg-[var(--glass-tint)] px-2.5 py-1">{c.grass ? grassName(c.grass) : t.gallery.noLawn}</span>
                       <span className="rounded-full bg-[var(--glass-tint)] px-2.5 py-1">{c.plants}</span>
                     </span>
                   </span>
@@ -383,7 +389,7 @@ function ConceptGallery({ onPick }: { onPick: (c: Concept) => void }) {
               setExpanded((v) => !v)
             }}
           >
-            {expanded ? "Show fewer concepts" : `Show all ${matching.length} concepts`}
+            {expanded ? t.gallery.showFewer : t.gallery.showAll(matching.length)}
           </GelButton>
         </div>
       )}
@@ -391,79 +397,46 @@ function ConceptGallery({ onPick }: { onPick: (c: Concept) => void }) {
   )
 }
 
-const questions: { key: keyof SiteAnswers; label: string; icon: typeof Sun; options: { id: string; label: string }[] }[] = [
-  {
-    key: "sun",
-    label: "How much direct sun does the lawn get?",
-    icon: Sun,
-    options: [
-      { id: "full", label: "6+ hours" },
-      { id: "partial", label: "3–6 hours" },
-      { id: "shade", label: "Under 3" },
-    ],
-  },
-  {
-    key: "soil",
-    label: "What is your soil like? (salty = kallar / alkaline)",
-    icon: Layers,
-    options: [
-      { id: "loamy", label: "Loamy" },
-      { id: "sandy", label: "Sandy" },
-      { id: "clay", label: "Clay" },
-      { id: "saline", label: "Salty" },
-    ],
-  },
-  {
-    key: "use",
-    label: "How will the lawn be used?",
-    icon: Footprints,
-    options: [
-      { id: "family", label: "Family" },
-      { id: "sports", label: "Sports" },
-      { id: "showpiece", label: "Show lawn" },
-      { id: "event", label: "Event" },
-    ],
-  },
-  {
-    key: "water",
-    label: "How much water is available?",
-    icon: Droplets,
-    options: [
-      { id: "plenty", label: "Plenty" },
-      { id: "limited", label: "Limited" },
-    ],
-  },
-  {
-    key: "need",
-    label: "When do you want it green?",
-    icon: Thermometer,
-    options: [
-      { id: "year-round", label: "All year" },
-      { id: "winter-only", label: "Winter only" },
-    ],
-  },
+const questions: { key: keyof SiteAnswers; icon: typeof Sun }[] = [
+  { key: "sun", icon: Sun },
+  { key: "soil", icon: Layers },
+  { key: "use", icon: Footprints },
+  { key: "water", icon: Droplets },
+  { key: "need", icon: Thermometer },
 ]
 
 function GrassFinder() {
+  const t = useT()
+  const { grasses } = useContent()
+  const grassById = (id: string) => grasses.find((g) => g.id === id)!
   const [a, setA] = useState<SiteAnswers>({ sun: "full", soil: "loamy", use: "family", water: "plenty", need: "year-round" })
   const ranked = useMemo(() => recommendGrass(a), [a])
   const best = grassById(ranked[0].id)
   const runnerUp = grassById(ranked[1].id)
+  const q = t.finder.questions
+  const optionLabel = (k: keyof SiteAnswers) => (q[k].options as Record<string, string>)[a[k]]
+  const answers = questions.map(({ key }) => `${q[key].short}: ${optionLabel(key)}`).join(", ")
   const max = Math.max(...ranked.map((r) => r.score), 1)
 
   return (
     <section id="grass-finder" className="scroll-mt-24 px-4 pt-24 sm:px-6" aria-labelledby="finder-title">
-      <SectionHeading eyebrow="Grass finder" title="Which grass suits your soil, light and weather?" id="finder-title">
-        Answer five quick questions. We weigh sunlight, soil, use, water and season the same way we do on a site visit.
+      <SectionHeading eyebrow={t.finder.eyebrow} title={t.finder.title} id="finder-title">
+        {t.finder.intro}
       </SectionHeading>
       <div className="mx-auto grid max-w-6xl gap-4 lg:grid-cols-[1.3fr_1fr]">
         <Reveal className="gel space-y-5 rounded-[2rem] p-5 sm:p-7">
-          {questions.map((q) => (
-            <div key={q.key}>
+          {questions.map(({ key, icon: Icon }) => (
+            <div key={key}>
               <p className="mb-2 flex items-center gap-2 text-sm font-bold">
-                <q.icon className="size-4 text-primary" aria-hidden /> {q.label}
+                <Icon className="size-4 text-primary" aria-hidden /> {q[key].label}
               </p>
-              <GelSegment name={q.key} label={q.label} value={a[q.key]} onChange={(v) => setA((p) => ({ ...p, [q.key]: v }))} options={q.options} />
+              <GelSegment
+                name={key}
+                label={q[key].label}
+                value={a[key]}
+                onChange={(v) => setA((p) => ({ ...p, [key]: v }))}
+                options={Object.entries(q[key].options).map(([id, label]) => ({ id, label }))}
+              />
             </div>
           ))}
         </Reveal>
@@ -479,34 +452,32 @@ function GrassFinder() {
               className="gel relative overflow-hidden rounded-[2rem] p-6"
             >
               <div className="absolute -right-12 -top-12 size-44 rounded-full opacity-40 blur-2xl" style={{ background: best.hue }} aria-hidden />
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">Best match</p>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">{t.finder.bestMatch}</p>
               <h3 className="mt-1 text-3xl font-semibold">{best.name}</h3>
               <p className="text-muted-foreground">{best.tagline}</p>
               <ul className="mt-4 space-y-1.5">
                 {ranked[0].reasons.map((r) => (
                   <li key={r} className="flex gap-2 text-sm">
-                    <Check className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden /> {r}
+                    <Check className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden /> {t.reasons[r]}
                   </li>
                 ))}
               </ul>
               <p className="mt-4 text-sm">
-                <span className="font-semibold">Also consider:</span> {runnerUp.name}
+                <span className="font-semibold">{t.finder.alsoConsider}</span> {runnerUp.name}
               </p>
               <GelButton
-                href={whatsappLink(
-                  `Hi Moaviz, the grass finder on cangrassfarm.com suggested ${best.name} for my lawn (sun: ${a.sun}, soil: ${a.soil}, use: ${a.use}, water: ${a.water}, season: ${a.need}). Can you visit and quote?`,
-                )}
+                href={whatsappLink(t.finder.quoteMsg(best.name, answers))}
                 target="_blank"
                 rel="noopener"
                 className="mt-5 w-full"
               >
-                Get a quote for {best.name}
+                {t.finder.quote(best.name)}
               </GelButton>
             </motion.div>
           </AnimatePresence>
 
           <div className="gel rounded-[2rem] p-5">
-            <p className="mb-3 text-sm font-bold">How each grass scores for your site</p>
+            <p className="mb-3 text-sm font-bold">{t.finder.scores}</p>
             <ul className="space-y-2.5">
               {ranked.map((r) => {
                 const g = grassById(r.id)
@@ -538,12 +509,13 @@ function GrassFinder() {
 }
 
 function GrassCard({ g, i, className }: { g: Grass; i: number; className?: string }) {
+  const t = useT()
   const rows = [
-    { icon: Sun, label: "Sunlight", v: g.sun },
-    { icon: Layers, label: "Soil", v: g.soil },
-    { icon: Droplets, label: "Water", v: g.water },
-    { icon: Footprints, label: "Traffic", v: g.traffic },
-    { icon: g.id === "winter" ? Snowflake : Thermometer, label: "Season", v: g.season },
+    { icon: Sun, label: t.grassRows.sun, v: g.sun },
+    { icon: Layers, label: t.grassRows.soil, v: g.soil },
+    { icon: Droplets, label: t.grassRows.water, v: g.water },
+    { icon: Footprints, label: t.grassRows.traffic, v: g.traffic },
+    { icon: g.id === "winter" ? Snowflake : Thermometer, label: t.grassRows.season, v: g.season },
   ]
   return (
     <motion.li
@@ -582,9 +554,11 @@ function GrassCard({ g, i, className }: { g: Grass; i: number; className?: strin
 }
 
 function GrassCatalog() {
+  const t = useT()
+  const { grasses } = useContent()
   return (
     <section id="grasses" className="scroll-mt-24 px-4 pt-24 sm:px-6" aria-labelledby="grasses-title">
-      <SectionHeading eyebrow="Our grasses" title="Five lawn grasses, each for a different job" id="grasses-title" />
+      <SectionHeading eyebrow={t.catalog.eyebrow} title={t.catalog.title} id="grasses-title" />
       <ul className="mx-auto grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-6">
         {grasses.map((g, i) => (
           <GrassCard key={g.id} g={g} i={i} className={i < 3 ? "lg:col-span-2" : "lg:col-span-3"} />
@@ -594,17 +568,14 @@ function GrassCatalog() {
   )
 }
 
-const steps = [
-  { icon: Phone, title: "Call Moaviz", text: "Tell us about your space and what you have in mind." },
-  { icon: Ruler, title: "Site visit", text: "We check sunlight, soil, drainage and how you'll use the space." },
-  { icon: Layers, title: "Concept & quote", text: "A layout, grass and plant list with a clear price." },
-  { icon: Shovel, title: "Install & care", text: "Soil prep, levelling, turf, planting and aftercare guidance." },
-]
+const stepIcons = [Phone, Ruler, Layers, Shovel]
 
 function Process() {
+  const t = useT()
+  const steps = t.process.steps.map(([title, text], i) => ({ icon: stepIcons[i], title, text }))
   return (
     <section className="px-4 pt-24 sm:px-6" aria-labelledby="process-title">
-      <SectionHeading eyebrow="How we work" title="From bare ground to green in four steps" id="process-title" />
+      <SectionHeading eyebrow={t.process.eyebrow} title={t.process.title} id="process-title" />
       <ol className="mx-auto grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {steps.map((s, i) => (
           <motion.li
@@ -631,20 +602,21 @@ function Process() {
 }
 
 function Hire() {
+  const t = useT()
   return (
     <section className="px-4 pt-24 sm:px-6">
       <Reveal className="gel relative mx-auto max-w-5xl overflow-hidden rounded-[2.5rem] px-6 py-12 text-center sm:px-12">
         <DewDrops count={10} />
-        <h2 className="text-balance text-3xl font-semibold sm:text-4xl">Ready to start your landscaping project?</h2>
+        <h2 className="text-balance text-3xl font-semibold sm:text-4xl">{t.hire.title}</h2>
         <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-          Homes, farmhouses, schools, hotels and wedding venues across Malerkotla and Punjab. Call Moaviz to book a site visit.
+          {t.hire.text}
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <GelButton href={PHONE_TEL} className="px-6 text-base">
-            <Phone className="size-4" aria-hidden /> {PHONE_DISPLAY}
+            <Phone className="size-4" aria-hidden /> <span dir="ltr">{PHONE_DISPLAY}</span>
           </GelButton>
-          <GelButton href={whatsappLink("Hi Moaviz, I'd like to discuss a landscaping project.")} target="_blank" rel="noopener" variant="sun" className="px-6 text-base">
-            WhatsApp Moaviz
+          <GelButton href={whatsappLink(t.hire.msg)} target="_blank" rel="noopener" variant="sun" className="px-6 text-base">
+            {t.hire.whatsapp}
           </GelButton>
         </div>
       </Reveal>

@@ -19,8 +19,8 @@
   --blade-1: #4d7c0f;
   --blade-2: #65a30d;
   --blade-3: #84cc16;
-  --serif: "Lora Variable", ui-serif, Georgia, serif;
-  --sans: "Raleway Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --serif: "Lora Variable", "Noto Serif Devanagari Variable", "Noto Serif Gurmukhi Variable", ui-serif, Georgia, serif;
+  --sans: "Raleway Variable", "Noto Sans Devanagari Variable", "Noto Sans Gurmukhi Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --shadow-gel: 0 18px 40px -18px rgba(92, 52, 20, 0.35), 0 4px 10px -4px rgba(92, 52, 20, 0.15);
   color-scheme: light;
 }
@@ -266,4 +266,9 @@ button, a {
 @media (prefers-reduced-motion: reduce) {
   .cgf-blade, .cgf-pop, .cgf-bob, .logo-hover:hover .cgf-shine, .cgf-title { animation: none; }
   .cgf-badge, .cgf-spin { transition: none; }
+}
+
+/* Letter-spacing pulls Devanagari and Gurmukhi letters apart from their vowel signs. */
+:root:is([lang="hi"], [lang="pa"]) [class*="tracking-"] {
+  letter-spacing: normal;
 }
