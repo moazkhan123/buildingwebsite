@@ -1,4 +1,4 @@
-import { AnimatePresence, LayoutGroup, motion, useScroll, useTransform } from "motion/react"
+import { AnimatePresence, LayoutGroup, motion, useReducedMotion, useScroll, useTransform } from "motion/react"
 import {
   ArrowRight,
   Award,
@@ -50,9 +50,34 @@ function Hero() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] })
   const y = useTransform(scrollYProgress, [0, 1], [0, 80])
   const rotate = useTransform(scrollYProgress, [0, 1], [0, -4])
+  const reduce = useReducedMotion()
 
   return (
-    <section ref={ref} className="relative overflow-hidden pt-10 sm:pt-16" aria-labelledby="hero-title">
+    <section ref={ref} className="relative isolate overflow-hidden pt-10 sm:pt-16" aria-labelledby="hero-title">
+      {/* Looping nature video behind the hero, under a sand veil so the text stays readable.
+          Visitors who prefer reduced motion get the still poster instead. */}
+      <video
+        className="absolute inset-0 -z-20 h-full w-full object-cover"
+        autoPlay={!reduce}
+        muted
+        loop
+        playsInline
+        preload={reduce ? "none" : "auto"}
+        poster="/video/hero-poster.webp"
+        aria-hidden="true"
+        tabIndex={-1}
+      >
+        <source src="/video/hero.webm" type="video/webm" />
+        <source src="/video/hero.mp4" type="video/mp4" />
+      </video>
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10"
+        style={{
+          background:
+            "linear-gradient(90deg, color-mix(in srgb, var(--background) 88%, transparent) 0%, color-mix(in srgb, var(--background) 62%, transparent) 55%, color-mix(in srgb, var(--background) 30%, transparent) 100%), linear-gradient(180deg, transparent 70%, var(--background) 100%)",
+        }}
+      />
       <DewDrops />
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1.05fr_1fr]">
         <div>
