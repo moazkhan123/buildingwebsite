@@ -2,6 +2,8 @@ import { AnimatePresence, MotionConfig, motion } from "motion/react"
 import { Suspense, lazy, useEffect, useRef, useState } from "react"
 import { BasketDrawer, FloatingCall, Footer, Nav } from "@/components/Chrome"
 import { GelBackdrop } from "@/components/Ambient"
+import { useT } from "@/i18n/content"
+import { LangProvider } from "@/i18n/lang"
 import { useBasket } from "@/lib/basket"
 import { useRoute } from "@/lib/router"
 import FlowersPage from "@/pages/Flowers"
@@ -9,12 +11,16 @@ import FlowersPage from "@/pages/Flowers"
 // Loaded on demand so the Flowers page ships less JavaScript.
 const LandscapingPage = lazy(() => import("@/pages/Landscaping"))
 
-const titles = {
-  "/": "Canadian Grass Farm & Flower Nursery — Flowers, Plants & Lawn Grass in Malerkotla",
-  "/landscaping": "Landscaping & Lawn Grass — Canadian Grass Farm, Malerkotla",
+export default function App() {
+  return (
+    <LangProvider>
+      <Site />
+    </LangProvider>
+  )
 }
 
-export default function App() {
+function Site() {
+  const t = useT()
   const route = useRoute()
   const basket = useBasket()
   const [basketOpen, setBasketOpen] = useState(false)
@@ -22,7 +28,10 @@ export default function App() {
   const first = useRef(true)
 
   useEffect(() => {
-    document.title = titles[route]
+    document.title = t.titles[route]
+  }, [t, route])
+
+  useEffect(() => {
     if (first.current) {
       first.current = false
       return
@@ -33,7 +42,7 @@ export default function App() {
   return (
     <MotionConfig reducedMotion="user">
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[60] focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:text-on-primary">
-        Skip to content
+        {t.skip}
       </a>
       <GelBackdrop />
       <Nav route={route} basket={basket} onBasket={() => setBasketOpen(true)} />

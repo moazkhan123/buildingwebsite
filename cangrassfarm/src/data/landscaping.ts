@@ -90,7 +90,28 @@ export type Need = "year-round" | "winter-only"
 
 export type SiteAnswers = { sun: Sun; soil: Soil; use: Use; water: Water; need: Need }
 
-type Score = { id: GrassId; score: number; reasons: string[] }
+// Reasons are keys; the text for each language lives in src/i18n/ui.ts.
+export type ReasonKey =
+  | "winterOnly"
+  | "yearRound"
+  | "bermudaSun"
+  | "golfSun"
+  | "canadianPartial"
+  | "allSeasonPartial"
+  | "allSeasonShade"
+  | "canadianShade"
+  | "canadianLoamy"
+  | "bermudaSandy"
+  | "golfSandy"
+  | "bermudaClay"
+  | "bermudaSaline"
+  | "canadianFamily"
+  | "bermudaSports"
+  | "golfShow"
+  | "winterEvent"
+  | "bermudaWater"
+
+type Score = { id: GrassId; score: number; reasons: ReasonKey[] }
 
 // Simple weighted rules that mirror the advice Moaviz gives on a site visit.
 export function recommendGrass(a: SiteAnswers): Score[] {
@@ -101,70 +122,70 @@ export function recommendGrass(a: SiteAnswers): Score[] {
     "all-season": { id: "all-season", score: 0, reasons: [] },
     winter: { id: "winter", score: 0, reasons: [] },
   }
-  const add = (id: GrassId, pts: number, why?: string) => {
+  const add = (id: GrassId, pts: number, why?: ReasonKey) => {
     s[id].score += pts
     if (why && pts > 0) s[id].reasons.push(why)
   }
 
   if (a.need === "winter-only") {
-    add("winter", 6, "You only need green from October to March")
+    add("winter", 6, "winterOnly")
   } else {
     add("winter", -6)
-    add("all-season", 2, "Stays green every month of the year")
+    add("all-season", 2, "yearRound")
   }
 
   if (a.sun === "full") {
-    add("bermuda", 3, "Bermuda thrives in 6+ hours of direct sun")
-    add("golf", 2, "Golf turf needs full sun to stay dense")
+    add("bermuda", 3, "bermudaSun")
+    add("golf", 2, "golfSun")
     add("canadian", 1)
     add("all-season", 1)
   } else if (a.sun === "partial") {
-    add("canadian", 3, "Handles 4–6 hours of sun well")
-    add("all-season", 3, "Tolerates partial shade")
+    add("canadian", 3, "canadianPartial")
+    add("all-season", 3, "allSeasonPartial")
     add("winter", 1)
     add("bermuda", -3)
     add("golf", -3)
   } else {
-    add("all-season", 2, "The most shade-tolerant option we stock")
-    add("canadian", 1, "Copes with light shade if mowed a little higher")
+    add("all-season", 2, "allSeasonShade")
+    add("canadian", 1, "canadianShade")
     add("winter", 1)
     add("bermuda", -5)
     add("golf", -5)
   }
 
   if (a.soil === "loamy") {
-    add("canadian", 2, "Loamy soil suits fine-bladed lawns")
+    add("canadian", 2, "canadianLoamy")
     add("golf", 1)
     add("all-season", 1)
   } else if (a.soil === "sandy") {
-    add("bermuda", 2, "Bermuda roots deep in fast-draining sandy soil")
-    add("golf", 2, "Golf turf prefers sandy, free-draining beds")
+    add("bermuda", 2, "bermudaSandy")
+    add("golf", 2, "golfSandy")
   } else if (a.soil === "clay") {
-    add("bermuda", 2, "Bermuda tolerates heavy clay")
+    add("bermuda", 2, "bermudaClay")
     add("all-season", 1)
     add("golf", -2)
   } else {
-    add("bermuda", 4, "Bermuda is the most salt and alkali tolerant grass")
+    add("bermuda", 4, "bermudaSaline")
     add("canadian", -2)
     add("golf", -2)
   }
 
   if (a.use === "family") {
-    add("canadian", 3, "Soft and cushiony for family time")
+    add("canadian", 3, "canadianFamily")
     add("all-season", 2)
   } else if (a.use === "sports") {
-    add("bermuda", 4, "Self-repairs quickly under heavy foot traffic")
+    add("bermuda", 4, "bermudaSports")
     add("golf", 1)
   } else if (a.use === "showpiece") {
-    add("golf", 4, "Velvet-smooth, premium finish")
+    add("golf", 4, "golfShow")
     add("canadian", 2)
   } else {
-    add("winter", 3, "Fast germination for an event-ready lawn")
+    add("winter", 3, "winterEvent")
     add("all-season", 1)
   }
 
   if (a.water === "limited") {
-    add("bermuda", 3, "Needs the least water once established")
+    add("bermuda", 3, "bermudaWater")
     add("golf", -3)
     add("canadian", -1)
   } else {

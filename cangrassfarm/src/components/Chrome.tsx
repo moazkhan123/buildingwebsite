@@ -1,21 +1,58 @@
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react"
-import { ChevronDown, Flower2, MapPin, Menu as MenuIcon, Navigation, Minus, Phone, Plus, ShoppingBasket, Sprout, Trash2, X } from "lucide-react"
+import { ChevronDown, Clock, Flower2, Languages, MapPin, Menu as MenuIcon, Navigation, Minus, Phone, Plus, ShoppingBasket, Sprout, Trash2, X } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import type { Basket } from "@/lib/basket"
-import { ADDRESS, ADDRESS_ONE_LINE, MAPS_URL, PHONE_DISPLAY, PHONE_TEL, whatsappLink } from "@/lib/contact"
+import { ADDRESS, MAPS_URL, PHONE_DISPLAY, PHONE_TEL, whatsappLink } from "@/lib/contact"
 import { navigate, type Route } from "@/lib/router"
-import { flowers } from "@/data/flowers"
+import { useContent, useT } from "@/i18n/content"
+import { LANGS, useLang } from "@/i18n/lang"
 import { cn } from "@/lib/cn"
 import { GelButton, spring } from "./ui/gel"
 import { GrassField } from "./Ambient"
 import { LogoMark, Wordmark } from "./Logo"
 
-const links: { to: Route; label: string; hint: string; icon: typeof Flower2 }[] = [
-  { to: "/", label: "Flowers", hint: "31 flowers and what they're good for", icon: Flower2 },
-  { to: "/landscaping", label: "Landscaping", hint: "Lawns, design concepts, grass finder", icon: Sprout },
-]
+/** English / हिंदी / ਪੰਜਾਬੀ toggle. */
+export function LanguageSwitch({ className, tone = "gel" }: { className?: string; tone?: "gel" | "footer" }) {
+  const { lang, setLang } = useLang()
+  const t = useT()
+  return (
+    <div role="radiogroup" aria-label={t.nav.language} className={cn("flex items-center gap-1", className)}>
+      <Languages className="mr-1 size-4 shrink-0 opacity-80" aria-hidden />
+      {LANGS.map((l) => {
+        const active = l.id === lang
+        return (
+          <button
+            key={l.id}
+            type="button"
+            role="radio"
+            aria-checked={active}
+            lang={l.id}
+            onClick={() => setLang(l.id)}
+            className={cn(
+              "min-h-11 flex-1 cursor-pointer rounded-full px-3 text-sm font-semibold transition-colors duration-150",
+              tone === "gel"
+                ? active
+                  ? "gel-btn"
+                  : "bg-[var(--glass-tint)] hover:text-primary"
+                : active
+                  ? "bg-on-primary text-primary"
+                  : "border border-current/40 hover:bg-white/10",
+            )}
+          >
+            {l.label}
+          </button>
+        )
+      })}
+    </div>
+  )
+}
 
 export function Nav({ route, basket, onBasket }: { route: Route; basket: Basket; onBasket: () => void }) {
+  const t = useT()
+  const links: { to: Route; label: string; hint: string; icon: typeof Flower2 }[] = [
+    { to: "/", label: t.nav.flowers, hint: t.nav.flowersHint, icon: Flower2 },
+    { to: "/landscaping", label: t.nav.landscaping, hint: t.nav.landscapingHint, icon: Sprout },
+  ]
   const [open, setOpen] = useState(false)
   const wrapRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
@@ -70,7 +107,7 @@ export function Nav({ route, basket, onBasket }: { route: Route; basket: Basket;
             e.preventDefault()
             navigate("/")
           }}
-          aria-label="Canadian Grass Farm, home"
+          aria-label={t.nav.homeAria}
           className="logo-hover mr-auto flex min-h-11 min-w-0 items-center gap-2 rounded-full pr-1 sm:gap-3 sm:pr-2"
         >
           <LogoMark className="size-10 shrink-0 drop-shadow-md sm:size-14" />
@@ -80,7 +117,8 @@ export function Nav({ route, basket, onBasket }: { route: Route; basket: Basket;
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="cgf-title whitespace-nowrap font-serif text-[clamp(0.95rem,5.2vw,1.6rem)] font-bold leading-none tracking-tight sm:text-[2rem] lg:text-[2.4rem]"
           >
-            Canadian Grass Farm
+            <span className="block">Canadian Grass Farm</span>
+            <span className="mt-0.5 block text-[0.68em] tracking-normal">& Flower Nursery</span>
           </motion.span>
         </a>
 
@@ -90,12 +128,12 @@ export function Nav({ route, basket, onBasket }: { route: Route; basket: Basket;
             type="button"
             aria-expanded={open}
             aria-controls="site-menu"
-            aria-label={basket.count > 0 ? `Menu, ${basket.count} plants in your order` : "Menu"}
+            aria-label={basket.count > 0 ? t.nav.menuCount(basket.count) : t.nav.menu}
             onClick={() => setOpen((o) => !o)}
             className="gel-btn relative flex min-h-11 min-w-11 cursor-pointer items-center justify-center gap-1.5 rounded-full px-3 text-sm font-semibold sm:px-5"
           >
             <MenuIcon className="size-5" aria-hidden />
-            <span className="hidden sm:inline">Menu</span>
+            <span className="hidden sm:inline">{t.nav.menu}</span>
             <ChevronDown className={cn("hidden size-4 transition-transform duration-200 sm:block", open && "rotate-180")} aria-hidden />
           </button>
           {/* Outside the button: .gel-btn clips its overflow. */}
@@ -108,7 +146,7 @@ export function Nav({ route, basket, onBasket }: { route: Route; basket: Basket;
                 animate={{ scale: 1 }}
                 exit={{ scale: 0 }}
                 transition={spring}
-                className="gel-btn-sun gel-btn pointer-events-none absolute -right-1 -top-1 grid min-w-5 place-items-center rounded-full px-1 text-[11px] font-bold"
+                className="pointer-events-none absolute -right-1 -top-1 grid min-w-5 place-items-center rounded-full bg-white px-1 text-[11px] font-bold text-[var(--maple)] shadow-md ring-2 ring-[var(--maple)]"
               >
                 {basket.count}
               </motion.span>
@@ -127,7 +165,7 @@ export function Nav({ route, basket, onBasket }: { route: Route; basket: Basket;
                 className="gel absolute right-0 top-full mt-3 w-[min(20rem,calc(100vw-1.5rem))] origin-top-right rounded-3xl p-2"
                 style={{ background: "color-mix(in srgb, var(--background) 94%, transparent)" }}
               >
-                <p className="px-3 pb-1 pt-2 text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">Pages</p>
+                <p className="px-3 pb-1 pt-2 text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">{t.nav.pages}</p>
                 <ul>
                   {links.map((l) => {
                     const active = route === l.to
@@ -169,12 +207,18 @@ export function Nav({ route, basket, onBasket }: { route: Route; basket: Basket;
                   className="flex min-h-12 w-full cursor-pointer items-center gap-3 rounded-2xl px-3 text-left font-semibold transition-colors hover:bg-[var(--glass-tint)]"
                 >
                   <ShoppingBasket className="size-5 text-primary" aria-hidden />
-                  <span className="flex-1">Your order list</span>
+                  <span className="flex-1">{t.nav.orderList}</span>
                   {basket.count > 0 && <span className="gel-btn-sun gel-btn rounded-full px-2 py-0.5 text-xs font-bold tabular-nums">{basket.count}</span>}
                 </button>
-                <GelButton href={PHONE_TEL} className="mt-2 w-full" aria-label={`Call Moaviz at ${PHONE_DISPLAY}`}>
-                  <Phone className="size-4" aria-hidden /> Call Moaviz · {PHONE_DISPLAY}
+                <div className="my-2 h-px bg-border" />
+                <p className="px-3 pb-1 pt-1 text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">{t.nav.language}</p>
+                <LanguageSwitch className="px-1" />
+                <GelButton href={PHONE_TEL} className="mt-3 w-full" aria-label={t.callAria(PHONE_DISPLAY)}>
+                  <Phone className="size-4" aria-hidden /> {t.call} · <span dir="ltr">{PHONE_DISPLAY}</span>
                 </GelButton>
+                <p className="flex items-center justify-center gap-1.5 px-3 pb-1 pt-2 text-xs text-muted-foreground">
+                  <Clock className="size-3.5" aria-hidden /> {t.hours}
+                </p>
               </motion.div>
             )}
           </AnimatePresence>
@@ -185,6 +229,7 @@ export function Nav({ route, basket, onBasket }: { route: Route; basket: Basket;
 }
 
 export function FloatingCall() {
+  const t = useT()
   return (
     <motion.div
       initial={{ y: 80, opacity: 0 }}
@@ -193,7 +238,7 @@ export function FloatingCall() {
       className="fixed bottom-4 right-4 z-30 flex flex-col gap-2 md:hidden"
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
-      <GelButton href={PHONE_TEL} className="size-14 rounded-full p-0" aria-label={`Call Moaviz at ${PHONE_DISPLAY}`}>
+      <GelButton href={PHONE_TEL} className="size-14 rounded-full p-0" aria-label={t.callAria(PHONE_DISPLAY)}>
         <Phone className="size-6" aria-hidden />
       </GelButton>
     </motion.div>
@@ -201,6 +246,8 @@ export function FloatingCall() {
 }
 
 export function BasketDrawer({ open, onClose, basket }: { open: boolean; onClose: () => void; basket: Basket }) {
+  const t = useT()
+  const { flowers } = useContent()
   const closeRef = useRef<HTMLButtonElement>(null)
   useEffect(() => {
     if (!open) return
@@ -213,10 +260,7 @@ export function BasketDrawer({ open, onClose, basket }: { open: boolean; onClose
   const entries = Object.entries(basket.items)
     .map(([slug, qty]) => ({ flower: flowers.find((f) => f.slug === slug), qty }))
     .filter((e) => e.flower)
-  const message =
-    "Hi Moaviz, I'd like to order these plants from Canadian Grass Farm:\n" +
-    entries.map((e) => `• ${e.flower!.name} × ${e.qty}`).join("\n") +
-    "\n\nPlease share price and availability."
+  const message = t.basket.message(entries.map((e) => ({ name: e.flower!.name, en: e.flower!.en, qty: e.qty })))
 
   return (
     <AnimatePresence>
@@ -242,13 +286,13 @@ export function BasketDrawer({ open, onClose, basket }: { open: boolean; onClose
           >
             <div className="mb-4 flex items-center justify-between">
               <h2 id="basket-title" className="text-2xl font-semibold">
-                Your plant order
+                {t.basket.title}
               </h2>
               <button
                 ref={closeRef}
                 type="button"
                 onClick={onClose}
-                aria-label="Close order list"
+                aria-label={t.basket.close}
                 className="grid size-11 cursor-pointer place-items-center rounded-full hover:bg-[var(--glass-tint)]"
               >
                 <X className="size-5" aria-hidden />
@@ -259,8 +303,8 @@ export function BasketDrawer({ open, onClose, basket }: { open: boolean; onClose
               <div className="grid flex-1 place-items-center text-center text-muted-foreground">
                 <div>
                   <ShoppingBasket className="mx-auto mb-3 size-10 text-primary" aria-hidden />
-                  <p>Your list is empty.</p>
-                  <p className="text-sm">Tap “Add to order” on any flower, then send the list to Moaviz on WhatsApp.</p>
+                  <p>{t.basket.empty}</p>
+                  <p className="text-sm">{t.basket.emptyHint}</p>
                 </div>
               </div>
             ) : (
@@ -280,7 +324,7 @@ export function BasketDrawer({ open, onClose, basket }: { open: boolean; onClose
                       <div className="flex items-center gap-1">
                         <button
                           type="button"
-                          aria-label={`Remove one ${flower!.name}`}
+                          aria-label={t.basket.removeOne(flower!.name)}
                           onClick={() => basket.set(flower!.slug, qty - 1)}
                           className="grid size-11 cursor-pointer place-items-center rounded-full hover:bg-[var(--glass-tint)]"
                         >
@@ -291,7 +335,7 @@ export function BasketDrawer({ open, onClose, basket }: { open: boolean; onClose
                         </span>
                         <button
                           type="button"
-                          aria-label={`Add one ${flower!.name}`}
+                          aria-label={t.basket.addOne(flower!.name)}
                           onClick={() => basket.set(flower!.slug, qty + 1)}
                           className="grid size-11 cursor-pointer place-items-center rounded-full hover:bg-[var(--glass-tint)]"
                         >
@@ -307,15 +351,15 @@ export function BasketDrawer({ open, onClose, basket }: { open: boolean; onClose
             <div className="mt-4 space-y-2 border-t border-border pt-4">
               {entries.length > 0 && (
                 <GelButton href={whatsappLink(message)} target="_blank" rel="noopener" className="w-full">
-                  Send order on WhatsApp
+                  {t.basket.send}
                 </GelButton>
               )}
               <GelButton href={PHONE_TEL} variant="glass" className="w-full">
-                <Phone className="size-4" aria-hidden /> Call Moaviz · {PHONE_DISPLAY}
+                <Phone className="size-4" aria-hidden /> {t.call} · <span dir="ltr">{PHONE_DISPLAY}</span>
               </GelButton>
               {entries.length > 0 && (
                 <button type="button" onClick={basket.clear} className="min-h-11 w-full cursor-pointer text-sm text-muted-foreground underline">
-                  Clear list
+                  {t.basket.clear}
                 </button>
               )}
             </div>
@@ -327,6 +371,8 @@ export function BasketDrawer({ open, onClose, basket }: { open: boolean; onClose
 }
 
 function VisitNursery() {
+  const t = useT()
+  const a = t.address
   return (
     <section id="visit" className="scroll-mt-24 px-4 sm:px-6" aria-labelledby="visit-title">
       <motion.div
@@ -340,17 +386,22 @@ function VisitNursery() {
           <MapPin className="size-8" aria-hidden />
         </span>
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">Visit our nursery</p>
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">{t.visit.eyebrow}</p>
           <h2 id="visit-title" className="mt-1 text-2xl font-semibold sm:text-3xl">
-            Come see the plants in person
+            {t.visit.title}
           </h2>
           <address className="mt-3 not-italic leading-relaxed text-muted-foreground">
-            {ADDRESS.street}
+            {a.street}
             <br />
-            {ADDRESS.area}, {ADDRESS.city}, {ADDRESS.region} {ADDRESS.postcode}
+            {a.area}, {a.city}, {a.region} {ADDRESS.postcode}
           </address>
-          <ul className="mt-3 flex flex-wrap gap-2" aria-label="Landmarks">
-            {ADDRESS.landmarks.map((l) => (
+          <p className="mt-2 flex items-center gap-2 font-semibold">
+            <Clock className="size-4 shrink-0 text-primary" aria-hidden />
+            <span className="sr-only">{t.hoursLabel}: </span>
+            {t.hours}
+          </p>
+          <ul className="mt-3 flex flex-wrap gap-2" aria-label={t.visit.landmarksAria}>
+            {a.landmarks.map((l) => (
               <li key={l} className="rounded-full bg-[var(--glass-tint)] px-3 py-1 text-sm font-semibold text-primary">
                 {l}
               </li>
@@ -359,10 +410,10 @@ function VisitNursery() {
         </div>
         <div className="flex flex-col gap-2">
           <GelButton href={MAPS_URL} target="_blank" rel="noopener" className="px-6">
-            <Navigation className="size-4" aria-hidden /> Get directions
+            <Navigation className="size-4" aria-hidden /> {t.visit.directions}
           </GelButton>
           <GelButton href={PHONE_TEL} variant="glass" className="px-6">
-            <Phone className="size-4" aria-hidden /> Call Moaviz
+            <Phone className="size-4" aria-hidden /> {t.call}
           </GelButton>
         </div>
       </motion.div>
@@ -371,6 +422,7 @@ function VisitNursery() {
 }
 
 export function Footer() {
+  const t = useT()
   return (
     <footer className="relative mt-24">
       <VisitNursery />
@@ -382,27 +434,32 @@ export function Footer() {
               <LogoMark className="size-16 drop-shadow-lg" />
               <Wordmark size="lg" plain />
             </div>
-            <p className="mt-3 text-sm opacity-90">Har rang, har mausam, phoolon ka sang.</p>
+            <p className="mt-3 text-sm opacity-90">{t.footer.slogan}</p>
+            <LanguageSwitch tone="footer" className="mt-4 max-w-xs" />
           </div>
           <div className="text-sm">
-            <p className="mb-1 font-bold uppercase tracking-wider opacity-80">Visit</p>
+            <p className="mb-1 font-bold uppercase tracking-wider opacity-80">{t.footer.visit}</p>
             <address className="flex gap-2 not-italic">
               <MapPin className="mt-0.5 size-4 shrink-0" aria-hidden />
-              <span>{ADDRESS_ONE_LINE}</span>
+              <span>{t.address.oneLine}</span>
             </address>
             <a href={MAPS_URL} target="_blank" rel="noopener" className="mt-1 flex min-h-11 items-center gap-2 font-semibold underline-offset-4 hover:underline">
-              <Navigation className="size-4" aria-hidden /> Get directions
+              <Navigation className="size-4" aria-hidden /> {t.visit.directions}
             </a>
+            <p className="mt-1 flex gap-2">
+              <Clock className="mt-0.5 size-4 shrink-0" aria-hidden />
+              <span>{t.hours}</span>
+            </p>
           </div>
           <div className="text-sm">
-            <p className="mb-1 font-bold uppercase tracking-wider opacity-80">Orders & projects</p>
+            <p className="mb-1 font-bold uppercase tracking-wider opacity-80">{t.footer.orders}</p>
             <a href={PHONE_TEL} className="flex min-h-11 items-center gap-2 font-semibold underline-offset-4 hover:underline">
-              <Phone className="size-4" aria-hidden /> Moaviz · {PHONE_DISPLAY}
+              <Phone className="size-4" aria-hidden /> {t.moaviz} · <span dir="ltr">{PHONE_DISPLAY}</span>
             </a>
           </div>
         </div>
         <p className="mx-auto mt-8 max-w-6xl text-xs opacity-80">
-          Green Living · Happy Life — © {new Date().getFullYear()} Canadian Grass Farm. Plant uses are traditional and for information only; consult a doctor before using any plant as medicine.
+          {t.footer.bottom(new Date().getFullYear())}
         </p>
       </div>
     </footer>
