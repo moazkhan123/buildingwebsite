@@ -2,7 +2,7 @@ import { flowers } from "@/data/flowers"
 import { grasses } from "@/data/landscaping"
 import { LANGS, type Lang } from "@/i18n/lang"
 import { ui } from "@/i18n/ui"
-import { ADDRESS_ONE_LINE, ADDRESS, EMAIL, GEO, INFO_EMAIL, PHONE_TEL } from "@/lib/contact"
+import { ADDRESS_ONE_LINE, ADDRESS, EMAIL, GEO, INFO_EMAIL, MAPS_PLACE_URL, PHONE_TEL } from "@/lib/contact"
 import { pathFor, routes, type Route } from "@/lib/router"
 
 export const SITE = "https://cangrassfarm.com"
@@ -60,7 +60,7 @@ function jsonLd(route: Route, lang: Lang) {
       addressCountry: "IN",
     },
     geo: { "@type": "GeoCoordinates", latitude: GEO.lat, longitude: GEO.lng },
-    hasMap: `https://www.google.com/maps/search/?api=1&query=${GEO.lat},${GEO.lng}`,
+    hasMap: MAPS_PLACE_URL,
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",

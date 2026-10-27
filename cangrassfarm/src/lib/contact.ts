@@ -18,8 +18,15 @@ export const ADDRESS = {
 
 export const ADDRESS_ONE_LINE = `${ADDRESS.street}, ${ADDRESS.landmarks.map((l) => l[0].toLowerCase() + l.slice(1)).join(", ")}, ${ADDRESS.area}, ${ADDRESS.city}, ${ADDRESS.region} ${ADDRESS.postcode}`
 
-// The nursery's exact pin (dropped beside Mehal Point).
-export const GEO = { lat: 30.5455439, lng: 75.8806352 }
+// The nursery's pin on its Google Maps listing (beside Mehal Point).
+export const GEO = { lat: 30.545545, lng: 75.8805946 }
 
-// Opens Google Maps directions straight to the pin.
-export const MAPS_URL = `https://www.google.com/maps/dir/?api=1&destination=${GEO.lat},${GEO.lng}`
+// The nursery's name as listed on Google Maps; links search by name so they open the listing
+// (with its photos, hours and reviews) rather than a bare pin.
+const MAPS_PLACE = encodeURIComponent("Canadian Grass Farm and Flower Nursery, Malerkotla")
+
+// Opens Google Maps directions to the listing.
+export const MAPS_URL = `https://www.google.com/maps/dir/?api=1&destination=${MAPS_PLACE}`
+
+// Opens the listing itself.
+export const MAPS_PLACE_URL = `https://www.google.com/maps/search/?api=1&query=${MAPS_PLACE}`
