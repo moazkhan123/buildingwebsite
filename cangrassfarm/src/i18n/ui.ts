@@ -30,13 +30,13 @@ const en = {
   hours: "Open every day · 7:00 AM – 7:00 PM",
   hoursLabel: "Hours",
   address: {
-    street: "Dhuri – Malerkotla – Ahmedgarh Rd",
+    street: "Ludhiana Bypass Rd",
     landmarks: ["Beside Mehal Point", "Opposite Sham Filling Station"],
     area: "Haji Abdullah Colony",
     city: "Malerkotla",
     region: "Punjab",
     oneLine:
-      "Dhuri – Malerkotla – Ahmedgarh Rd, beside Mehal Point, opposite Sham Filling Station, Haji Abdullah Colony, Malerkotla, Punjab 148023",
+      "Ludhiana Bypass Rd, beside Mehal Point, opposite Sham Filling Station, Haji Abdullah Colony, Malerkotla, Punjab 148023",
   },
   hero: {
     title1: "Green today,",
@@ -269,12 +269,12 @@ const hi: UI = {
   hours: "हर दिन खुला · सुबह 7 बजे से शाम 7 बजे तक",
   hoursLabel: "समय",
   address: {
-    street: "धूरी – मलेरकोटला – अहमदगढ़ रोड",
+    street: "लुधियाना बाईपास रोड",
     landmarks: ["महल पॉइंट के पास", "शाम फिलिंग स्टेशन के सामने"],
     area: "हाजी अब्दुल्ला कॉलोनी",
     city: "मलेरकोटला",
     region: "पंजाब",
-    oneLine: "धूरी – मलेरकोटला – अहमदगढ़ रोड, महल पॉइंट के पास, शाम फिलिंग स्टेशन के सामने, हाजी अब्दुल्ला कॉलोनी, मलेरकोटला, पंजाब 148023",
+    oneLine: "लुधियाना बाईपास रोड, महल पॉइंट के पास, शाम फिलिंग स्टेशन के सामने, हाजी अब्दुल्ला कॉलोनी, मलेरकोटला, पंजाब 148023",
   },
   hero: {
     title1: "आज हरियाली,",
@@ -499,12 +499,12 @@ const pa: UI = {
   hours: "ਹਰ ਰੋਜ਼ ਖੁੱਲ੍ਹਾ · ਸਵੇਰੇ 7 ਵਜੇ ਤੋਂ ਸ਼ਾਮ 7 ਵਜੇ ਤੱਕ",
   hoursLabel: "ਸਮਾਂ",
   address: {
-    street: "ਧੂਰੀ – ਮਲੇਰਕੋਟਲਾ – ਅਹਿਮਦਗੜ੍ਹ ਰੋਡ",
+    street: "ਲੁਧਿਆਣਾ ਬਾਈਪਾਸ ਰੋਡ",
     landmarks: ["ਮਹਿਲ ਪੁਆਇੰਟ ਦੇ ਨਾਲ", "ਸ਼ਾਮ ਫਿਲਿੰਗ ਸਟੇਸ਼ਨ ਦੇ ਸਾਹਮਣੇ"],
     area: "ਹਾਜੀ ਅਬਦੁੱਲਾ ਕਲੋਨੀ",
     city: "ਮਲੇਰਕੋਟਲਾ",
     region: "ਪੰਜਾਬ",
-    oneLine: "ਧੂਰੀ – ਮਲੇਰਕੋਟਲਾ – ਅਹਿਮਦਗੜ੍ਹ ਰੋਡ, ਮਹਿਲ ਪੁਆਇੰਟ ਦੇ ਨਾਲ, ਸ਼ਾਮ ਫਿਲਿੰਗ ਸਟੇਸ਼ਨ ਦੇ ਸਾਹਮਣੇ, ਹਾਜੀ ਅਬਦੁੱਲਾ ਕਲੋਨੀ, ਮਲੇਰਕੋਟਲਾ, ਪੰਜਾਬ 148023",
+    oneLine: "ਲੁਧਿਆਣਾ ਬਾਈਪਾਸ ਰੋਡ, ਮਹਿਲ ਪੁਆਇੰਟ ਦੇ ਨਾਲ, ਸ਼ਾਮ ਫਿਲਿੰਗ ਸਟੇਸ਼ਨ ਦੇ ਸਾਹਮਣੇ, ਹਾਜੀ ਅਬਦੁੱਲਾ ਕਲੋਨੀ, ਮਲੇਰਕੋਟਲਾ, ਪੰਜਾਬ 148023",
   },
   hero: {
     title1: "ਅੱਜ ਹਰਿਆਲੀ,",
