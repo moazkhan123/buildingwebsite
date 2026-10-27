@@ -1,8 +1,8 @@
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react"
-import { ChevronDown, Clock, Flower2, Languages, MapPin, Menu as MenuIcon, Navigation, Minus, Phone, Plus, ShoppingBasket, Sprout, Trash2, X } from "lucide-react"
+import { ChevronDown, Clock, Flower2, Languages, Mail, MapPin, Menu as MenuIcon, Minus, Navigation, Phone, Plus, ShoppingBasket, Sprout, Trash2, X } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import type { Basket } from "@/lib/basket"
-import { ADDRESS, MAPS_URL, PHONE_DISPLAY, PHONE_TEL, whatsappLink } from "@/lib/contact"
+import { ADDRESS, EMAIL, INFO_EMAIL, MAPS_URL, PHONE_DISPLAY, PHONE_TEL, whatsappLink } from "@/lib/contact"
 import { navigate, type Route } from "@/lib/router"
 import { useContent, useT } from "@/i18n/content"
 import { LANGS, useHref, useLang } from "@/i18n/lang"
@@ -401,6 +401,12 @@ function VisitNursery() {
             <span className="sr-only">{t.hoursLabel}: </span>
             {t.hours}
           </p>
+          {[INFO_EMAIL, EMAIL].map((e) => (
+            <a key={e} href={`mailto:${e}`} className="flex min-h-11 w-fit items-center gap-2 font-semibold underline-offset-4 hover:underline">
+              <Mail className="size-4 shrink-0 text-primary" aria-hidden />
+              <span dir="ltr">{e}</span>
+            </a>
+          ))}
           <ul className="mt-3 flex flex-wrap gap-2" aria-label={t.visit.landmarksAria}>
             {a.landmarks.map((l) => (
               <li key={l} className="rounded-full bg-[var(--glass-tint)] px-3 py-1 text-sm font-semibold text-primary">
@@ -457,6 +463,11 @@ export function Footer() {
             <a href={PHONE_TEL} className="flex min-h-11 items-center gap-2 font-semibold underline-offset-4 hover:underline">
               <Phone className="size-4" aria-hidden /> {t.moaviz} · <span dir="ltr">{PHONE_DISPLAY}</span>
             </a>
+            {[INFO_EMAIL, EMAIL].map((e) => (
+              <a key={e} href={`mailto:${e}`} className="flex min-h-11 items-center gap-2 font-semibold underline-offset-4 hover:underline">
+                <Mail className="size-4" aria-hidden /> <span dir="ltr">{e}</span>
+              </a>
+            ))}
           </div>
         </div>
         <p className="mx-auto mt-8 max-w-6xl text-xs opacity-80">

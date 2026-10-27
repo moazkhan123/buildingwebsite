@@ -2,7 +2,7 @@ import { flowers } from "@/data/flowers"
 import { grasses } from "@/data/landscaping"
 import { LANGS, type Lang } from "@/i18n/lang"
 import { ui } from "@/i18n/ui"
-import { ADDRESS_ONE_LINE, ADDRESS, GEO, PHONE_TEL } from "@/lib/contact"
+import { ADDRESS_ONE_LINE, ADDRESS, EMAIL, GEO, INFO_EMAIL, PHONE_TEL } from "@/lib/contact"
 import { pathFor, routes, type Route } from "@/lib/router"
 
 export const SITE = "https://cangrassfarm.com"
@@ -50,6 +50,7 @@ function jsonLd(route: Route, lang: Lang) {
     logo: `${SITE}/icon-512.png`,
     image: [`${SITE}/og-image.jpg`, `${SITE}/img/projects/curved-lawn-borders.webp`],
     telephone: PHONE,
+    email: INFO_EMAIL,
     address: {
       "@type": "PostalAddress",
       streetAddress: ADDRESS_ONE_LINE.split(`, ${ADDRESS.city}`)[0],
@@ -75,6 +76,7 @@ function jsonLd(route: Route, lang: Lang) {
     contactPoint: {
       "@type": "ContactPoint",
       telephone: PHONE,
+      email: EMAIL,
       contactType: "sales",
       name: "Moaviz",
       availableLanguage: ["English", "Hindi", "Punjabi"],
