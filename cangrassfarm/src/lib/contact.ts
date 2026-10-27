@@ -8,7 +8,7 @@ export function whatsappLink(message: string) {
 }
 
 export const ADDRESS = {
-  street: "Dhuri – Malerkotla – Ahmedgarh Rd",
+  street: "Ludhiana Bypass Rd",
   landmarks: ["Beside Mehal Point", "Opposite Sham Filling Station"],
   area: "Haji Abdullah Colony",
   city: "Malerkotla",
