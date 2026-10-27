@@ -1,5 +1,5 @@
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react"
-import { ChevronDown, Clock, Flower2, Languages, Mail, MapPin, Menu as MenuIcon, MessageSquareText, Minus, Navigation, Phone, Plus, ShoppingBasket, Sprout, Trash2, X } from "lucide-react"
+import { ChevronDown, Clock, Flower2, Languages, Mail, MapPin, Menu as MenuIcon, Minus, Navigation, Phone, Plus, ShoppingBasket, Sprout, Trash2, X } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import type { Basket } from "@/lib/basket"
 import { ADDRESS, EMAIL, INFO_EMAIL, MAPS_URL, PHONE_DISPLAY, PHONE_TEL, whatsappLink } from "@/lib/contact"
@@ -53,7 +53,6 @@ export function Nav({ route, basket, onBasket }: { route: Route; basket: Basket;
   const links: { to: Route; label: string; hint: string; icon: typeof Flower2 }[] = [
     { to: "/", label: t.nav.flowers, hint: t.nav.flowersHint, icon: Flower2 },
     { to: "/landscaping", label: t.nav.landscaping, hint: t.nav.landscapingHint, icon: Sprout },
-    { to: "/contact", label: t.nav.inquiry, hint: t.nav.inquiryHint, icon: MessageSquareText },
   ]
   const [open, setOpen] = useState(false)
   const wrapRef = useRef<HTMLDivElement>(null)
@@ -374,7 +373,6 @@ export function BasketDrawer({ open, onClose, basket }: { open: boolean; onClose
 
 function VisitNursery() {
   const t = useT()
-  const href = useHref()
   const a = t.address
   return (
     <section id="visit" className="scroll-mt-24 px-4 sm:px-6" aria-labelledby="visit-title">
@@ -424,17 +422,6 @@ function VisitNursery() {
           <GelButton href={PHONE_TEL} variant="glass" className="px-6">
             <Phone className="size-4" aria-hidden /> {t.call}
           </GelButton>
-          <GelButton
-            href={href("/contact")}
-            variant="glass"
-            className="px-6"
-            onClick={(e) => {
-              e.preventDefault()
-              navigate("/contact")
-            }}
-          >
-            <MessageSquareText className="size-4" aria-hidden /> {t.visit.inquiry}
-          </GelButton>
         </div>
       </motion.div>
     </section>
@@ -443,7 +430,6 @@ function VisitNursery() {
 
 export function Footer() {
   const t = useT()
-  const href = useHref()
   return (
     <footer className="relative mt-24">
       <VisitNursery />
@@ -482,16 +468,6 @@ export function Footer() {
                 <Mail className="size-4" aria-hidden /> <span dir="ltr">{e}</span>
               </a>
             ))}
-            <a
-              href={href("/contact")}
-              onClick={(e) => {
-                e.preventDefault()
-                navigate("/contact")
-              }}
-              className="flex min-h-11 items-center gap-2 font-semibold underline-offset-4 hover:underline"
-            >
-              <MessageSquareText className="size-4" aria-hidden /> {t.visit.inquiry}
-            </a>
           </div>
         </div>
         <p className="mx-auto mt-8 max-w-6xl text-xs opacity-80">

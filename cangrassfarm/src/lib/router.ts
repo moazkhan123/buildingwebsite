@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
 import type { Lang } from "@/i18n/lang"
 
-export type Route = "/" | "/landscaping" | "/contact"
-export const routes: Route[] = ["/", "/landscaping", "/contact"]
+export type Route = "/" | "/landscaping"
+export const routes: Route[] = ["/", "/landscaping"]
 
 // Each language has its own URLs so search engines can index them:
-// /, /landscaping, /contact (English), then the same under /hi/ and /pa/.
+// /, /landscaping (English), /hi/, /hi/landscaping, /pa/, /pa/landscaping.
 let serverPath: string | null = null
 /** Set while prerendering pages at build time, where there is no window. */
 export const setServerPath = (p: string) => {
@@ -17,7 +17,7 @@ export function parsePath(path: string): { lang: Lang; route: Route } {
   const m = path.match(/^\/(hi|pa)(?=\/|$)/)
   const lang: Lang = m ? (m[1] as Lang) : "en"
   const rest = (m ? path.slice(m[0].length) : path).replace(/\/+$/, "")
-  return { lang, route: rest === "/landscaping" || rest === "/contact" ? rest : "/" }
+  return { lang, route: rest === "/landscaping" ? "/landscaping" : "/" }
 }
 
 export function pathFor(route: Route, lang: Lang) {
