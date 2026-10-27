@@ -80,23 +80,17 @@ function jsonLd(route: Route, lang: Lang) {
       availableLanguage: ["English", "Hindi", "Punjabi"],
     },
     slogan: "Green Today, Beautiful Tomorrow",
-    knowsAbout: ["Flower nursery", "Lawn grass", "Landscaping", "Garden design", "Indoor plants"],
-    hasOfferCatalog: {
-      "@type": "OfferCatalog",
-      name: "Plants and lawn grass",
-      itemListElement: [
-        {
-          "@type": "OfferCatalog",
-          name: "Lawn grass",
-          itemListElement: grasses.map((g) => ({ "@type": "Offer", itemOffered: { "@type": "Product", name: g.name, description: g.tagline } })),
-        },
-        {
-          "@type": "OfferCatalog",
-          name: "Flowers and plants",
-          itemListElement: flowers.map((f) => ({ "@type": "Offer", itemOffered: { "@type": "Product", name: f.local ? `${f.name} (${f.local})` : f.name } })),
-        },
-      ],
-    },
+    // Plants and grasses are listed as things the nursery knows about, not as Products: Google
+    // flags Products without a price as invalid "Product snippets".
+    knowsAbout: [
+      "Flower nursery",
+      "Lawn grass",
+      "Landscaping",
+      "Garden design",
+      "Indoor plants",
+      ...grasses.map((g) => g.name),
+      ...flowers.map((f) => (f.local ? `${f.name} (${f.local})` : f.name)),
+    ],
   }
   const graph: object[] = [
     business,
