@@ -6,6 +6,7 @@ import { useT } from "@/i18n/content"
 import { LangProvider, useLang } from "@/i18n/lang"
 import { useBasket } from "@/lib/basket"
 import { useRoute } from "@/lib/router"
+import ContactPage from "@/pages/Contact"
 import FlowersPage from "@/pages/Flowers"
 import { pageMeta } from "@/seo"
 
@@ -63,6 +64,8 @@ function Site() {
           >
             {route === "/" ? (
               <FlowersPage basket={basket} />
+            ) : route === "/contact" ? (
+              <ContactPage />
             ) : import.meta.env.SSR ? (
               // Build-time prerender: no Suspense boundary, so React waits for the page instead of
               // emitting inline swap scripts (which the CSP would block).
