@@ -14,16 +14,22 @@ const descriptions: Record<Lang, Record<Route, string>> = {
     "/": "Flower nursery in Malerkotla, Punjab: 31 flower varieties with their benefits and uses in tea and home remedies, indoor plants and lawn grass. Open every day 7 AM – 7 PM. Call Moaviz at +91 90413 76098.",
     "/landscaping":
       "Lawn and garden landscaping in Malerkotla and Punjab. Canadian, Bermuda, Golf, All Season and Winter grass chosen for your soil, sunlight and weather. Free grass finder and design concepts. Call Moaviz at +91 90413 76098.",
+    "/contact":
+      "Send an inquiry to Canadian Grass Farm & Flower Nursery, Malerkotla: ask about flowers, plants, lawn grass or landscaping and we reply by email from info@cangrassfarm.com.",
   },
   hi: {
     "/": "मलेरकोटला, पंजाब में फूलों की नर्सरी: 31 किस्मों के फूल, उनके फ़ायदे और चाय व घरेलू नुस्ख़ों में उपयोग, इनडोर पौधे और लॉन घास। हर दिन सुबह 7 से शाम 7 बजे तक खुला। मोआविज़ को कॉल करें: +91 90413 76098।",
     "/landscaping":
       "मलेरकोटला और पंजाब में लॉन और बगीचे की लैंडस्केपिंग। आपकी मिट्टी, धूप और मौसम के अनुसार कैनेडियन, बरमूडा, गोल्फ़, ऑल सीज़न और विंटर घास। मुफ़्त घास चयन और डिज़ाइन आइडिया। मोआविज़ को कॉल करें: +91 90413 76098।",
+    "/contact":
+      "कैनेडियन ग्रास फार्म एंड फ्लावर नर्सरी, मलेरकोटला को पूछताछ भेजें: फूलों, पौधों, लॉन घास या लैंडस्केपिंग के बारे में पूछें, हम info@cangrassfarm.com से ईमेल पर जवाब देते हैं।",
   },
   pa: {
     "/": "ਮਲੇਰਕੋਟਲਾ, ਪੰਜਾਬ ਵਿੱਚ ਫੁੱਲਾਂ ਦੀ ਨਰਸਰੀ: 31 ਕਿਸਮਾਂ ਦੇ ਫੁੱਲ, ਉਹਨਾਂ ਦੇ ਫ਼ਾਇਦੇ ਅਤੇ ਚਾਹ ਤੇ ਦੇਸੀ ਨੁਸਖ਼ਿਆਂ ਵਿੱਚ ਵਰਤੋਂ, ਇਨਡੋਰ ਪੌਦੇ ਅਤੇ ਲਾਅਨ ਘਾਹ। ਹਰ ਰੋਜ਼ ਸਵੇਰੇ 7 ਤੋਂ ਸ਼ਾਮ 7 ਵਜੇ ਤੱਕ ਖੁੱਲ੍ਹਾ। ਮੋਆਵਿਜ਼ ਨੂੰ ਕਾਲ ਕਰੋ: +91 90413 76098।",
     "/landscaping":
       "ਮਲੇਰਕੋਟਲਾ ਅਤੇ ਪੰਜਾਬ ਵਿੱਚ ਲਾਅਨ ਅਤੇ ਬਾਗ਼ ਦੀ ਲੈਂਡਸਕੇਪਿੰਗ। ਤੁਹਾਡੀ ਮਿੱਟੀ, ਧੁੱਪ ਅਤੇ ਮੌਸਮ ਅਨੁਸਾਰ ਕੈਨੇਡੀਅਨ, ਬਰਮੂਡਾ, ਗੋਲਫ਼, ਆਲ ਸੀਜ਼ਨ ਅਤੇ ਵਿੰਟਰ ਘਾਹ। ਮੁਫ਼ਤ ਘਾਹ ਚੋਣ ਅਤੇ ਡਿਜ਼ਾਈਨ ਵਿਚਾਰ। ਮੋਆਵਿਜ਼ ਨੂੰ ਕਾਲ ਕਰੋ: +91 90413 76098।",
+    "/contact":
+      "ਕੈਨੇਡੀਅਨ ਗ੍ਰਾਸ ਫਾਰਮ ਐਂਡ ਫਲਾਵਰ ਨਰਸਰੀ, ਮਲੇਰਕੋਟਲਾ ਨੂੰ ਪੁੱਛਗਿੱਛ ਭੇਜੋ: ਫੁੱਲਾਂ, ਪੌਦਿਆਂ, ਲਾਅਨ ਘਾਹ ਜਾਂ ਲੈਂਡਸਕੇਪਿੰਗ ਬਾਰੇ ਪੁੱਛੋ, ਅਸੀਂ info@cangrassfarm.com ਤੋਂ ਈਮੇਲ ਰਾਹੀਂ ਜਵਾਬ ਦਿੰਦੇ ਹਾਂ।",
   },
 }
 
@@ -105,7 +111,7 @@ function jsonLd(route: Route, lang: Lang) {
       publisher: { "@id": `${SITE}/#business` },
     },
     {
-      "@type": "WebPage",
+      "@type": route === "/contact" ? "ContactPage" : "WebPage",
       "@id": `${url}#webpage`,
       url,
       name: title,
@@ -114,29 +120,29 @@ function jsonLd(route: Route, lang: Lang) {
       isPartOf: { "@id": `${SITE}/#website` },
       about: { "@id": `${SITE}/#business` },
       primaryImageOfPage: `${SITE}/og-image.jpg`,
-      ...(route === "/landscaping" && { breadcrumb: { "@id": `${url}#breadcrumb` } }),
+      ...(route !== "/" && { breadcrumb: { "@id": `${url}#breadcrumb` } }),
     },
   ]
+  if (route !== "/") {
+    graph.push({
+      "@type": "BreadcrumbList",
+      "@id": `${url}#breadcrumb`,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: ui[lang].nav.flowers, item: urlFor("/", lang) },
+        { "@type": "ListItem", position: 2, name: route === "/contact" ? ui[lang].nav.inquiry : ui[lang].nav.landscaping, item: url },
+      ],
+    })
+  }
   if (route === "/landscaping") {
-    graph.push(
-      {
-        "@type": "Service",
-        "@id": `${url}#service`,
-        serviceType: "Landscaping and lawn installation",
-        name: ui[lang].nav.landscaping,
-        description,
-        provider: { "@id": `${SITE}/#business` },
-        areaServed: { "@type": "State", name: "Punjab" },
-      },
-      {
-        "@type": "BreadcrumbList",
-        "@id": `${url}#breadcrumb`,
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: ui[lang].nav.flowers, item: urlFor("/", lang) },
-          { "@type": "ListItem", position: 2, name: ui[lang].nav.landscaping, item: url },
-        ],
-      },
-    )
+    graph.push({
+      "@type": "Service",
+      "@id": `${url}#service`,
+      serviceType: "Landscaping and lawn installation",
+      name: ui[lang].nav.landscaping,
+      description,
+      provider: { "@id": `${SITE}/#business` },
+      areaServed: { "@type": "State", name: "Punjab" },
+    })
   }
   return JSON.stringify({ "@context": "https://schema.org", "@graph": graph })
 }
