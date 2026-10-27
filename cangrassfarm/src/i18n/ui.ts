@@ -10,7 +10,6 @@ const en = {
   titles: {
     "/": "Canadian Grass Farm & Flower Nursery — Flowers, Plants & Lawn Grass in Malerkotla",
     "/landscaping": "Landscaping & Lawn Grass — Canadian Grass Farm, Malerkotla",
-    "/contact": "Send an inquiry — Canadian Grass Farm & Flower Nursery, Malerkotla",
   },
   skip: "Skip to content",
   nav: {
@@ -22,8 +21,6 @@ const en = {
     flowersHint: "31 flowers and what they're good for",
     landscaping: "Landscaping",
     landscapingHint: "Lawns, design concepts, grass finder",
-    inquiry: "Inquiry",
-    inquiryHint: "Send us a question by email",
     orderList: "Your order list",
     language: "Language",
   },
@@ -140,7 +137,6 @@ const en = {
     title: "Come see the plants in person",
     landmarksAria: "Landmarks",
     directions: "Get directions",
-    inquiry: "Send an inquiry",
   },
   footer: {
     slogan: "Har rang, har mausam, phoolon ka sang.",
@@ -245,25 +241,6 @@ const en = {
     whatsapp: "WhatsApp Moaviz",
     msg: "Hi Moaviz, I'd like to discuss a landscaping project.",
   },
-  contact: {
-    eyebrow: "Inquiry",
-    title: "Send us your question",
-    intro: "Ask about plants, lawn grass or a landscaping project. Your message goes to info@cangrassfarm.com and we reply by email.",
-    name: "Your name",
-    email: "Your email",
-    query: "Your question",
-    queryHint: "Up to 500 words",
-    words: (n: number, max: number) => `${n} / ${max} words`,
-    tooLong: (max: number) => `Please keep your question to ${max} words.`,
-    send: "Send inquiry",
-    sending: "Sending…",
-    sentTitle: "Thank you! Your inquiry has been sent.",
-    sentText: "We'll reply to your email soon. For anything urgent, call or WhatsApp Moaviz.",
-    another: "Send another inquiry",
-    error: "Sorry, your inquiry couldn't be sent. Please try again, or email info@cangrassfarm.com directly.",
-    subject: (name: string) => `Website inquiry from ${name}`,
-    orReach: "You can also reach us at",
-  },
 }
 
 export type UI = typeof en
@@ -272,7 +249,6 @@ const hi: UI = {
   titles: {
     "/": "कैनेडियन ग्रास फार्म एंड फ्लावर नर्सरी — मलेरकोटला में फूल, पौधे और लॉन घास",
     "/landscaping": "लैंडस्केपिंग और लॉन घास — कैनेडियन ग्रास फार्म, मलेरकोटला",
-    "/contact": "पूछताछ भेजें — कैनेडियन ग्रास फार्म एंड फ्लावर नर्सरी, मलेरकोटला",
   },
   skip: "मुख्य सामग्री पर जाएँ",
   nav: {
@@ -284,8 +260,6 @@ const hi: UI = {
     flowersHint: "31 फूल और उनके फ़ायदे",
     landscaping: "लैंडस्केपिंग",
     landscapingHint: "लॉन, डिज़ाइन आइडिया, घास चुनें",
-    inquiry: "पूछताछ",
-    inquiryHint: "ईमेल से हमसे सवाल पूछें",
     orderList: "आपकी ऑर्डर सूची",
     language: "भाषा",
   },
@@ -395,7 +369,6 @@ const hi: UI = {
     title: "पौधों को ख़ुद आकर देखें",
     landmarksAria: "पहचान के निशान",
     directions: "रास्ता देखें",
-    inquiry: "पूछताछ भेजें",
   },
   footer: {
     slogan: "हर रंग, हर मौसम, फूलों का संग।",
@@ -500,32 +473,12 @@ const hi: UI = {
     whatsapp: "मोआविज़ को व्हाट्सऐप करें",
     msg: "हैलो मोआविज़ जी, मैं एक लैंडस्केपिंग प्रोजेक्ट के बारे में बात करना चाहता/चाहती हूँ।",
   },
-  contact: {
-    eyebrow: "पूछताछ",
-    title: "हमें अपना सवाल भेजें",
-    intro: "पौधों, लॉन घास या लैंडस्केपिंग प्रोजेक्ट के बारे में पूछें। आपका संदेश info@cangrassfarm.com पर जाता है और हम ईमेल से जवाब देते हैं।",
-    name: "आपका नाम",
-    email: "आपका ईमेल",
-    query: "आपका सवाल",
-    queryHint: "500 शब्दों तक",
-    words: (n, max) => `${n} / ${max} शब्द`,
-    tooLong: (max) => `कृपया अपना सवाल ${max} शब्दों में लिखें।`,
-    send: "पूछताछ भेजें",
-    sending: "भेजा जा रहा है…",
-    sentTitle: "धन्यवाद! आपकी पूछताछ भेज दी गई है।",
-    sentText: "हम जल्द ही आपके ईमेल पर जवाब देंगे। ज़रूरी बात के लिए मोआविज़ को कॉल या व्हाट्सऐप करें।",
-    another: "एक और पूछताछ भेजें",
-    error: "माफ़ कीजिए, आपकी पूछताछ नहीं भेजी जा सकी। कृपया फिर से कोशिश करें, या सीधे info@cangrassfarm.com पर ईमेल करें।",
-    subject: (name) => `Website inquiry from ${name}`,
-    orReach: "आप हमसे यहाँ भी संपर्क कर सकते हैं",
-  },
 }
 
 const pa: UI = {
   titles: {
     "/": "ਕੈਨੇਡੀਅਨ ਗ੍ਰਾਸ ਫਾਰਮ ਐਂਡ ਫਲਾਵਰ ਨਰਸਰੀ — ਮਲੇਰਕੋਟਲਾ ਵਿੱਚ ਫੁੱਲ, ਪੌਦੇ ਅਤੇ ਲਾਅਨ ਘਾਹ",
     "/landscaping": "ਲੈਂਡਸਕੇਪਿੰਗ ਅਤੇ ਲਾਅਨ ਘਾਹ — ਕੈਨੇਡੀਅਨ ਗ੍ਰਾਸ ਫਾਰਮ, ਮਲੇਰਕੋਟਲਾ",
-    "/contact": "ਪੁੱਛਗਿੱਛ ਭੇਜੋ — ਕੈਨੇਡੀਅਨ ਗ੍ਰਾਸ ਫਾਰਮ ਐਂਡ ਫਲਾਵਰ ਨਰਸਰੀ, ਮਲੇਰਕੋਟਲਾ",
   },
   skip: "ਮੁੱਖ ਸਮੱਗਰੀ ਤੇ ਜਾਓ",
   nav: {
@@ -537,8 +490,6 @@ const pa: UI = {
     flowersHint: "31 ਫੁੱਲ ਅਤੇ ਉਹਨਾਂ ਦੇ ਫ਼ਾਇਦੇ",
     landscaping: "ਲੈਂਡਸਕੇਪਿੰਗ",
     landscapingHint: "ਲਾਅਨ, ਡਿਜ਼ਾਈਨ ਵਿਚਾਰ, ਘਾਹ ਚੁਣੋ",
-    inquiry: "ਪੁੱਛਗਿੱਛ",
-    inquiryHint: "ਈਮੇਲ ਰਾਹੀਂ ਸਾਨੂੰ ਸਵਾਲ ਪੁੱਛੋ",
     orderList: "ਤੁਹਾਡੀ ਆਰਡਰ ਸੂਚੀ",
     language: "ਭਾਸ਼ਾ",
   },
@@ -648,7 +599,6 @@ const pa: UI = {
     title: "ਪੌਦੇ ਆਪ ਆ ਕੇ ਵੇਖੋ",
     landmarksAria: "ਪਛਾਣ ਦੇ ਨਿਸ਼ਾਨ",
     directions: "ਰਸਤਾ ਵੇਖੋ",
-    inquiry: "ਪੁੱਛਗਿੱਛ ਭੇਜੋ",
   },
   footer: {
     slogan: "ਹਰ ਰੰਗ, ਹਰ ਮੌਸਮ, ਫੁੱਲਾਂ ਦਾ ਸੰਗ।",
@@ -752,25 +702,6 @@ const pa: UI = {
     text: "ਮਲੇਰਕੋਟਲਾ ਅਤੇ ਸਾਰੇ ਪੰਜਾਬ ਵਿੱਚ ਘਰ, ਫਾਰਮਹਾਊਸ, ਸਕੂਲ, ਹੋਟਲ ਅਤੇ ਵਿਆਹ ਵਾਲੀਆਂ ਥਾਵਾਂ। ਸਾਈਟ ਵਿਜ਼ਿਟ ਬੁੱਕ ਕਰਨ ਲਈ ਮੋਆਵਿਜ਼ ਨੂੰ ਕਾਲ ਕਰੋ।",
     whatsapp: "ਮੋਆਵਿਜ਼ ਨੂੰ ਵਟਸਐਪ ਕਰੋ",
     msg: "ਹੈਲੋ ਮੋਆਵਿਜ਼ ਜੀ, ਮੈਂ ਇੱਕ ਲੈਂਡਸਕੇਪਿੰਗ ਪ੍ਰੋਜੈਕਟ ਬਾਰੇ ਗੱਲ ਕਰਨਾ ਚਾਹੁੰਦਾ/ਚਾਹੁੰਦੀ ਹਾਂ।",
-  },
-  contact: {
-    eyebrow: "ਪੁੱਛਗਿੱਛ",
-    title: "ਸਾਨੂੰ ਆਪਣਾ ਸਵਾਲ ਭੇਜੋ",
-    intro: "ਪੌਦਿਆਂ, ਲਾਅਨ ਘਾਹ ਜਾਂ ਲੈਂਡਸਕੇਪਿੰਗ ਪ੍ਰੋਜੈਕਟ ਬਾਰੇ ਪੁੱਛੋ। ਤੁਹਾਡਾ ਸੁਨੇਹਾ info@cangrassfarm.com ਤੇ ਜਾਂਦਾ ਹੈ ਅਤੇ ਅਸੀਂ ਈਮੇਲ ਰਾਹੀਂ ਜਵਾਬ ਦਿੰਦੇ ਹਾਂ।",
-    name: "ਤੁਹਾਡਾ ਨਾਮ",
-    email: "ਤੁਹਾਡੀ ਈਮੇਲ",
-    query: "ਤੁਹਾਡਾ ਸਵਾਲ",
-    queryHint: "500 ਸ਼ਬਦਾਂ ਤੱਕ",
-    words: (n, max) => `${n} / ${max} ਸ਼ਬਦ`,
-    tooLong: (max) => `ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਸਵਾਲ ${max} ਸ਼ਬਦਾਂ ਵਿੱਚ ਲਿਖੋ।`,
-    send: "ਪੁੱਛਗਿੱਛ ਭੇਜੋ",
-    sending: "ਭੇਜੀ ਜਾ ਰਹੀ ਹੈ…",
-    sentTitle: "ਧੰਨਵਾਦ! ਤੁਹਾਡੀ ਪੁੱਛਗਿੱਛ ਭੇਜ ਦਿੱਤੀ ਗਈ ਹੈ।",
-    sentText: "ਅਸੀਂ ਜਲਦੀ ਹੀ ਤੁਹਾਡੀ ਈਮੇਲ ਤੇ ਜਵਾਬ ਦੇਵਾਂਗੇ। ਜ਼ਰੂਰੀ ਗੱਲ ਲਈ ਮੋਆਵਿਜ਼ ਨੂੰ ਕਾਲ ਜਾਂ ਵਟਸਐਪ ਕਰੋ।",
-    another: "ਇੱਕ ਹੋਰ ਪੁੱਛਗਿੱਛ ਭੇਜੋ",
-    error: "ਮਾਫ਼ ਕਰਨਾ, ਤੁਹਾਡੀ ਪੁੱਛਗਿੱਛ ਨਹੀਂ ਭੇਜੀ ਜਾ ਸਕੀ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ, ਜਾਂ ਸਿੱਧਾ info@cangrassfarm.com ਤੇ ਈਮੇਲ ਕਰੋ।",
-    subject: (name) => `Website inquiry from ${name}`,
-    orReach: "ਤੁਸੀਂ ਸਾਡੇ ਨਾਲ ਇੱਥੇ ਵੀ ਸੰਪਰਕ ਕਰ ਸਕਦੇ ਹੋ",
   },
 }
 
