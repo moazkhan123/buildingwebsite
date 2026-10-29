@@ -33,16 +33,10 @@ function Hero() {
           >
             <Trees className="size-4" aria-hidden /> {t.landHero.badge}
           </motion.p>
-          <motion.h1
-            id="land-title"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="text-balance text-4xl font-bold sm:text-6xl"
-          >
+          <h1 id="land-title" className="text-balance text-4xl font-bold sm:text-6xl">
             {t.landHero.title1}{" "}
             <span className="bloom-text">{t.landHero.title2}</span>
-          </motion.h1>
+          </h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -111,7 +105,7 @@ function Projects() {
               <motion.img
                 layoutId={`project-${i}`}
                 src={p.img}
-                alt=""
+                alt={`${p.title} (${p.kind})`}
                 loading="lazy"
                 className="h-full w-full rounded-[1.4rem] object-cover transition-transform duration-500 group-hover:scale-105"
               />
@@ -557,7 +551,9 @@ function GrassCatalog() {
   const { grasses } = useContent()
   return (
     <section id="grasses" className="scroll-mt-24 px-4 pt-24 sm:px-6" aria-labelledby="grasses-title">
-      <SectionHeading eyebrow={t.catalog.eyebrow} title={t.catalog.title} id="grasses-title" />
+      <SectionHeading eyebrow={t.catalog.eyebrow} title={t.catalog.title} id="grasses-title">
+        {t.catalog.intro}
+      </SectionHeading>
       <ul className="mx-auto grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-6">
         {grasses.map((g, i) => (
           <GrassCard key={g.id} g={g} i={i} className={i < 3 ? "lg:col-span-2" : "lg:col-span-3"} />

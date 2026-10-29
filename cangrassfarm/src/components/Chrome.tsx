@@ -1,5 +1,5 @@
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react"
-import { ChevronDown, Clock, Flower2, Languages, Mail, MapPin, Menu as MenuIcon, Minus, Navigation, Phone, Plus, ShoppingBasket, Sprout, Trash2, X } from "lucide-react"
+import { ChevronDown, Clock, Flower2, Languages, Mail, MapPin, Menu as MenuIcon, Minus, Navigation, PackageCheck, Phone, Plus, ShoppingBasket, Sprout, Trash2, Truck, X } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import type { Basket } from "@/lib/basket"
 import { ADDRESS, EMAIL, INFO_EMAIL, MAPS_URL, PHONE_DISPLAY, PHONE_TEL, whatsappLink } from "@/lib/contact"
@@ -401,6 +401,14 @@ function VisitNursery() {
             <span className="sr-only">{t.hoursLabel}: </span>
             {t.hours}
           </p>
+          <p className="mt-1 flex items-center gap-2 font-semibold">
+            <Truck className="size-4 shrink-0 text-primary" aria-hidden />
+            {t.visit.delivery}
+          </p>
+          <p className="mt-1 flex items-center gap-2 font-semibold">
+            <PackageCheck className="size-4 shrink-0 text-primary" aria-hidden />
+            {t.visit.wholesale}
+          </p>
           {[INFO_EMAIL, EMAIL].map((e) => (
             <a key={e} href={`mailto:${e}`} className="flex min-h-11 w-fit items-center gap-2 font-semibold underline-offset-4 hover:underline">
               <Mail className="size-4 shrink-0 text-primary" aria-hidden />
@@ -430,12 +438,17 @@ function VisitNursery() {
 
 export function Footer() {
   const t = useT()
+  const href = useHref()
+  const pages: { to: Route; label: string }[] = [
+    { to: "/", label: t.nav.flowers },
+    { to: "/landscaping", label: t.nav.landscaping },
+  ]
   return (
     <footer className="relative mt-24">
       <VisitNursery />
       <GrassField height={70} density={180} className="mt-16" />
       <div className="-mt-px bg-gradient-to-b from-primary-2 to-primary px-6 pb-10 pt-8 text-on-primary">
-        <div className="mx-auto grid max-w-6xl gap-8 sm:grid-cols-3">
+        <div className="mx-auto grid max-w-6xl gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <div className="logo-hover flex items-center gap-3">
               <LogoMark className="size-16 drop-shadow-lg" />
@@ -457,7 +470,31 @@ export function Footer() {
               <Clock className="mt-0.5 size-4 shrink-0" aria-hidden />
               <span>{t.hours}</span>
             </p>
+            <p className="mt-1 flex gap-2">
+              <Truck className="mt-0.5 size-4 shrink-0" aria-hidden />
+              <span>{t.visit.delivery}</span>
+            </p>
           </div>
+          {/* Plain page links, always in the HTML, so every page is linked from every other. */}
+          <nav className="text-sm" aria-label={t.footer.pages}>
+            <p className="mb-1 font-bold uppercase tracking-wider opacity-80">{t.footer.pages}</p>
+            <ul>
+              {pages.map((l) => (
+                <li key={l.to}>
+                  <a
+                    href={href(l.to)}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      navigate(l.to)
+                    }}
+                    className="flex min-h-11 items-center font-semibold underline-offset-4 hover:underline"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
           <div className="text-sm">
             <p className="mb-1 font-bold uppercase tracking-wider opacity-80">{t.footer.orders}</p>
             <a href={PHONE_TEL} className="flex min-h-11 items-center gap-2 font-semibold underline-offset-4 hover:underline">

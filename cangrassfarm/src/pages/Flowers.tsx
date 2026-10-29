@@ -62,16 +62,12 @@ function Hero() {
       <DewDrops />
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1.05fr_1fr]">
         <div>
-          <motion.h1
-            id="hero-title"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="text-balance text-4xl font-bold sm:text-6xl"
-          >
+          <p className="mb-3 font-serif text-lg font-semibold italic text-primary sm:text-xl">{t.hero.slogan}</p>
+          {/* No entrance fade on the headline, so it is visible in the prerendered HTML. */}
+          <h1 id="hero-title" className="text-balance text-4xl font-bold sm:text-6xl">
             {t.hero.title1}{" "}
             <span className="bloom-text">{t.hero.title2}</span>
-          </motion.h1>
+          </h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
