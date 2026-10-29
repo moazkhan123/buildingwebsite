@@ -14,8 +14,8 @@ import {
 import { cn } from "@/lib/cn"
 import { PHONE_DISPLAY, PHONE_TEL, whatsappLink } from "@/lib/contact"
 import { DewDrops, GrassField } from "@/components/Ambient"
+import { ParallaxHero } from "@/components/ui/parallax-hero"
 import { GelButton, GelSegment, Reveal, SectionHeading, spring } from "@/components/ui/gel"
-import { HeroVideo } from "@/components/HeroVideo"
 import { useContent, useT } from "@/i18n/content"
 
 const sunIcons = { full: Sun, partial: CloudSun, shade: SunDim } as const
@@ -23,50 +23,49 @@ const sunIcons = { full: Sun, partial: CloudSun, shade: SunDim } as const
 function Hero() {
   const t = useT()
   return (
-    <section className="relative isolate overflow-hidden pt-10 sm:pt-16" aria-labelledby="land-title">
-      <HeroVideo veil="center" />
-      <DewDrops />
-      <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="gel mb-5 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-primary"
-        >
-          <Trees className="size-4" aria-hidden /> {t.landHero.badge}
-        </motion.p>
-        <motion.h1
-          id="land-title"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-balance text-4xl font-bold sm:text-6xl"
-        >
-          {t.landHero.title1}{" "}
-          <span className="bloom-text">{t.landHero.title2}</span>
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground"
-        >
-          {t.landHero.lead}
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="mt-8 flex flex-wrap justify-center gap-3"
-        >
-          <GelButton href={PHONE_TEL} className="px-6 text-base">
-            <Phone className="size-4" aria-hidden /> {t.landHero.hire} · <span dir="ltr">{PHONE_DISPLAY}</span>
-          </GelButton>
-          <GelButton href="#grass-finder" variant="glass" className="px-6 text-base">
-            <Sprout className="size-4" aria-hidden /> {t.landHero.findGrass}
-          </GelButton>
-        </motion.div>
-      </div>
-      <GrassField className="mt-14" height={90} />
+    <section className="relative isolate -mt-24 overflow-hidden sm:-mt-28" aria-labelledby="land-title">
+      <ParallaxHero contentTop="calc(40% + 30px)" fadeBottom>
+        <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="gel mb-5 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-primary"
+          >
+            <Trees className="size-4" aria-hidden /> {t.landHero.badge}
+          </motion.p>
+          <motion.h1
+            id="land-title"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="text-balance text-4xl font-bold sm:text-6xl"
+          >
+            {t.landHero.title1}{" "}
+            <span className="bloom-text">{t.landHero.title2}</span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground"
+          >
+            {t.landHero.lead}
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="mt-8 flex flex-wrap justify-center gap-3"
+          >
+            <GelButton href={PHONE_TEL} className="px-6 text-base">
+              <Phone className="size-4" aria-hidden /> {t.landHero.hire} · <span dir="ltr">{PHONE_DISPLAY}</span>
+            </GelButton>
+            <GelButton href="#grass-finder" variant="glass" className="px-6 text-base">
+              <Sprout className="size-4" aria-hidden /> {t.landHero.findGrass}
+            </GelButton>
+          </motion.div>
+        </div>
+      </ParallaxHero>
     </section>
   )
 }
