@@ -11,19 +11,19 @@ const PHONE = PHONE_TEL.replace("tel:", "")
 
 const descriptions: Record<Lang, Record<Route, string>> = {
   en: {
-    "/": "Flower nursery in Malerkotla, Punjab: 31 flower varieties with their benefits and uses in tea and home remedies, indoor plants and lawn grass. Open every day 7 AM – 7 PM. Call Moaviz at +91 90413 76098.",
+    "/": "Flowers, indoor plants and lawn grass slabs from our nursery on Ludhiana Bypass Rd, Malerkotla. Delivery within 50 km and wholesale orders. Call +91 90413 76098.",
     "/landscaping":
-      "Lawn and garden landscaping in Malerkotla and Punjab. Canadian, Bermuda, Golf, All Season and Winter grass chosen for your soil, sunlight and weather. Free grass finder and design concepts. Call Moaviz at +91 90413 76098.",
+      "Lawn and garden landscaping in Malerkotla for homes, farmhouses, schools and hotels, with Canadian, Bermuda, Golf, All Season and Winter grass slabs. Call Moaviz.",
   },
   hi: {
-    "/": "मलेरकोटला, पंजाब में फूलों की नर्सरी: 31 किस्मों के फूल, उनके फ़ायदे और चाय व घरेलू नुस्ख़ों में उपयोग, इनडोर पौधे और लॉन घास। हर दिन सुबह 7 से शाम 7 बजे तक खुला। मोआविज़ को कॉल करें: +91 90413 76098।",
+    "/": "लुधियाना बाईपास रोड, मलेरकोटला की हमारी नर्सरी से फूल, इनडोर पौधे और लॉन घास की स्लैब। 50 किमी तक डिलीवरी और थोक ऑर्डर। कॉल करें: +91 90413 76098।",
     "/landscaping":
-      "मलेरकोटला और पंजाब में लॉन और बगीचे की लैंडस्केपिंग। आपकी मिट्टी, धूप और मौसम के अनुसार कैनेडियन, बरमूडा, गोल्फ़, ऑल सीज़न और विंटर घास। मुफ़्त घास चयन और डिज़ाइन आइडिया। मोआविज़ को कॉल करें: +91 90413 76098।",
+      "मलेरकोटला में घर, फार्महाउस, स्कूल और होटल के लिए लॉन और बगीचे की लैंडस्केपिंग, कैनेडियन, बरमूडा, गोल्फ़, ऑल सीज़न और विंटर घास की स्लैब के साथ। मोआविज़ को कॉल करें।",
   },
   pa: {
-    "/": "ਮਲੇਰਕੋਟਲਾ, ਪੰਜਾਬ ਵਿੱਚ ਫੁੱਲਾਂ ਦੀ ਨਰਸਰੀ: 31 ਕਿਸਮਾਂ ਦੇ ਫੁੱਲ, ਉਹਨਾਂ ਦੇ ਫ਼ਾਇਦੇ ਅਤੇ ਚਾਹ ਤੇ ਦੇਸੀ ਨੁਸਖ਼ਿਆਂ ਵਿੱਚ ਵਰਤੋਂ, ਇਨਡੋਰ ਪੌਦੇ ਅਤੇ ਲਾਅਨ ਘਾਹ। ਹਰ ਰੋਜ਼ ਸਵੇਰੇ 7 ਤੋਂ ਸ਼ਾਮ 7 ਵਜੇ ਤੱਕ ਖੁੱਲ੍ਹਾ। ਮੋਆਵਿਜ਼ ਨੂੰ ਕਾਲ ਕਰੋ: +91 90413 76098।",
+    "/": "ਲੁਧਿਆਣਾ ਬਾਈਪਾਸ ਰੋਡ, ਮਲੇਰਕੋਟਲਾ ਦੀ ਸਾਡੀ ਨਰਸਰੀ ਤੋਂ ਫੁੱਲ, ਇਨਡੋਰ ਪੌਦੇ ਅਤੇ ਲਾਅਨ ਘਾਹ ਦੀਆਂ ਸਲੈਬਾਂ। 50 ਕਿਲੋਮੀਟਰ ਤੱਕ ਡਿਲੀਵਰੀ ਅਤੇ ਥੋਕ ਆਰਡਰ। ਕਾਲ ਕਰੋ: +91 90413 76098।",
     "/landscaping":
-      "ਮਲੇਰਕੋਟਲਾ ਅਤੇ ਪੰਜਾਬ ਵਿੱਚ ਲਾਅਨ ਅਤੇ ਬਾਗ਼ ਦੀ ਲੈਂਡਸਕੇਪਿੰਗ। ਤੁਹਾਡੀ ਮਿੱਟੀ, ਧੁੱਪ ਅਤੇ ਮੌਸਮ ਅਨੁਸਾਰ ਕੈਨੇਡੀਅਨ, ਬਰਮੂਡਾ, ਗੋਲਫ਼, ਆਲ ਸੀਜ਼ਨ ਅਤੇ ਵਿੰਟਰ ਘਾਹ। ਮੁਫ਼ਤ ਘਾਹ ਚੋਣ ਅਤੇ ਡਿਜ਼ਾਈਨ ਵਿਚਾਰ। ਮੋਆਵਿਜ਼ ਨੂੰ ਕਾਲ ਕਰੋ: +91 90413 76098।",
+      "ਮਲੇਰਕੋਟਲਾ ਵਿੱਚ ਘਰ, ਫਾਰਮਹਾਊਸ, ਸਕੂਲ ਅਤੇ ਹੋਟਲ ਲਈ ਲਾਅਨ ਅਤੇ ਬਾਗ਼ ਦੀ ਲੈਂਡਸਕੇਪਿੰਗ, ਕੈਨੇਡੀਅਨ, ਬਰਮੂਡਾ, ਗੋਲਫ਼, ਆਲ ਸੀਜ਼ਨ ਅਤੇ ਵਿੰਟਰ ਘਾਹ ਦੀਆਂ ਸਲੈਬਾਂ ਨਾਲ। ਮੋਆਵਿਜ਼ ਨੂੰ ਕਾਲ ਕਰੋ।",
   },
 }
 
@@ -69,9 +69,14 @@ function jsonLd(route: Route, lang: Lang) {
         closes: "19:00",
       },
     ],
+    // Delivery area: within 50 km of the nursery.
     areaServed: [
       { "@type": "City", name: "Malerkotla" },
-      { "@type": "State", name: "Punjab" },
+      {
+        "@type": "GeoCircle",
+        geoMidpoint: { "@type": "GeoCoordinates", latitude: GEO.lat, longitude: GEO.lng },
+        geoRadius: 50000,
+      },
     ],
     contactPoint: {
       "@type": "ContactPoint",
@@ -126,7 +131,7 @@ function jsonLd(route: Route, lang: Lang) {
         name: ui[lang].nav.landscaping,
         description,
         provider: { "@id": `${SITE}/#business` },
-        areaServed: { "@type": "State", name: "Punjab" },
+        areaServed: { "@type": "City", name: "Malerkotla" },
       },
       {
         "@type": "BreadcrumbList",

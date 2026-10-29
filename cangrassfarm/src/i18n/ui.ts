@@ -8,8 +8,8 @@ type OrderLine = { name: string; en: string; qty: number }
 
 const en = {
   titles: {
-    "/": "Canadian Grass Farm & Flower Nursery — Flowers, Plants & Lawn Grass in Malerkotla",
-    "/landscaping": "Landscaping & Lawn Grass — Canadian Grass Farm, Malerkotla",
+    "/": "Plant & Flower Nursery in Malerkotla | Canadian Grass Farm",
+    "/landscaping": "Landscaping & Lawn Installation in Malerkotla, Punjab",
   },
   skip: "Skip to content",
   nav: {
@@ -39,9 +39,10 @@ const en = {
       "Ludhiana Bypass Rd, beside Mehal Point, opposite Sham Filling Station, Haji Abdullah Colony, Malerkotla, Punjab 148023",
   },
   hero: {
-    title1: "Green today,",
-    title2: "beautiful tomorrow.",
-    lead: "31 kinds of flowers, healthy plants and five premium lawn grasses, grown at our farm. Find out what each flower is good for, from herbal teas and home remedies to pollinator-friendly gardens.",
+    slogan: "Green today, beautiful tomorrow.",
+    title1: "Plant & flower nursery",
+    title2: "in Malerkotla, Punjab",
+    lead: "31 kinds of flowers, healthy plants and five premium lawn grasses, grown at our farm on Ludhiana Bypass Road. We deliver within 50 km of Malerkotla and welcome wholesale orders. Find out what each flower is good for, from herbal teas and home remedies to pollinator-friendly gardens.",
     explore: "Explore flowers",
     landscaping: "Landscaping",
     stats: ["Flower varieties", "Lawn grasses", "Months of colour"],
@@ -137,18 +138,21 @@ const en = {
     title: "Come see the plants in person",
     landmarksAria: "Landmarks",
     directions: "Get directions",
+    delivery: "Delivery within 50 km of Malerkotla",
+    wholesale: "Wholesale orders welcome",
   },
   footer: {
     slogan: "Har rang, har mausam, phoolon ka sang.",
     visit: "Visit",
     orders: "Orders & projects",
+    pages: "Pages",
     bottom: (year: number) =>
       `Green Living · Happy Life — © ${year} Canadian Grass Farm. Plant uses are traditional and for information only; consult a doctor before using any plant as medicine.`,
   },
   landHero: {
     badge: "Landscaping by Moaviz",
-    title1: "Lawns and gardens designed around",
-    title2: "your soil, sun and season.",
+    title1: "Landscaping and lawn installation",
+    title2: "in Malerkotla, designed around your soil, sun and season.",
     lead: "We study your space, how much sun it gets, your soil and how you'll use it, then pick the grass and plants that will thrive there. Not just the ones that look good on day one.",
     hire: "Hire Moaviz",
     findGrass: "Find your grass",
@@ -224,7 +228,11 @@ const en = {
     bermudaWater: "Needs the least water once established",
   } as Record<ReasonKey, string>,
   grassRows: { sun: "Sunlight", soil: "Soil", water: "Water", traffic: "Traffic", season: "Season" },
-  catalog: { eyebrow: "Our grasses", title: "Five lawn grasses, each for a different job" },
+  catalog: {
+    eyebrow: "Our grasses",
+    title: "Five lawn grasses, each for a different job",
+    intro: "All five are supplied as ready lawn slabs and delivered within 50 km of Malerkotla.",
+  },
   process: {
     eyebrow: "How we work",
     title: "From bare ground to green in four steps",
@@ -237,7 +245,7 @@ const en = {
   },
   hire: {
     title: "Ready to start your landscaping project?",
-    text: "Homes, farmhouses, schools, hotels and wedding venues across Malerkotla and Punjab. Call Moaviz to book a site visit.",
+    text: "Homes, farmhouses, schools, hotels and wedding venues in Malerkotla. Call Moaviz to book a site visit.",
     whatsapp: "WhatsApp Moaviz",
     msg: "Hi Moaviz, I'd like to discuss a landscaping project.",
   },
@@ -247,8 +255,8 @@ export type UI = typeof en
 
 const hi: UI = {
   titles: {
-    "/": "कैनेडियन ग्रास फार्म एंड फ्लावर नर्सरी — मलेरकोटला में फूल, पौधे और लॉन घास",
-    "/landscaping": "लैंडस्केपिंग और लॉन घास — कैनेडियन ग्रास फार्म, मलेरकोटला",
+    "/": "मलेरकोटला में पौधों और फूलों की नर्सरी | कैनेडियन ग्रास फार्म",
+    "/landscaping": "मलेरकोटला में लैंडस्केपिंग और लॉन लगाने की सेवा",
   },
   skip: "मुख्य सामग्री पर जाएँ",
   nav: {
@@ -277,9 +285,10 @@ const hi: UI = {
     oneLine: "लुधियाना बाईपास रोड, महल पॉइंट के पास, शाम फिलिंग स्टेशन के सामने, हाजी अब्दुल्ला कॉलोनी, मलेरकोटला, पंजाब 148023",
   },
   hero: {
-    title1: "आज हरियाली,",
-    title2: "कल ख़ूबसूरती।",
-    lead: "हमारे फार्म पर उगाए गए 31 तरह के फूल, स्वस्थ पौधे और पाँच प्रीमियम लॉन घास। जानिए हर फूल किस काम आता है — हर्बल चाय और घरेलू नुस्ख़ों से लेकर तितलियों और मधुमक्खियों वाले बगीचों तक।",
+    slogan: "आज हरियाली, कल ख़ूबसूरती।",
+    title1: "मलेरकोटला, पंजाब में",
+    title2: "पौधों और फूलों की नर्सरी",
+    lead: "लुधियाना बाईपास रोड पर हमारे फार्म में उगाए गए 31 तरह के फूल, स्वस्थ पौधे और पाँच प्रीमियम लॉन घास। हम मलेरकोटला से 50 किमी तक डिलीवरी करते हैं और थोक ऑर्डर भी लेते हैं। जानिए हर फूल किस काम आता है — हर्बल चाय और घरेलू नुस्ख़ों से लेकर तितलियों और मधुमक्खियों वाले बगीचों तक।",
     explore: "फूल देखें",
     landscaping: "लैंडस्केपिंग",
     stats: ["फूलों की किस्में", "लॉन घास", "महीने रंग-बिरंगे"],
@@ -369,17 +378,20 @@ const hi: UI = {
     title: "पौधों को ख़ुद आकर देखें",
     landmarksAria: "पहचान के निशान",
     directions: "रास्ता देखें",
+    delivery: "मलेरकोटला से 50 किमी तक डिलीवरी",
+    wholesale: "थोक ऑर्डर भी लेते हैं",
   },
   footer: {
     slogan: "हर रंग, हर मौसम, फूलों का संग।",
     visit: "पता",
     orders: "ऑर्डर और प्रोजेक्ट",
+    pages: "पेज",
     bottom: (year) =>
       `हरियाली भरा जीवन · ख़ुशहाल जीवन — © ${year} कैनेडियन ग्रास फार्म। पौधों के उपयोग पारंपरिक हैं और सिर्फ़ जानकारी के लिए हैं; किसी भी पौधे को दवा की तरह इस्तेमाल करने से पहले डॉक्टर से सलाह लें।`,
   },
   landHero: {
     badge: "मोआविज़ द्वारा लैंडस्केपिंग",
-    title1: "लॉन और बगीचे, बनाए गए",
+    title1: "मलेरकोटला में लैंडस्केपिंग और लॉन,",
     title2: "आपकी मिट्टी, धूप और मौसम के अनुसार।",
     lead: "हम आपकी जगह, उसमें आने वाली धूप, आपकी मिट्टी और उसके इस्तेमाल को समझते हैं, फिर वही घास और पौधे चुनते हैं जो वहाँ सच में पनपें — सिर्फ़ पहले दिन अच्छे दिखने वाले नहीं।",
     hire: "मोआविज़ को बुलाएँ",
@@ -456,7 +468,11 @@ const hi: UI = {
     bermudaWater: "जम जाने के बाद सबसे कम पानी चाहिए",
   },
   grassRows: { sun: "धूप", soil: "मिट्टी", water: "पानी", traffic: "आवाजाही", season: "मौसम" },
-  catalog: { eyebrow: "हमारी घास", title: "पाँच लॉन घास, हर एक अलग काम के लिए" },
+  catalog: {
+    eyebrow: "हमारी घास",
+    title: "पाँच लॉन घास, हर एक अलग काम के लिए",
+    intro: "पाँचों घास तैयार लॉन स्लैब के रूप में मिलती हैं, और मलेरकोटला से 50 किमी तक डिलीवरी होती है।",
+  },
   process: {
     eyebrow: "हम कैसे काम करते हैं",
     title: "ख़ाली ज़मीन से हरियाली तक, चार कदमों में",
@@ -469,7 +485,7 @@ const hi: UI = {
   },
   hire: {
     title: "क्या आप अपना लैंडस्केपिंग प्रोजेक्ट शुरू करने के लिए तैयार हैं?",
-    text: "मलेरकोटला और पूरे पंजाब में घर, फार्महाउस, स्कूल, होटल और शादी के स्थल। साइट विज़िट बुक करने के लिए मोआविज़ को कॉल करें।",
+    text: "मलेरकोटला में घर, फार्महाउस, स्कूल, होटल और शादी के स्थल। साइट विज़िट बुक करने के लिए मोआविज़ को कॉल करें।",
     whatsapp: "मोआविज़ को व्हाट्सऐप करें",
     msg: "हैलो मोआविज़ जी, मैं एक लैंडस्केपिंग प्रोजेक्ट के बारे में बात करना चाहता/चाहती हूँ।",
   },
@@ -477,8 +493,8 @@ const hi: UI = {
 
 const pa: UI = {
   titles: {
-    "/": "ਕੈਨੇਡੀਅਨ ਗ੍ਰਾਸ ਫਾਰਮ ਐਂਡ ਫਲਾਵਰ ਨਰਸਰੀ — ਮਲੇਰਕੋਟਲਾ ਵਿੱਚ ਫੁੱਲ, ਪੌਦੇ ਅਤੇ ਲਾਅਨ ਘਾਹ",
-    "/landscaping": "ਲੈਂਡਸਕੇਪਿੰਗ ਅਤੇ ਲਾਅਨ ਘਾਹ — ਕੈਨੇਡੀਅਨ ਗ੍ਰਾਸ ਫਾਰਮ, ਮਲੇਰਕੋਟਲਾ",
+    "/": "ਮਲੇਰਕੋਟਲਾ ਵਿੱਚ ਪੌਦਿਆਂ ਅਤੇ ਫੁੱਲਾਂ ਦੀ ਨਰਸਰੀ | ਕੈਨੇਡੀਅਨ ਗ੍ਰਾਸ ਫਾਰਮ",
+    "/landscaping": "ਮਲੇਰਕੋਟਲਾ ਵਿੱਚ ਲੈਂਡਸਕੇਪਿੰਗ ਅਤੇ ਲਾਅਨ ਲਗਾਉਣ ਦੀ ਸੇਵਾ",
   },
   skip: "ਮੁੱਖ ਸਮੱਗਰੀ ਤੇ ਜਾਓ",
   nav: {
@@ -507,9 +523,10 @@ const pa: UI = {
     oneLine: "ਲੁਧਿਆਣਾ ਬਾਈਪਾਸ ਰੋਡ, ਮਹਿਲ ਪੁਆਇੰਟ ਦੇ ਨਾਲ, ਸ਼ਾਮ ਫਿਲਿੰਗ ਸਟੇਸ਼ਨ ਦੇ ਸਾਹਮਣੇ, ਹਾਜੀ ਅਬਦੁੱਲਾ ਕਲੋਨੀ, ਮਲੇਰਕੋਟਲਾ, ਪੰਜਾਬ 148023",
   },
   hero: {
-    title1: "ਅੱਜ ਹਰਿਆਲੀ,",
-    title2: "ਕੱਲ੍ਹ ਖ਼ੂਬਸੂਰਤੀ।",
-    lead: "ਸਾਡੇ ਫਾਰਮ ਤੇ ਉਗਾਏ 31 ਕਿਸਮਾਂ ਦੇ ਫੁੱਲ, ਤੰਦਰੁਸਤ ਪੌਦੇ ਅਤੇ ਪੰਜ ਪ੍ਰੀਮੀਅਮ ਲਾਅਨ ਘਾਹ। ਜਾਣੋ ਹਰ ਫੁੱਲ ਕਿਸ ਕੰਮ ਆਉਂਦਾ ਹੈ — ਹਰਬਲ ਚਾਹ ਅਤੇ ਘਰੇਲੂ ਨੁਸਖ਼ਿਆਂ ਤੋਂ ਲੈ ਕੇ ਤਿਤਲੀਆਂ ਅਤੇ ਮਧੂਮੱਖੀਆਂ ਵਾਲੇ ਬਾਗ਼ਾਂ ਤੱਕ।",
+    slogan: "ਅੱਜ ਹਰਿਆਲੀ, ਕੱਲ੍ਹ ਖ਼ੂਬਸੂਰਤੀ।",
+    title1: "ਮਲੇਰਕੋਟਲਾ, ਪੰਜਾਬ ਵਿੱਚ",
+    title2: "ਪੌਦਿਆਂ ਅਤੇ ਫੁੱਲਾਂ ਦੀ ਨਰਸਰੀ",
+    lead: "ਲੁਧਿਆਣਾ ਬਾਈਪਾਸ ਰੋਡ ਤੇ ਸਾਡੇ ਫਾਰਮ ਵਿੱਚ ਉਗਾਏ 31 ਕਿਸਮਾਂ ਦੇ ਫੁੱਲ, ਤੰਦਰੁਸਤ ਪੌਦੇ ਅਤੇ ਪੰਜ ਪ੍ਰੀਮੀਅਮ ਲਾਅਨ ਘਾਹ। ਅਸੀਂ ਮਲੇਰਕੋਟਲਾ ਤੋਂ 50 ਕਿਲੋਮੀਟਰ ਤੱਕ ਡਿਲੀਵਰੀ ਕਰਦੇ ਹਾਂ ਅਤੇ ਥੋਕ ਆਰਡਰ ਵੀ ਲੈਂਦੇ ਹਾਂ। ਜਾਣੋ ਹਰ ਫੁੱਲ ਕਿਸ ਕੰਮ ਆਉਂਦਾ ਹੈ — ਹਰਬਲ ਚਾਹ ਅਤੇ ਘਰੇਲੂ ਨੁਸਖ਼ਿਆਂ ਤੋਂ ਲੈ ਕੇ ਤਿਤਲੀਆਂ ਅਤੇ ਮਧੂਮੱਖੀਆਂ ਵਾਲੇ ਬਾਗ਼ਾਂ ਤੱਕ।",
     explore: "ਫੁੱਲ ਵੇਖੋ",
     landscaping: "ਲੈਂਡਸਕੇਪਿੰਗ",
     stats: ["ਫੁੱਲਾਂ ਦੀਆਂ ਕਿਸਮਾਂ", "ਲਾਅਨ ਘਾਹ", "ਮਹੀਨੇ ਰੰਗ-ਬਿਰੰਗੇ"],
@@ -599,17 +616,20 @@ const pa: UI = {
     title: "ਪੌਦੇ ਆਪ ਆ ਕੇ ਵੇਖੋ",
     landmarksAria: "ਪਛਾਣ ਦੇ ਨਿਸ਼ਾਨ",
     directions: "ਰਸਤਾ ਵੇਖੋ",
+    delivery: "ਮਲੇਰਕੋਟਲਾ ਤੋਂ 50 ਕਿਲੋਮੀਟਰ ਤੱਕ ਡਿਲੀਵਰੀ",
+    wholesale: "ਥੋਕ ਆਰਡਰ ਵੀ ਲੈਂਦੇ ਹਾਂ",
   },
   footer: {
     slogan: "ਹਰ ਰੰਗ, ਹਰ ਮੌਸਮ, ਫੁੱਲਾਂ ਦਾ ਸੰਗ।",
     visit: "ਪਤਾ",
     orders: "ਆਰਡਰ ਅਤੇ ਪ੍ਰੋਜੈਕਟ",
+    pages: "ਪੰਨੇ",
     bottom: (year) =>
       `ਹਰੀ-ਭਰੀ ਜ਼ਿੰਦਗੀ · ਖ਼ੁਸ਼ਹਾਲ ਜ਼ਿੰਦਗੀ — © ${year} ਕੈਨੇਡੀਅਨ ਗ੍ਰਾਸ ਫਾਰਮ। ਪੌਦਿਆਂ ਦੀ ਵਰਤੋਂ ਰਵਾਇਤੀ ਹੈ ਅਤੇ ਸਿਰਫ਼ ਜਾਣਕਾਰੀ ਲਈ ਹੈ; ਕਿਸੇ ਵੀ ਪੌਦੇ ਨੂੰ ਦਵਾਈ ਵਜੋਂ ਵਰਤਣ ਤੋਂ ਪਹਿਲਾਂ ਡਾਕਟਰ ਦੀ ਸਲਾਹ ਲਓ।`,
   },
   landHero: {
     badge: "ਮੋਆਵਿਜ਼ ਵੱਲੋਂ ਲੈਂਡਸਕੇਪਿੰਗ",
-    title1: "ਲਾਅਨ ਅਤੇ ਬਾਗ਼, ਬਣਾਏ ਗਏ",
+    title1: "ਮਲੇਰਕੋਟਲਾ ਵਿੱਚ ਲੈਂਡਸਕੇਪਿੰਗ ਅਤੇ ਲਾਅਨ,",
     title2: "ਤੁਹਾਡੀ ਮਿੱਟੀ, ਧੁੱਪ ਅਤੇ ਮੌਸਮ ਅਨੁਸਾਰ।",
     lead: "ਅਸੀਂ ਤੁਹਾਡੀ ਥਾਂ, ਉਸ ਵਿੱਚ ਆਉਣ ਵਾਲੀ ਧੁੱਪ, ਤੁਹਾਡੀ ਮਿੱਟੀ ਅਤੇ ਉਸ ਦੀ ਵਰਤੋਂ ਨੂੰ ਸਮਝਦੇ ਹਾਂ, ਫਿਰ ਉਹੀ ਘਾਹ ਅਤੇ ਪੌਦੇ ਚੁਣਦੇ ਹਾਂ ਜੋ ਉੱਥੇ ਸੱਚਮੁੱਚ ਵਧਣ-ਫੁੱਲਣ — ਸਿਰਫ਼ ਪਹਿਲੇ ਦਿਨ ਸੋਹਣੇ ਲੱਗਣ ਵਾਲੇ ਨਹੀਂ।",
     hire: "ਮੋਆਵਿਜ਼ ਨੂੰ ਬੁਲਾਓ",
@@ -686,7 +706,11 @@ const pa: UI = {
     bermudaWater: "ਜੰਮ ਜਾਣ ਤੋਂ ਬਾਅਦ ਸਭ ਤੋਂ ਘੱਟ ਪਾਣੀ ਚਾਹੀਦਾ ਹੈ",
   },
   grassRows: { sun: "ਧੁੱਪ", soil: "ਮਿੱਟੀ", water: "ਪਾਣੀ", traffic: "ਆਵਾਜਾਈ", season: "ਮੌਸਮ" },
-  catalog: { eyebrow: "ਸਾਡੇ ਘਾਹ", title: "ਪੰਜ ਲਾਅਨ ਘਾਹ, ਹਰ ਇੱਕ ਵੱਖਰੇ ਕੰਮ ਲਈ" },
+  catalog: {
+    eyebrow: "ਸਾਡੇ ਘਾਹ",
+    title: "ਪੰਜ ਲਾਅਨ ਘਾਹ, ਹਰ ਇੱਕ ਵੱਖਰੇ ਕੰਮ ਲਈ",
+    intro: "ਪੰਜੇ ਘਾਹ ਤਿਆਰ ਲਾਅਨ ਸਲੈਬਾਂ ਵਜੋਂ ਮਿਲਦੇ ਹਨ, ਅਤੇ ਮਲੇਰਕੋਟਲਾ ਤੋਂ 50 ਕਿਲੋਮੀਟਰ ਤੱਕ ਡਿਲੀਵਰੀ ਹੁੰਦੀ ਹੈ।",
+  },
   process: {
     eyebrow: "ਅਸੀਂ ਕਿਵੇਂ ਕੰਮ ਕਰਦੇ ਹਾਂ",
     title: "ਖ਼ਾਲੀ ਜ਼ਮੀਨ ਤੋਂ ਹਰਿਆਲੀ ਤੱਕ, ਚਾਰ ਕਦਮਾਂ ਵਿੱਚ",
@@ -699,7 +723,7 @@ const pa: UI = {
   },
   hire: {
     title: "ਕੀ ਤੁਸੀਂ ਆਪਣਾ ਲੈਂਡਸਕੇਪਿੰਗ ਪ੍ਰੋਜੈਕਟ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਤਿਆਰ ਹੋ?",
-    text: "ਮਲੇਰਕੋਟਲਾ ਅਤੇ ਸਾਰੇ ਪੰਜਾਬ ਵਿੱਚ ਘਰ, ਫਾਰਮਹਾਊਸ, ਸਕੂਲ, ਹੋਟਲ ਅਤੇ ਵਿਆਹ ਵਾਲੀਆਂ ਥਾਵਾਂ। ਸਾਈਟ ਵਿਜ਼ਿਟ ਬੁੱਕ ਕਰਨ ਲਈ ਮੋਆਵਿਜ਼ ਨੂੰ ਕਾਲ ਕਰੋ।",
+    text: "ਮਲੇਰਕੋਟਲਾ ਵਿੱਚ ਘਰ, ਫਾਰਮਹਾਊਸ, ਸਕੂਲ, ਹੋਟਲ ਅਤੇ ਵਿਆਹ ਵਾਲੀਆਂ ਥਾਵਾਂ। ਸਾਈਟ ਵਿਜ਼ਿਟ ਬੁੱਕ ਕਰਨ ਲਈ ਮੋਆਵਿਜ਼ ਨੂੰ ਕਾਲ ਕਰੋ।",
     whatsapp: "ਮੋਆਵਿਜ਼ ਨੂੰ ਵਟਸਐਪ ਕਰੋ",
     msg: "ਹੈਲੋ ਮੋਆਵਿਜ਼ ਜੀ, ਮੈਂ ਇੱਕ ਲੈਂਡਸਕੇਪਿੰਗ ਪ੍ਰੋਜੈਕਟ ਬਾਰੇ ਗੱਲ ਕਰਨਾ ਚਾਹੁੰਦਾ/ਚਾਹੁੰਦੀ ਹਾਂ।",
   },
