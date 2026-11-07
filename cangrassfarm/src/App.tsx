@@ -2,6 +2,7 @@ import { AnimatePresence, MotionConfig, motion } from "motion/react"
 import { Suspense, lazy, useEffect, useRef, useState } from "react"
 import { BasketDrawer, FloatingCall, Footer, Nav } from "@/components/Chrome"
 import { GelBackdrop } from "@/components/Ambient"
+import { DiwaliGreeting } from "@/components/Diwali"
 import { useT } from "@/i18n/content"
 import { LangProvider, useLang } from "@/i18n/lang"
 import { useBasket } from "@/lib/basket"
@@ -77,6 +78,7 @@ function Site() {
       </main>
       <Footer />
       <FloatingCall />
+      <DiwaliGreeting />
       <BasketDrawer open={basketOpen} onClose={() => setBasketOpen(false)} basket={basket} />
     </MotionConfig>
   )
