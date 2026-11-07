@@ -7,9 +7,9 @@ import { spring } from "./ui/gel"
 
 // Diwali greeting: fireworks burst over the page on the first visit of a session, and a card
 // wishes visitors Happy Diwali and asks them to plant a tree. Shown until the end of
-// Bhai Dooj, 11 November 2026 (India time), the last day of Diwali; closing the card hides it for good on that browser.
+// Bhai Dooj, 11 November 2026 (India time), the last day of Diwali; closing the card hides it until the visitor comes back.
 const UNTIL = Date.parse("2026-11-12T00:00:00+05:30")
-const CLOSED = "cgf-diwali-2026-closed"
+const CLOSED = "cgf-diwali-2026-hidden"
 const PLAYED = "cgf-diwali-2026-played"
 const COLORS = ["#ffd36b", "#ffb347", "#ff7a45", "#ff4d6d", "#f472b6", "#a3e635", "#fff3c4"]
 
@@ -133,7 +133,7 @@ export function DiwaliGreeting() {
 
   // Decide in the browser only, so prerendered pages never carry the seasonal greeting.
   useEffect(() => {
-    if (Date.now() >= UNTIL || read(localStorage, CLOSED)) return
+    if (Date.now() >= UNTIL || read(sessionStorage, CLOSED)) return
     setCard(true)
     if (!reduce && !read(sessionStorage, PLAYED)) {
       write(sessionStorage, PLAYED)
@@ -143,7 +143,7 @@ export function DiwaliGreeting() {
   }, [])
 
   const close = () => {
-    write(localStorage, CLOSED)
+    write(sessionStorage, CLOSED)
     setCard(false)
   }
 
