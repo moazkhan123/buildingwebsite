@@ -7,8 +7,8 @@ import { spring } from "./ui/gel"
 
 // Diwali greeting: fireworks burst over the page on the first visit of a session, and a card
 // wishes visitors Happy Diwali and asks them to plant a tree. Shown until the end of
-// 15 November 2026 (India time); closing the card hides it for good on that browser.
-const UNTIL = Date.parse("2026-11-16T00:00:00+05:30")
+// Bhai Dooj, 11 November 2026 (India time), the last day of Diwali; closing the card hides it for good on that browser.
+const UNTIL = Date.parse("2026-11-12T00:00:00+05:30")
 const CLOSED = "cgf-diwali-2026-closed"
 const PLAYED = "cgf-diwali-2026-played"
 const COLORS = ["#ffd36b", "#ffb347", "#ff7a45", "#ff4d6d", "#f472b6", "#a3e635", "#fff3c4"]
