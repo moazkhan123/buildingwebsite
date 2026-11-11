@@ -249,15 +249,6 @@ const en = {
     whatsapp: "WhatsApp Moaviz",
     msg: "Hi Moaviz, I'd like to discuss a landscaping project.",
   },
-  diwali: {
-    label: "Diwali greeting",
-    hello: "Happy Diwali!",
-    text: "May this festival of lights fill your home with joy. This Diwali, plant a tree: more trees and plants mean cleaner air and a greener Malerkotla.",
-    pledge: "Light a diya, plant a tree 🌱",
-    plants: "Choose a plant",
-    again: "More fireworks",
-    close: "Close Diwali greeting",
-  },
 }
 
 export type UI = typeof en
@@ -498,15 +489,6 @@ const hi: UI = {
     whatsapp: "मोआविज़ को व्हाट्सऐप करें",
     msg: "हैलो मोआविज़ जी, मैं एक लैंडस्केपिंग प्रोजेक्ट के बारे में बात करना चाहता/चाहती हूँ।",
   },
-  diwali: {
-    label: "दीवाली की शुभकामना",
-    hello: "दीपावली की हार्दिक शुभकामनाएँ!",
-    text: "रोशनी का यह त्योहार आपके घर में खुशियाँ भर दे। इस दीवाली एक पेड़ लगाएँ: ज़्यादा पेड़-पौधे यानी साफ़ हवा और हरा-भरा मलेरकोटला।",
-    pledge: "एक दीया जलाएँ, एक पेड़ लगाएँ 🌱",
-    plants: "पौधा चुनें",
-    again: "और आतिशबाज़ी",
-    close: "दीवाली की शुभकामना बंद करें",
-  },
 }
 
 const pa: UI = {
@@ -744,15 +726,6 @@ const pa: UI = {
     text: "ਮਲੇਰਕੋਟਲਾ ਵਿੱਚ ਘਰ, ਫਾਰਮਹਾਊਸ, ਸਕੂਲ, ਹੋਟਲ ਅਤੇ ਵਿਆਹ ਵਾਲੀਆਂ ਥਾਵਾਂ। ਸਾਈਟ ਵਿਜ਼ਿਟ ਬੁੱਕ ਕਰਨ ਲਈ ਮੋਆਵਿਜ਼ ਨੂੰ ਕਾਲ ਕਰੋ।",
     whatsapp: "ਮੋਆਵਿਜ਼ ਨੂੰ ਵਟਸਐਪ ਕਰੋ",
     msg: "ਹੈਲੋ ਮੋਆਵਿਜ਼ ਜੀ, ਮੈਂ ਇੱਕ ਲੈਂਡਸਕੇਪਿੰਗ ਪ੍ਰੋਜੈਕਟ ਬਾਰੇ ਗੱਲ ਕਰਨਾ ਚਾਹੁੰਦਾ/ਚਾਹੁੰਦੀ ਹਾਂ।",
-  },
-  diwali: {
-    label: "ਦੀਵਾਲੀ ਦੀ ਵਧਾਈ",
-    hello: "ਦੀਵਾਲੀ ਦੀਆਂ ਲੱਖ-ਲੱਖ ਵਧਾਈਆਂ!",
-    text: "ਰੌਸ਼ਨੀਆਂ ਦਾ ਇਹ ਤਿਉਹਾਰ ਤੁਹਾਡੇ ਘਰ ਖੁਸ਼ੀਆਂ ਭਰ ਦੇਵੇ। ਇਸ ਦੀਵਾਲੀ ਇੱਕ ਰੁੱਖ ਲਗਾਓ: ਵੱਧ ਰੁੱਖ ਅਤੇ ਪੌਦੇ ਯਾਨੀ ਸਾਫ਼ ਹਵਾ ਅਤੇ ਹਰਾ-ਭਰਾ ਮਲੇਰਕੋਟਲਾ।",
-    pledge: "ਇੱਕ ਦੀਵਾ ਜਗਾਓ, ਇੱਕ ਰੁੱਖ ਲਗਾਓ 🌱",
-    plants: "ਪੌਦਾ ਚੁਣੋ",
-    again: "ਹੋਰ ਆਤਿਸ਼ਬਾਜ਼ੀ",
-    close: "ਦੀਵਾਲੀ ਦੀ ਵਧਾਈ ਬੰਦ ਕਰੋ",
   },
 }
 
