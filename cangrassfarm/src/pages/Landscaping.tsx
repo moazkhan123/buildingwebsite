@@ -12,8 +12,12 @@ import {
   type Sun as SunLevel,
 } from "@/data/landscaping"
 import { cn } from "@/lib/cn"
+import { photoSrcSet } from "@/lib/img"
 import { PHONE_DISPLAY, PHONE_TEL, whatsappLink } from "@/lib/contact"
 import { DewDrops, GrassField } from "@/components/Ambient"
+import { FaqSection } from "@/components/Faq"
+import { useHref } from "@/i18n/lang"
+import { navigate } from "@/lib/router"
 import { ParallaxHero } from "@/components/ui/parallax-hero"
 import { GelButton, GelSegment, Reveal, SectionHeading, spring } from "@/components/ui/gel"
 import { useContent, useT } from "@/i18n/content"
@@ -27,7 +31,7 @@ function Hero() {
       <ParallaxHero contentTop="calc(40% + 30px)" fadeBottom>
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
           <motion.p
-            initial={{ opacity: 0, y: 10 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             className="gel mb-5 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-primary"
           >
@@ -38,7 +42,7 @@ function Hero() {
             <span className="bloom-text">{t.landHero.title2}</span>
           </h1>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
             className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground"
@@ -46,7 +50,7 @@ function Hero() {
             {t.landHero.lead}
           </motion.p>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
             className="mt-8 flex flex-wrap justify-center gap-3"
@@ -61,6 +65,34 @@ function Hero() {
         </div>
       </ParallaxHero>
     </section>
+  )
+}
+
+// Visible breadcrumb under the hero, matching the BreadcrumbList structured data in seo.ts.
+function Breadcrumb() {
+  const t = useT()
+  const href = useHref()
+  return (
+    <nav aria-label={t.crumbs.label} className="mx-auto max-w-6xl px-4 pt-6 text-sm font-semibold sm:px-6">
+      <ol className="flex items-center gap-1.5">
+        <li>
+          <a
+            href={href("/")}
+            onClick={(e) => {
+              e.preventDefault()
+              navigate("/")
+            }}
+            className="inline-flex min-h-11 items-center text-primary underline-offset-4 hover:underline"
+          >
+            {t.crumbs.home}
+          </a>
+        </li>
+        <li aria-hidden className="text-muted-foreground">
+          ›
+        </li>
+        <li aria-current="page">{t.nav.landscaping}</li>
+      </ol>
+    </nav>
   )
 }
 
@@ -105,6 +137,8 @@ function Projects() {
               <motion.img
                 layoutId={`project-${i}`}
                 src={p.img}
+                srcSet={photoSrcSet(p.img)}
+                sizes="(min-width: 768px) 25vw, 50vw"
                 alt={`${p.title} (${p.kind})`}
                 loading="lazy"
                 className="h-full w-full rounded-[1.4rem] object-cover transition-transform duration-500 group-hover:scale-105"
@@ -252,7 +286,15 @@ function ConceptPlanner() {
             aria-live="polite"
           >
             <figure className="relative -mx-4 -mt-4 mb-5 overflow-hidden rounded-[1.6rem] sm:-mx-6 sm:-mt-6">
-              <img src={c.img} alt={c.title} width={c.width} height={c.height} className="aspect-[16/9] w-full object-cover" />
+              <img
+                src={c.img}
+                srcSet={photoSrcSet(c.img)}
+                sizes="(min-width: 1024px) 640px, 92vw"
+                alt={c.title}
+                width={c.width}
+                height={c.height}
+                className="aspect-[16/9] w-full object-cover"
+              />
               <span className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-white/30 to-transparent" aria-hidden />
               <figcaption className="gel absolute bottom-3 left-3 rounded-full px-3 py-1 text-xs font-bold">{c.title}</figcaption>
             </figure>
@@ -346,6 +388,8 @@ function ConceptGallery({ onPick }: { onPick: (c: Concept) => void }) {
                   <span className="relative block overflow-hidden rounded-[1.4rem]">
                     <img
                       src={c.img}
+                      srcSet={photoSrcSet(c.img)}
+                      sizes="(min-width: 1024px) 360px, (min-width: 640px) 46vw, 92vw"
                       alt={c.title}
                       width={c.width}
                       height={c.height}
@@ -620,14 +664,17 @@ function Hire() {
 }
 
 export default function LandscapingPage() {
+  const t = useT()
   return (
     <>
       <Hero />
+      <Breadcrumb />
       <Projects />
       <ConceptPlanner />
       <GrassFinder />
       <GrassCatalog />
       <Process />
+      <FaqSection faq={t.landFaq} id="land-faq-title" />
       <Hire />
     </>
   )

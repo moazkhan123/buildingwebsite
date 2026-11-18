@@ -22,7 +22,9 @@
   --blade-2: #65a30d;
   --blade-3: #84cc16;
   --serif: "Lora Variable", "Noto Serif Devanagari Variable", "Noto Serif Gurmukhi Variable", ui-serif, Georgia, serif;
-  --sans: "Raleway Variable", "Noto Sans Devanagari Variable", "Noto Sans Gurmukhi Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Hindi and Punjabi body text uses the device's own fonts (Android's is the same Noto design),
+     which saves downloading a large web font; headings keep the Noto Serif web fonts. */
+  --sans: "Raleway Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --shadow-gel: 0 18px 40px -18px rgba(92, 52, 20, 0.35), 0 4px 10px -4px rgba(92, 52, 20, 0.15);
   /* Claymorphism: matte, puffy surfaces lit from the top left */
   --clay: #fbf3e8;
@@ -63,6 +65,10 @@ body {
   background-attachment: fixed;
   line-height: 1.6;
   overflow-x: clip;
+}
+
+.native-script {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 h1, h2, h3 {

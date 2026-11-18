@@ -121,6 +121,27 @@ function jsonLd(route: Route, lang: Lang) {
       primaryImageOfPage: `${SITE}/og-image.jpg`,
       ...(route === "/landscaping" && { breadcrumb: { "@id": `${url}#breadcrumb` } }),
     },
+    // The person behind the business, as introduced on the home page.
+    {
+      "@type": "Person",
+      "@id": `${SITE}/#moaviz`,
+      name: "Moaviz",
+      telephone: PHONE,
+      worksFor: { "@id": `${SITE}/#business` },
+      knowsAbout: ["Landscaping", "Lawn grass", "Flower nursery"],
+    },
+    // The page's visible questions and answers, word for word.
+    {
+      "@type": "FAQPage",
+      "@id": `${url}#faq`,
+      inLanguage: lang,
+      isPartOf: { "@id": `${url}#webpage` },
+      mainEntity: (route === "/" ? ui[lang].faq : ui[lang].landFaq).items.map(([q, a]) => ({
+        "@type": "Question",
+        name: q,
+        acceptedAnswer: { "@type": "Answer", text: a },
+      })),
+    },
   ]
   if (route === "/landscaping") {
     graph.push(
@@ -137,7 +158,7 @@ function jsonLd(route: Route, lang: Lang) {
         "@type": "BreadcrumbList",
         "@id": `${url}#breadcrumb`,
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: ui[lang].nav.flowers, item: urlFor("/", lang) },
+          { "@type": "ListItem", position: 1, name: ui[lang].crumbs.home, item: urlFor("/", lang) },
           { "@type": "ListItem", position: 2, name: ui[lang].nav.landscaping, item: url },
         ],
       },

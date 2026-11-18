@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 const KEY = "cgf-basket"
 
@@ -12,8 +12,16 @@ function load(): Record<string, number> {
 
 // Order list kept in the visitor's browser; it's sent to Moaviz over WhatsApp.
 export function useBasket() {
-  const [items, setItems] = useState<Record<string, number>>(load)
+  // Starts empty, as on the prerendered page, and loads the saved list once the page is running.
+  const [items, setItems] = useState<Record<string, number>>({})
+  const loaded = useRef(false)
+  useEffect(() => setItems(load()), [])
   useEffect(() => {
+    // Skip the first run, which would overwrite the saved list with the empty starting one.
+    if (!loaded.current) {
+      loaded.current = true
+      return
+    }
     try {
       localStorage.setItem(KEY, JSON.stringify(items))
     } catch {

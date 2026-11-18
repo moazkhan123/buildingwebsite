@@ -1,5 +1,5 @@
 import { AnimatePresence, MotionConfig, motion } from "motion/react"
-import { Suspense, lazy, useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { BasketDrawer, FloatingCall, Footer, Nav } from "@/components/Chrome"
 import { GelBackdrop } from "@/components/Ambient"
 import { useT } from "@/i18n/content"
@@ -7,10 +7,10 @@ import { LangProvider, useLang } from "@/i18n/lang"
 import { useBasket } from "@/lib/basket"
 import { useRoute } from "@/lib/router"
 import FlowersPage from "@/pages/Flowers"
+// Bundled with the rest (not loaded on demand): a lazy page made the prerendered landscaping
+// page blank out and redraw while its code downloaded, which shifted the layout.
+import LandscapingPage from "@/pages/Landscaping"
 import { pageMeta } from "@/seo"
-
-// Loaded on demand so the Flowers page ships less JavaScript.
-const LandscapingPage = lazy(() => import("@/pages/Landscaping"))
 
 export default function App() {
   return (
@@ -53,7 +53,9 @@ function Site() {
       <GelBackdrop />
       <Nav route={route} basket={basket} onBasket={() => setBasketOpen(true)} />
       <main id="main" ref={mainRef} tabIndex={-1} className="outline-none">
-        <AnimatePresence mode="wait">
+        {/* initial={false}: the first page shows straight away (it is already in the prerendered
+            HTML); the fade only plays when moving between pages. */}
+        <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={route}
             initial={{ opacity: 0, y: 16 }}
@@ -61,17 +63,7 @@ function Site() {
             exit={{ opacity: 0, y: -10, transition: { duration: 0.15 } }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
           >
-            {route === "/" ? (
-              <FlowersPage basket={basket} />
-            ) : import.meta.env.SSR ? (
-              // Build-time prerender: no Suspense boundary, so React waits for the page instead of
-              // emitting inline swap scripts (which the CSP would block).
-              <LandscapingPage />
-            ) : (
-              <Suspense fallback={<div className="min-h-dvh" />}>
-                <LandscapingPage />
-              </Suspense>
-            )}
+            {route === "/" ? <FlowersPage basket={basket} /> : <LandscapingPage />}
           </motion.div>
         </AnimatePresence>
       </main>

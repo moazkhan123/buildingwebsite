@@ -27,9 +27,11 @@ import { useContent, useT, type LocalFlower } from "@/i18n/content"
 import { useHref } from "@/i18n/lang"
 import type { Basket } from "@/lib/basket"
 import { cn } from "@/lib/cn"
+import { flowerSrcSet } from "@/lib/img"
 import { PHONE_DISPLAY, PHONE_TEL, whatsappLink } from "@/lib/contact"
 import { navigate } from "@/lib/router"
 import { DewDrops, GrassField } from "@/components/Ambient"
+import { AboutMoaviz, FaqSection } from "@/components/Faq"
 import { HeroVideo } from "@/components/HeroVideo"
 import { GelButton, Reveal, SectionHeading, spring } from "@/components/ui/gel"
 
@@ -68,20 +70,10 @@ function Hero() {
             {t.hero.title1}{" "}
             <span className="bloom-text">{t.hero.title2}</span>
           </h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="mt-5 max-w-xl text-lg text-muted-foreground"
-          >
-            {t.hero.lead}
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="mt-8 flex flex-wrap gap-3"
-          >
+          {/* The rest of the hero is also shown straight away (no entrance fades), so the page's
+              main content paints from the prerendered HTML without waiting for JavaScript. */}
+          <p className="mt-5 max-w-xl text-lg text-muted-foreground">{t.hero.lead}</p>
+          <div className="mt-8 flex flex-wrap gap-3">
             <GelButton href="#flowers" className="px-6 text-base">
               {t.hero.explore} <ArrowRight className="size-4" aria-hidden />
             </GelButton>
@@ -96,31 +88,25 @@ function Hero() {
             >
               <Trees className="size-4" aria-hidden /> {t.hero.landscaping}
             </GelButton>
-          </motion.div>
+          </div>
           <dl className="mt-10 grid max-w-md grid-cols-3 gap-3">
             {[
               ["31", t.hero.stats[0]],
               ["5", t.hero.stats[1]],
               ["12", t.hero.stats[2]],
-            ].map(([n, l], i) => (
-              <motion.div
-                key={l}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.4 + i * 0.08, ...spring }}
-                className="gel rounded-2xl p-3 text-center"
-              >
+            ].map(([n, l]) => (
+              <div key={l} className="gel rounded-2xl p-3 text-center">
                 <dt className="sr-only">{l}</dt>
                 <dd className="font-serif text-2xl font-bold text-primary">{n}</dd>
                 <dd className="text-xs font-semibold text-muted-foreground">{l}</dd>
-              </motion.div>
+              </div>
             ))}
           </dl>
         </div>
 
         <motion.div style={{ y, rotate }} className="relative">
           <motion.ul
-            initial="hidden"
+            initial={false}
             animate="show"
             variants={{ show: { transition: { staggerChildren: 0.06, delayChildren: 0.15 } } }}
             className="gel grid grid-cols-3 gap-2 rounded-[2rem] p-2 pb-6 sm:gap-3 sm:p-3 sm:pb-9"
@@ -136,7 +122,16 @@ function Hero() {
                   className={cn(i % 3 === 1 && "translate-y-4 sm:translate-y-6")}
                 >
                   <figure className="relative overflow-hidden rounded-[1.4rem]">
-                    <img src={`/img/flowers/${slug}.webp`} alt={f.name} width={240} height={240} className="aspect-square w-full object-cover" />
+                    <img
+                      src={`/img/flowers/${slug}.webp`}
+                      srcSet={flowerSrcSet(`/img/flowers/${slug}.webp`)}
+                      sizes="(min-width: 1024px) 165px, 30vw"
+                      alt={f.name}
+                      width={240}
+                      height={240}
+                      fetchPriority={i < 3 ? "high" : undefined}
+                      className="aspect-square w-full object-cover"
+                    />
                     <span className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-white/35 to-transparent" aria-hidden />
                     <figcaption className="gel absolute bottom-1.5 left-1.5 rounded-full px-2 py-0.5 text-[11px] font-bold">{f.name}</figcaption>
                   </figure>
@@ -184,6 +179,8 @@ function FlowerCard({ f, onOpen, onAdd }: { f: LocalFlower; onOpen: () => void; 
           <motion.div layoutId={`img-${f.slug}`} className="relative overflow-hidden rounded-[1.4rem]">
             <img
               src={`/img/flowers/${f.slug}.webp`}
+              srcSet={flowerSrcSet(`/img/flowers/${f.slug}.webp`)}
+              sizes="(min-width: 1024px) 270px, (min-width: 640px) 31vw, 46vw"
               alt={f.name}
               width={240}
               height={240}
@@ -536,11 +533,14 @@ function CallToAction() {
 }
 
 export default function FlowersPage({ basket }: { basket: Basket }) {
+  const t = useT()
   return (
     <>
       <Hero />
       <FlowerExplorer basket={basket} />
       <Features />
+      <AboutMoaviz />
+      <FaqSection faq={t.faq} id="faq-title" />
       <CallToAction />
     </>
   )
