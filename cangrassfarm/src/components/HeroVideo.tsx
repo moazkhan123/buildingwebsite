@@ -1,5 +1,5 @@
 import { useReducedMotion } from "motion/react"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 
 const veils = {
   // Text on the left: heaviest veil behind it, lighter towards the right.
@@ -14,13 +14,32 @@ const veils = {
 export function HeroVideo({ veil }: { veil: keyof typeof veils }) {
   const reduce = useReducedMotion()
   const ref = useRef<HTMLVideoElement>(null)
+  const [load, setLoad] = useState(false)
+  const [playing, setPlaying] = useState(false)
+
+  // The video is decoration, so it waits until the page has finished loading (the poster
+  // shows until then) and is skipped on slow connections or with Data Saver on.
+  useEffect(() => {
+    if (reduce) return
+    const conn = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection
+    if (conn?.saveData || /(^|-)2g$/.test(conn?.effectiveType ?? "")) return
+    let timer = 0
+    const start = () => (timer = window.setTimeout(() => setLoad(true), 1200))
+    if (document.readyState === "complete") start()
+    else window.addEventListener("load", start, { once: true })
+    return () => {
+      window.removeEventListener("load", start)
+      clearTimeout(timer)
+    }
+  }, [reduce])
 
   // iOS Safari only autoplays when the `muted` attribute is on the element, which React
   // doesn't write (it only sets the property), so set both and start playback ourselves.
   // If autoplay is still refused (e.g. Low Power Mode), start on the first touch or scroll.
   useEffect(() => {
     const v = ref.current
-    if (!v || reduce) return
+    if (!v || reduce || !load) return
+    v.load()
     v.muted = true
     v.defaultMuted = true
     v.setAttribute("muted", "")
@@ -40,27 +59,40 @@ export function HeroVideo({ veil }: { veil: keyof typeof veils }) {
       stopListening()
       document.removeEventListener("visibilitychange", onVisible)
     }
-  }, [reduce])
+  }, [reduce, load])
 
   return (
     <>
+      {/* The still frame is a plain image, painted straight away; the video fades in over it once
+          it is actually playing. */}
+      <img
+        src="/video/hero-poster.webp"
+        alt=""
+        aria-hidden="true"
+        fetchPriority="high"
+        className="absolute inset-0 -z-20 h-full w-full object-cover"
+      />
       <video
         ref={ref}
-        className="absolute inset-0 -z-20 h-full w-full object-cover"
-        autoPlay={!reduce}
+        onPlaying={() => setPlaying(true)}
+        className={`absolute inset-0 -z-20 h-full w-full object-cover transition-opacity duration-1000 ${playing ? "opacity-100" : "opacity-0"}`}
+        autoPlay={load}
         muted
         loop
         playsInline
-        preload={reduce ? "none" : "auto"}
-        poster="/video/hero-poster.webp"
+        preload="none"
         aria-hidden="true"
         tabIndex={-1}
       >
         {/* MP4 (H.264) first: the most reliable format on iPhones; WebM as a fallback. */}
-        <source src="/video/hero-tall.mp4" type="video/mp4" media="(orientation: portrait)" />
-        <source src="/video/hero-tall.webm" type="video/webm" media="(orientation: portrait)" />
-        <source src="/video/hero-wide.mp4" type="video/mp4" />
-        <source src="/video/hero-wide.webm" type="video/webm" />
+        {load && (
+          <>
+            <source src="/video/hero-tall.mp4" type="video/mp4" media="(orientation: portrait)" />
+            <source src="/video/hero-tall.webm" type="video/webm" media="(orientation: portrait)" />
+            <source src="/video/hero-wide.mp4" type="video/mp4" />
+            <source src="/video/hero-wide.webm" type="video/webm" />
+          </>
+        )}
       </video>
       <div
         aria-hidden

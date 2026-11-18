@@ -1,27 +1,67 @@
 import { motion, useReducedMotion } from "motion/react"
+import { useEffect, useState } from "react"
 
 // Flower colours shared by the backdrop, the lawn and the tag chips.
 export const BLOOMS = ["#f472b6", "#fb923c", "#facc15", "#a78bfa", "#2dd4bf", "#f87171", "#60a5fa"]
 
-// Decoration is drawn only in the browser: build-time prerendered pages skip it to stay small.
-const isServer = typeof window === "undefined"
+// Decoration is drawn only in the browser, after the page has attached to the prerendered HTML
+// (so both render the same thing first): prerendered pages skip it to stay small.
+function useMounted() {
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+  return mounted
+}
+// Phones get lighter decoration: the full effects cost too much processing time there.
+const isPhone = () => window.matchMedia("(max-width: 767px)").matches
 
-// Gooey morphing gel blobs in flower colours, plus a field of glowing
-// flowers drifting behind the whole site.
+// Gooey morphing gel blobs in flower colours, plus a field of glowing flowers drifting
+// behind the whole site. Drawn once the page has loaded and the browser is idle, so it never
+// delays the content.
 export function GelBackdrop() {
-  if (isServer) return null
-  return <Backdrop />
+  const [ready, setReady] = useState(false)
+  useEffect(() => {
+    let idle = 0
+    const show = () => {
+      const ric = window.requestIdleCallback ?? ((cb: () => void) => window.setTimeout(cb, 300))
+      idle = ric(() => setReady(true))
+    }
+    if (document.readyState === "complete") show()
+    else window.addEventListener("load", show, { once: true })
+    return () => {
+      window.removeEventListener("load", show)
+      ;(window.cancelIdleCallback ?? clearTimeout)(idle)
+    }
+  }, [])
+  if (!ready) return null
+  return isPhone() ? <LiteBackdrop /> : <Backdrop />
+}
+
+const blobs = [
+  { c: "#2dd4bf", x: "8%", y: "12%", s: 420, o: 0.22 },
+  { c: "#f472b6", x: "72%", y: "4%", s: 340, o: 0.2 },
+  { c: "#a78bfa", x: "60%", y: "55%", s: 480, o: 0.18 },
+  { c: "#fb923c", x: "-6%", y: "70%", s: 380, o: 0.16 },
+  { c: "#facc15", x: "35%", y: "35%", s: 260, o: 0.1 },
+]
+
+// Phones: the same soft colour glow as still gradients, and fewer, unblurred flowers.
+function LiteBackdrop() {
+  return (
+    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+      {blobs.map((b, i) => (
+        <div
+          key={i}
+          className="absolute rounded-full"
+          style={{ left: b.x, top: b.y, width: b.s, height: b.s, opacity: b.o, background: `radial-gradient(circle, ${b.c} 0%, transparent 70%)` }}
+        />
+      ))}
+      <FlowerField count={8} glow={false} />
+    </div>
+  )
 }
 
 function Backdrop() {
   const reduce = useReducedMotion()
-  const blobs = [
-    { c: "#2dd4bf", x: "8%", y: "12%", s: 420, o: 0.22 },
-    { c: "#f472b6", x: "72%", y: "4%", s: 340, o: 0.2 },
-    { c: "#a78bfa", x: "60%", y: "55%", s: 480, o: 0.18 },
-    { c: "#fb923c", x: "-6%", y: "70%", s: 380, o: 0.16 },
-    { c: "#facc15", x: "35%", y: "35%", s: 260, o: 0.1 },
-  ]
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
       <svg className="absolute h-0 w-0">
@@ -54,10 +94,10 @@ function Backdrop() {
   )
 }
 
-function Bloom({ petals, color, size }: { petals: number; color: string; size: number }) {
+function Bloom({ petals, color, size, glow = true }: { petals: number; color: string; size: number; glow?: boolean }) {
   const rx = petals > 6 ? 3.2 : 5
   return (
-    <svg viewBox="0 0 40 40" width={size} height={size} style={{ filter: `drop-shadow(0 0 ${size / 6}px ${color})` }}>
+    <svg viewBox="0 0 40 40" width={size} height={size} style={glow ? { filter: `drop-shadow(0 0 ${size / 6}px ${color})` } : undefined}>
       {Array.from({ length: petals }, (_, k) => (
         <ellipse key={k} cx="20" cy="10" rx={rx} ry="9" fill={color} opacity="0.9" transform={`rotate(${(360 / petals) * k} 20 20)`} />
       ))}
@@ -67,8 +107,8 @@ function Bloom({ petals, color, size }: { petals: number; color: string; size: n
 }
 
 // Faint flowers scattered over the page; positions are fixed so they stay put between renders.
-function FlowerField() {
-  const flowers = Array.from({ length: 16 }, (_, i) => ({
+function FlowerField({ count = 16, glow = true }: { count?: number; glow?: boolean }) {
+  const flowers = Array.from({ length: count }, (_, i) => ({
     left: `${(i * 37 + rand(i + 40) * 20) % 100}%`,
     top: `${(i * 23 + rand(i + 41) * 30) % 100}%`,
     size: 34 + rand(i + 42) * 46,
@@ -86,7 +126,7 @@ function FlowerField() {
           className="bloom absolute"
           style={{ left: f.left, top: f.top, opacity: f.opacity, ["--d" as string]: `${f.d}s`, ["--delay" as string]: `${f.delay}s` }}
         >
-          <Bloom petals={f.petals} color={f.color} size={f.size} />
+          <Bloom petals={f.petals} color={f.color} size={f.size} glow={glow} />
         </span>
       ))}
     </div>
@@ -100,6 +140,10 @@ function rand(i: number) {
 }
 
 export function GrassField({ height = 110, density = 140, className = "" }: { height?: number; density?: number; className?: string }) {
+  const mounted = useMounted()
+  if (!mounted) return <div aria-hidden className={`pointer-events-none relative ${className}`} style={{ height }} />
+  // Fewer blades on phones: each swaying blade is repainted every frame.
+  if (isPhone()) density = Math.round(density * 0.4)
   const blades = Array.from({ length: density }, (_, i) => {
     const x = (i / density) * 1000 + rand(i) * 8
     const h = height * (0.45 + rand(i + 1) * 0.55)
@@ -109,7 +153,6 @@ export function GrassField({ height = 110, density = 140, className = "" }: { he
     const bloom = i % 9 === 4 ? BLOOMS[(i * 3) % BLOOMS.length] : null
     return { x, h, w, lean, fill, bloom, d: 3 + rand(i + 4) * 3, delay: -rand(i + 5) * 4 }
   })
-  if (isServer) return <div aria-hidden className={`pointer-events-none relative ${className}`} style={{ height }} />
   return (
     <div aria-hidden className={`pointer-events-none relative ${className}`} style={{ height }}>
     <svg
@@ -161,7 +204,7 @@ export function GrassField({ height = 110, density = 140, className = "" }: { he
 }
 
 export function DewDrops({ count = 14 }: { count?: number }) {
-  if (isServer) return null
+  if (!useMounted()) return null
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
       {Array.from({ length: count }, (_, i) => (

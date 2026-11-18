@@ -7,6 +7,7 @@ import { navigate, type Route } from "@/lib/router"
 import { useContent, useT } from "@/i18n/content"
 import { LANGS, useHref, useLang } from "@/i18n/lang"
 import { cn } from "@/lib/cn"
+import { small } from "@/lib/img"
 import { GelButton, spring } from "./ui/gel"
 import { GrassField } from "./Ambient"
 import { LogoMark, Wordmark } from "./Logo"
@@ -30,6 +31,9 @@ export function LanguageSwitch({ className, tone = "gel" }: { className?: string
             onClick={() => setLang(l.id)}
             className={cn(
               "min-h-11 flex-1 cursor-pointer rounded-full px-3 text-sm font-semibold transition-colors duration-150",
+              // Other languages' names use the phone's own fonts, so a page doesn't download a
+              // whole Hindi or Punjabi web font just for one button.
+              !active && "native-script",
               tone === "gel"
                 ? active
                   ? "gel-btn"
@@ -112,10 +116,9 @@ export function Nav({ route, basket, onBasket }: { route: Route; basket: Basket;
           className="logo-hover mr-auto flex min-h-11 min-w-0 items-center gap-2 rounded-full pr-1 sm:gap-3 sm:pr-2"
         >
           <LogoMark className="size-10 shrink-0 drop-shadow-md sm:size-14" />
+          {/* The business name shows at once (no fade-in), so it is visible before JavaScript runs. */}
           <motion.span
-            initial={{ opacity: 0, y: 8, filter: "blur(6px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            initial={false}
             className="cgf-title whitespace-nowrap font-serif text-[clamp(0.95rem,5.2vw,1.6rem)] font-bold leading-none tracking-tight sm:text-[2rem] lg:text-[2.4rem]"
           >
             <span className="block">Canadian Grass Farm</span>
@@ -320,7 +323,7 @@ export function BasketDrawer({ open, onClose, basket }: { open: boolean; onClose
                       exit={{ opacity: 0, x: -20 }}
                       className="gel flex items-center gap-3 rounded-2xl p-2"
                     >
-                      <img src={`/img/flowers/${flower!.slug}.webp`} alt="" width={48} height={48} className="size-12 rounded-xl object-cover" />
+                      <img src={small(`/img/flowers/${flower!.slug}.webp`)} alt="" width={48} height={48} className="size-12 rounded-xl object-cover" />
                       <span className="flex-1 font-semibold">{flower!.name}</span>
                       <div className="flex items-center gap-1">
                         <button

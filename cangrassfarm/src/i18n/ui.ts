@@ -249,6 +249,36 @@ const en = {
     whatsapp: "WhatsApp Moaviz",
     msg: "Hi Moaviz, I'd like to discuss a landscaping project.",
   },
+  faq: {
+    eyebrow: "Questions",
+    title: "Frequently asked questions",
+    items: [
+      ["Where is the nursery?", "On Ludhiana Bypass Road in Malerkotla, Punjab, beside Mehal Point and opposite Sham Filling Station (Haji Abdullah Colony, 148023). Tap “Get directions” at the bottom of the page for the map."],
+      ["When are you open?", "Every day, from 7:00 AM to 7:00 PM."],
+      ["Do you deliver?", "Yes, we deliver within 50 km of Malerkotla. Call or WhatsApp Moaviz on +91 90413 76098 to arrange a delivery."],
+      ["How do I order plants?", "Tap “Add to order” on the flowers you like, then send your list to Moaviz on WhatsApp. You can also call +91 90413 76098."],
+      ["Do you take wholesale orders?", "Yes, wholesale orders are welcome. Tell Moaviz which plants you need and how many."],
+      ["Which lawn grasses do you sell?", "Canadian, Bermuda, Golf, All Season and Winter grass, all supplied as ready lawn slabs."],
+      ["Are the plant uses on this site medical advice?", "No. The uses we list are traditional and for information only. Please consult a doctor before using any plant as medicine."],
+    ] as [string, string][],
+  },
+  landFaq: {
+    eyebrow: "Questions",
+    title: "Landscaping questions",
+    items: [
+      ["Where do you do landscaping?", "In Malerkotla, for homes, farmhouses, schools, hotels and wedding venues."],
+      ["How does a landscaping project start?", "Call Moaviz to book a site visit. We look at your space, how much sun it gets, your soil and how you'll use it, then suggest the grass and plants that will do well there."],
+      ["Which lawn grass is right for me?", "It depends on how much sun the lawn gets and how it will be used. Try the grass finder on this page, or ask Moaviz."],
+      ["How is the lawn grass supplied?", "All five grasses (Canadian, Bermuda, Golf, All Season and Winter) come as ready lawn slabs, delivered within 50 km of Malerkotla."],
+    ] as [string, string][],
+  },
+  about: {
+    eyebrow: "About us",
+    title: "Meet Moaviz",
+    text: "Canadian Grass Farm & Flower Nursery is run by Moaviz on Ludhiana Bypass Road, Malerkotla. The flowers, plants and lawn grasses sold here are grown at the farm, and Moaviz designs and installs lawns and gardens for homes, farmhouses, schools and hotels around Malerkotla.",
+    msg: "Hi Moaviz, I found Canadian Grass Farm on the website and have a question.",
+  },
+  crumbs: { label: "Breadcrumb", home: "Home" },
 }
 
 export type UI = typeof en
@@ -489,6 +519,36 @@ const hi: UI = {
     whatsapp: "मोआविज़ को व्हाट्सऐप करें",
     msg: "हैलो मोआविज़ जी, मैं एक लैंडस्केपिंग प्रोजेक्ट के बारे में बात करना चाहता/चाहती हूँ।",
   },
+  faq: {
+    eyebrow: "सवाल-जवाब",
+    title: "अक्सर पूछे जाने वाले सवाल",
+    items: [
+      ["नर्सरी कहाँ है?", "लुधियाना बाईपास रोड, मलेरकोटला (पंजाब) में, महल पॉइंट के पास और शाम फिलिंग स्टेशन के सामने (हाजी अब्दुल्ला कॉलोनी, 148023)। नक्शे के लिए पेज के नीचे “रास्ता देखें” पर टैप करें।"],
+      ["नर्सरी कब खुली रहती है?", "हर दिन, सुबह 7 बजे से शाम 7 बजे तक।"],
+      ["क्या आप डिलीवरी करते हैं?", "हाँ, हम मलेरकोटला से 50 किमी तक डिलीवरी करते हैं। डिलीवरी के लिए मोआविज़ को +91 90413 76098 पर कॉल या व्हाट्सऐप करें।"],
+      ["पौधे कैसे ऑर्डर करें?", "पसंद के फूलों पर “ऑर्डर में जोड़ें” टैप करें, फिर अपनी सूची व्हाट्सऐप पर मोआविज़ को भेजें। आप +91 90413 76098 पर कॉल भी कर सकते हैं।"],
+      ["क्या आप थोक ऑर्डर लेते हैं?", "हाँ, थोक ऑर्डर का स्वागत है। मोआविज़ को बताएँ कि कौन-से पौधे और कितने चाहिए।"],
+      ["आप कौन-सी लॉन घास बेचते हैं?", "कैनेडियन, बरमूडा, गोल्फ़, ऑल सीज़न और विंटर घास, सभी तैयार लॉन स्लैब के रूप में।"],
+      ["क्या इस साइट पर लिखे पौधों के उपयोग डॉक्टरी सलाह हैं?", "नहीं। ये उपयोग पारंपरिक हैं और सिर्फ़ जानकारी के लिए हैं। किसी भी पौधे को दवा की तरह इस्तेमाल करने से पहले डॉक्टर की सलाह लें।"],
+    ],
+  },
+  landFaq: {
+    eyebrow: "सवाल-जवाब",
+    title: "लैंडस्केपिंग से जुड़े सवाल",
+    items: [
+      ["आप लैंडस्केपिंग कहाँ करते हैं?", "मलेरकोटला में, घर, फार्महाउस, स्कूल, होटल और शादी के स्थलों के लिए।"],
+      ["लैंडस्केपिंग का काम कैसे शुरू होता है?", "साइट विज़िट बुक करने के लिए मोआविज़ को कॉल करें। हम आपकी जगह, उसमें आने वाली धूप, मिट्टी और आप उसे कैसे इस्तेमाल करेंगे, यह देखते हैं, फिर वहाँ अच्छी तरह उगने वाली घास और पौधे सुझाते हैं।"],
+      ["मेरे लिए कौन-सी लॉन घास सही है?", "यह इस पर निर्भर करता है कि लॉन में कितनी धूप आती है और उसका इस्तेमाल कैसे होगा। इस पेज पर घास चुनने वाला टूल आज़माएँ, या मोआविज़ से पूछें।"],
+      ["लॉन घास किस रूप में मिलती है?", "पाँचों घास (कैनेडियन, बरमूडा, गोल्फ़, ऑल सीज़न और विंटर) तैयार लॉन स्लैब के रूप में मिलती हैं, और मलेरकोटला से 50 किमी तक डिलीवर की जाती हैं।"],
+    ],
+  },
+  about: {
+    eyebrow: "हमारे बारे में",
+    title: "मिलिए मोआविज़ से",
+    text: "कैनेडियन ग्रास फार्म एंड फ्लावर नर्सरी को मोआविज़ लुधियाना बाईपास रोड, मलेरकोटला पर चलाते हैं। यहाँ बिकने वाले फूल, पौधे और लॉन घास फार्म पर ही उगाए जाते हैं, और मोआविज़ मलेरकोटला और आसपास घरों, फार्महाउसों, स्कूलों और होटलों के लिए लॉन और बगीचे डिज़ाइन करके लगाते हैं।",
+    msg: "हैलो मोआविज़ जी, मैंने वेबसाइट पर कैनेडियन ग्रास फार्म देखा और मेरा एक सवाल है।",
+  },
+  crumbs: { label: "ब्रेडक्रंब", home: "होम" },
 }
 
 const pa: UI = {
@@ -727,6 +787,36 @@ const pa: UI = {
     whatsapp: "ਮੋਆਵਿਜ਼ ਨੂੰ ਵਟਸਐਪ ਕਰੋ",
     msg: "ਹੈਲੋ ਮੋਆਵਿਜ਼ ਜੀ, ਮੈਂ ਇੱਕ ਲੈਂਡਸਕੇਪਿੰਗ ਪ੍ਰੋਜੈਕਟ ਬਾਰੇ ਗੱਲ ਕਰਨਾ ਚਾਹੁੰਦਾ/ਚਾਹੁੰਦੀ ਹਾਂ।",
   },
+  faq: {
+    eyebrow: "ਸਵਾਲ-ਜਵਾਬ",
+    title: "ਅਕਸਰ ਪੁੱਛੇ ਜਾਂਦੇ ਸਵਾਲ",
+    items: [
+      ["ਨਰਸਰੀ ਕਿੱਥੇ ਹੈ?", "ਲੁਧਿਆਣਾ ਬਾਈਪਾਸ ਰੋਡ, ਮਲੇਰਕੋਟਲਾ (ਪੰਜਾਬ) ਵਿੱਚ, ਮਹਿਲ ਪੁਆਇੰਟ ਦੇ ਨਾਲ ਅਤੇ ਸ਼ਾਮ ਫਿਲਿੰਗ ਸਟੇਸ਼ਨ ਦੇ ਸਾਹਮਣੇ (ਹਾਜੀ ਅਬਦੁੱਲਾ ਕਲੋਨੀ, 148023)। ਨਕਸ਼ੇ ਲਈ ਪੰਨੇ ਦੇ ਹੇਠਾਂ “ਰਸਤਾ ਵੇਖੋ” ਤੇ ਟੈਪ ਕਰੋ।"],
+      ["ਨਰਸਰੀ ਕਦੋਂ ਖੁੱਲ੍ਹੀ ਰਹਿੰਦੀ ਹੈ?", "ਹਰ ਰੋਜ਼, ਸਵੇਰੇ 7 ਵਜੇ ਤੋਂ ਸ਼ਾਮ 7 ਵਜੇ ਤੱਕ।"],
+      ["ਕੀ ਤੁਸੀਂ ਡਿਲੀਵਰੀ ਕਰਦੇ ਹੋ?", "ਹਾਂ, ਅਸੀਂ ਮਲੇਰਕੋਟਲਾ ਤੋਂ 50 ਕਿਲੋਮੀਟਰ ਤੱਕ ਡਿਲੀਵਰੀ ਕਰਦੇ ਹਾਂ। ਡਿਲੀਵਰੀ ਲਈ ਮੋਆਵਿਜ਼ ਨੂੰ +91 90413 76098 ਤੇ ਕਾਲ ਜਾਂ ਵਟਸਐਪ ਕਰੋ।"],
+      ["ਪੌਦੇ ਕਿਵੇਂ ਆਰਡਰ ਕਰੀਏ?", "ਪਸੰਦ ਦੇ ਫੁੱਲਾਂ ਤੇ “ਆਰਡਰ ਵਿੱਚ ਜੋੜੋ” ਟੈਪ ਕਰੋ, ਫਿਰ ਆਪਣੀ ਸੂਚੀ ਵਟਸਐਪ ਤੇ ਮੋਆਵਿਜ਼ ਨੂੰ ਭੇਜੋ। ਤੁਸੀਂ +91 90413 76098 ਤੇ ਕਾਲ ਵੀ ਕਰ ਸਕਦੇ ਹੋ।"],
+      ["ਕੀ ਤੁਸੀਂ ਥੋਕ ਆਰਡਰ ਲੈਂਦੇ ਹੋ?", "ਹਾਂ, ਥੋਕ ਆਰਡਰ ਦਾ ਸਵਾਗਤ ਹੈ। ਮੋਆਵਿਜ਼ ਨੂੰ ਦੱਸੋ ਕਿ ਕਿਹੜੇ ਪੌਦੇ ਅਤੇ ਕਿੰਨੇ ਚਾਹੀਦੇ ਹਨ।"],
+      ["ਤੁਸੀਂ ਕਿਹੜਾ ਲਾਅਨ ਘਾਹ ਵੇਚਦੇ ਹੋ?", "ਕੈਨੇਡੀਅਨ, ਬਰਮੂਡਾ, ਗੋਲਫ਼, ਆਲ ਸੀਜ਼ਨ ਅਤੇ ਵਿੰਟਰ ਘਾਹ, ਸਾਰੇ ਤਿਆਰ ਲਾਅਨ ਸਲੈਬਾਂ ਦੇ ਰੂਪ ਵਿੱਚ।"],
+      ["ਕੀ ਇਸ ਸਾਈਟ ਤੇ ਲਿਖੇ ਪੌਦਿਆਂ ਦੇ ਵਰਤੋਂ ਡਾਕਟਰੀ ਸਲਾਹ ਹਨ?", "ਨਹੀਂ। ਇਹ ਵਰਤੋਂ ਰਵਾਇਤੀ ਹਨ ਅਤੇ ਸਿਰਫ਼ ਜਾਣਕਾਰੀ ਲਈ ਹਨ। ਕਿਸੇ ਵੀ ਪੌਦੇ ਨੂੰ ਦਵਾਈ ਵਜੋਂ ਵਰਤਣ ਤੋਂ ਪਹਿਲਾਂ ਡਾਕਟਰ ਦੀ ਸਲਾਹ ਲਓ।"],
+    ],
+  },
+  landFaq: {
+    eyebrow: "ਸਵਾਲ-ਜਵਾਬ",
+    title: "ਲੈਂਡਸਕੇਪਿੰਗ ਬਾਰੇ ਸਵਾਲ",
+    items: [
+      ["ਤੁਸੀਂ ਲੈਂਡਸਕੇਪਿੰਗ ਕਿੱਥੇ ਕਰਦੇ ਹੋ?", "ਮਲੇਰਕੋਟਲਾ ਵਿੱਚ, ਘਰਾਂ, ਫਾਰਮਹਾਊਸਾਂ, ਸਕੂਲਾਂ, ਹੋਟਲਾਂ ਅਤੇ ਵਿਆਹ ਵਾਲੀਆਂ ਥਾਵਾਂ ਲਈ।"],
+      ["ਲੈਂਡਸਕੇਪਿੰਗ ਦਾ ਕੰਮ ਕਿਵੇਂ ਸ਼ੁਰੂ ਹੁੰਦਾ ਹੈ?", "ਸਾਈਟ ਵਿਜ਼ਿਟ ਬੁੱਕ ਕਰਨ ਲਈ ਮੋਆਵਿਜ਼ ਨੂੰ ਕਾਲ ਕਰੋ। ਅਸੀਂ ਤੁਹਾਡੀ ਥਾਂ, ਉੱਥੇ ਆਉਣ ਵਾਲੀ ਧੁੱਪ, ਮਿੱਟੀ ਅਤੇ ਤੁਸੀਂ ਉਸ ਨੂੰ ਕਿਵੇਂ ਵਰਤੋਗੇ, ਇਹ ਵੇਖਦੇ ਹਾਂ, ਫਿਰ ਉੱਥੇ ਚੰਗੀ ਤਰ੍ਹਾਂ ਵਧਣ ਵਾਲਾ ਘਾਹ ਅਤੇ ਪੌਦੇ ਸੁਝਾਉਂਦੇ ਹਾਂ।"],
+      ["ਮੇਰੇ ਲਈ ਕਿਹੜਾ ਲਾਅਨ ਘਾਹ ਠੀਕ ਹੈ?", "ਇਹ ਇਸ ਗੱਲ ਤੇ ਨਿਰਭਰ ਕਰਦਾ ਹੈ ਕਿ ਲਾਅਨ ਵਿੱਚ ਕਿੰਨੀ ਧੁੱਪ ਆਉਂਦੀ ਹੈ ਅਤੇ ਉਸ ਦੀ ਵਰਤੋਂ ਕਿਵੇਂ ਹੋਵੇਗੀ। ਇਸ ਪੰਨੇ ਤੇ ਘਾਹ ਚੁਣਨ ਵਾਲਾ ਟੂਲ ਵਰਤੋ, ਜਾਂ ਮੋਆਵਿਜ਼ ਨੂੰ ਪੁੱਛੋ।"],
+      ["ਲਾਅਨ ਘਾਹ ਕਿਸ ਰੂਪ ਵਿੱਚ ਮਿਲਦਾ ਹੈ?", "ਪੰਜੇ ਘਾਹ (ਕੈਨੇਡੀਅਨ, ਬਰਮੂਡਾ, ਗੋਲਫ਼, ਆਲ ਸੀਜ਼ਨ ਅਤੇ ਵਿੰਟਰ) ਤਿਆਰ ਲਾਅਨ ਸਲੈਬਾਂ ਦੇ ਰੂਪ ਵਿੱਚ ਮਿਲਦੇ ਹਨ, ਅਤੇ ਮਲੇਰਕੋਟਲਾ ਤੋਂ 50 ਕਿਲੋਮੀਟਰ ਤੱਕ ਡਿਲੀਵਰ ਕੀਤੇ ਜਾਂਦੇ ਹਨ।"],
+    ],
+  },
+  about: {
+    eyebrow: "ਸਾਡੇ ਬਾਰੇ",
+    title: "ਮਿਲੋ ਮੋਆਵਿਜ਼ ਨੂੰ",
+    text: "ਕੈਨੇਡੀਅਨ ਗ੍ਰਾਸ ਫਾਰਮ ਐਂਡ ਫਲਾਵਰ ਨਰਸਰੀ ਨੂੰ ਮੋਆਵਿਜ਼ ਲੁਧਿਆਣਾ ਬਾਈਪਾਸ ਰੋਡ, ਮਲੇਰਕੋਟਲਾ ਤੇ ਚਲਾਉਂਦੇ ਹਨ। ਇੱਥੇ ਵਿਕਣ ਵਾਲੇ ਫੁੱਲ, ਪੌਦੇ ਅਤੇ ਲਾਅਨ ਘਾਹ ਫਾਰਮ ਤੇ ਹੀ ਉਗਾਏ ਜਾਂਦੇ ਹਨ, ਅਤੇ ਮੋਆਵਿਜ਼ ਮਲੇਰਕੋਟਲਾ ਅਤੇ ਆਸ-ਪਾਸ ਘਰਾਂ, ਫਾਰਮਹਾਊਸਾਂ, ਸਕੂਲਾਂ ਅਤੇ ਹੋਟਲਾਂ ਲਈ ਲਾਅਨ ਅਤੇ ਬਾਗ਼ ਡਿਜ਼ਾਈਨ ਕਰਕੇ ਲਗਾਉਂਦੇ ਹਨ।",
+    msg: "ਹੈਲੋ ਮੋਆਵਿਜ਼ ਜੀ, ਮੈਂ ਵੈੱਬਸਾਈਟ ਤੇ ਕੈਨੇਡੀਅਨ ਗ੍ਰਾਸ ਫਾਰਮ ਵੇਖਿਆ ਅਤੇ ਮੇਰਾ ਇੱਕ ਸਵਾਲ ਹੈ।",
+  },
+  crumbs: { label: "ਬ੍ਰੈੱਡਕ੍ਰੰਬ", home: "ਹੋਮ" },
 }
 
 export const ui: Record<Lang, UI> = { en, hi, pa }
